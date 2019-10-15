@@ -65,12 +65,13 @@
               background-color="#00afd6"
               text-color="#fff"
               active-text-color="#ffb74f"
+              router
             >
-              <el-menu-item index="1">首页</el-menu-item>
-              <el-menu-item index="2">分类</el-menu-item>
-              <el-menu-item index="3">文集</el-menu-item>
-              <el-menu-item index="4">会议</el-menu-item>
-              <el-menu-item index="5">合作机构</el-menu-item>
+              <el-menu-item index="/">首页</el-menu-item>
+              <el-menu-item index="/classification">分类</el-menu-item>
+              <el-menu-item index="/thecorpus">文集</el-menu-item>
+              <el-menu-item index="/themeeting">会议</el-menu-item>
+              <el-menu-item index="/cooperation">合作机构</el-menu-item>
             </el-menu>
           </div>
         </div>
@@ -89,7 +90,7 @@
 export default {
   data() {
     return {
-      activeIndex2: "1"
+      activeIndex2: "/"
     };
   }
 };
