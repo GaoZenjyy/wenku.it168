@@ -39,12 +39,11 @@
         <div class="search">
           <div class="search-img">
             <div class="search-connent">
-              <div class="search-connent-left">
+              <div class="search-connent-left clearfix">
                 <a href="javascript:;" class="search-connent-left-a"></a>
               </div>
               <div class="search-connent-right">
                 <el-input class="input-with-select"></el-input>
-
                 <div class="search-connent-right-top">
                   <button class="inputbutton"></button>
                 </div>
@@ -205,7 +204,15 @@ export default {
   width: 1200px;
   height: 138px;
   margin: 0 auto;
+  position: relative;
   // background-color: #cc0000;
+}
+.clearfix {
+  content: "";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
 }
 .search-connent-left {
   width: 320px;
@@ -222,9 +229,12 @@ export default {
 .search-connent-right {
   width: 680px;
   height: 36px;
-  float: left;
+  // float: left;
   padding-top: 53px;
-  position: relative;
+  position: absolute;
+  top: -2px;
+  left: 325px;
+  // position: relative;
   // background-color: #cc0000;
 }
 .input-with-select {
@@ -243,6 +253,7 @@ export default {
   margin: 0;
 }
 .search-connent-right-top {
+  // position:relative;
   position: absolute;
   top: 55px;
   left: 418px;
@@ -254,6 +265,7 @@ export default {
   background-repeat: no-repeat;
 }
 .search-connent-right-bottom {
+  // position:relative;
   position: absolute;
   top: 55px;
   left: 543px;
