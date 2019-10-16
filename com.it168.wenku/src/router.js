@@ -9,9 +9,14 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
+      redirect: "/ifferent",
       component: Home,
       children: [
+        // 首页
+        {
+          path: "/different",
+          component: () => import("./components/Different.vue")
+        },
         {
           path: "/classification",
           component: () => import("./components/classification.vue")
