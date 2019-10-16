@@ -14,50 +14,50 @@
         <!-- 下拉框 -->
         <div class="shaixuan2">
           <select name="select" class="sel">
-            <option value="">技术领域</option>
-             <option value="">编程语言</option>
-              <option value="">人工智能</option>
-              <option value="">移动开发</option>
-              <option value="">数据库</option>
-              <option value="">操作系统</option>
-              <option value="">云计算</option>
-              <option value="">大数据</option>
-              <option value="">信息化</option>
-              <option value="">网络安全</option>
-              <option value="">服务器</option>
-              <option value="">存储</option>
-              <option value="">汽车</option>
+            <option value>技术领域</option>
+            <option value>编程语言</option>
+            <option value>人工智能</option>
+            <option value>移动开发</option>
+            <option value>数据库</option>
+            <option value>操作系统</option>
+            <option value>云计算</option>
+            <option value>大数据</option>
+            <option value>信息化</option>
+            <option value>网络安全</option>
+            <option value>服务器</option>
+            <option value>存储</option>
+            <option value>汽车</option>
           </select>
           <select name="select" class="sel">
-            <option value="">年份</option>
-             <option value="">2020年</option>
-              <option value="">2019年</option>
-              <option value="">2018年</option>
-              <option value="">2017年</option>
-              <option value="">2016年</option>
-              <option value="">2015年</option>
-              <option value="">2014年</option>
-              <option value="">2013年</option>
-              <option value="">2012年</option>
-              <option value="">2011年</option>
+            <option value>年份</option>
+            <option value>2020年</option>
+            <option value>2019年</option>
+            <option value>2018年</option>
+            <option value>2017年</option>
+            <option value>2016年</option>
+            <option value>2015年</option>
+            <option value>2014年</option>
+            <option value>2013年</option>
+            <option value>2012年</option>
+            <option value>2011年</option>
           </select>
           <select name="select" class="sel">
-             <option value="">月份</option>
-             <option value="">01月</option>
-              <option value="">02月</option>
-              <option value="">03月</option>
-              <option value="">04月</option>
-              <option value="">05月</option>
-              <option value="">06月</option>
-              <option value="">07月</option>
-              <option value="">08月</option>
-              <option value="">09月</option>
-              <option value="">10月</option>
-              <option value="">11月</option>
-              <option value="">12月</option>
-              </select> 
-              <!-- 搜索文档 -->
-              <input type="button" class="btn2" value="搜索文档">
+            <option value>月份</option>
+            <option value>01月</option>
+            <option value>02月</option>
+            <option value>03月</option>
+            <option value>04月</option>
+            <option value>05月</option>
+            <option value>06月</option>
+            <option value>07月</option>
+            <option value>08月</option>
+            <option value>09月</option>
+            <option value>10月</option>
+            <option value>11月</option>
+            <option value>12月</option>
+          </select>
+          <!-- 搜索文档 -->
+          <input type="button" class="btn2" value="搜索文档" />
         </div>
         <div class="dq">
           <div class="tit5">
@@ -66,12 +66,203 @@
               <span class="n1">会议地点</span>
               <span class="n1">浏览量</span>
               <span class="n2">会议时间</span>
-            </p>
-            会议大全
+            </p>会议大全
           </div>
           <!-- 会议大全 -->
-         
+          <ul class="wendang_list5">
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>第十届中国数据库技术大会（DTCC）演讲PPT</a>
+                </div>
+              </div>
+              <div class="n2">99篇</div>
+              <div class="n2">未知</div>
+              <div class="n3">2627</div>
+              <div class="n4">2019-05-08</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>第九届中国数据库技术大会（DTCC）演讲集锦</a>
+                </div>
+              </div>
+              <div class="n2">85篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">14344</div>
+              <div class="n4">2018-05-01</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>2017中国大数据技术大会</a>
+                </div>
+              </div>
+              <div class="n2">27篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">6103</div>
+              <div class="n4">2018-02-06</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>SDCC 2017互联网应用架构实战峰会</a>
+                </div>
+              </div>
+              <div class="n2">7篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">5484</div>
+              <div class="n4">2018-02-05</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>2017 全球云计算开源峰会</a>
+                </div>
+              </div>
+              <div class="n2">14篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">5561</div>
+              <div class="n4">2018-02-05</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>PostgreSQL 2017中国技术大会</a>
+                </div>
+              </div>
+              <div class="n2">22篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">15610</div>
+              <div class="n4">2018-02-05</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>ECCS-2017企业云计算峰会</a>
+                </div>
+              </div>
+              <div class="n2">6篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">5433</div>
+              <div class="n4">2018-01-29</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>中国第三届CSS开发者大会</a>
+                </div>
+              </div>
+              <div class="n2">6篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">5236</div>
+              <div class="n4">2018-02-05</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>Gdevops-2017全球敏捷运维峰会</a>
+                </div>
+              </div>
+              <div class="n2">36篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">5225</div>
+              <div class="n4">2018-02-05</div>
+            </li>
+            <li>
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>2017先知白帽大会（阿里云云盾先知）</a>
+                </div>
+              </div>
+              <div class="n2">9篇</div>
+              <div class="n2">北京</div>
+              <div class="n3">5406</div>
+              <div class="n4">2018-02-05</div>
+            </li>
+          </ul>
+          <!-- 分页 -->
+          <div class="page">
+            <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+          </div>
         </div>
+      </div>
+      <!-- 右边 -->
+      <div class="r2">
+        <div class="wenku">
+          <dl>
+            <dt>IT168文库海量技术文档</dt>
+            <dd>
+              <span>1388942</span>
+              篇
+            </dd>
+            <dt>国内热门尖端会议资料</dt>
+            <dd>
+              <span>1004</span>
+              篇
+            </dd>
+            <dt>技术文集</dt>
+            <dd>
+              <span>449</span>
+              篇
+            </dd>
+          </dl>
+        </div>
+       <div class="padd">
+          <div class="title11">最新收录会议</div>
+          <ul class="huiyi_list">
+            <li>
+              <a href="">第十届中国数据库技术大会（DTCC）演讲PPT</a>
+            </li>
+             <li>
+              <a href="">第九届中国数据库技术大会（DTCC）演讲集锦</a>
+            </li>
+             <li>
+              <a href="">后直播时代技术</a>
+            </li>
+             <li>
+              <a href="">2017中国大数据技术大会</a>
+            </li>
+             <li>
+              <a href="">SDCC 2017互联网应用架构实战峰会</a>
+            </li>
+             <li>
+              <a href="">2017 全球云计算开源峰会</a>
+            </li>
+             <li>
+              <a href="">PostgreSQL 2017中国技术大会</a>
+            </li>
+             <li>
+              <a href="">ECCS-2017企业云计算峰会</a>
+            </li>
+             <li>
+              <a href="">2017先知白帽大会（阿里云云盾先知）</a>
+            </li>
+             <li>
+              <a href="">第九届中国Hadoop技术峰会2017 北京站</a>
+            </li>
+          </ul>
+       </div>
       </div>
     </div>
   </div>
