@@ -9,7 +9,7 @@ export default new Router({
   routes: [
     {
       path: "/",
-      redirect: "/ifferent",
+      redirect: "/different",
       component: Home,
       children: [
         // 首页
