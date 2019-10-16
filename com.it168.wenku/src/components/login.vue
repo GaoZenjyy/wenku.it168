@@ -6,7 +6,8 @@
             <ul class="list">
                 <li class="form-item">
                     <div class="inp_box">
-                        <div class="inp_box_1"><span class="user"></span>
+                        <div class="inp_box_1">
+                            <span class="user"></span>
                             <input value="" placeholder="用户名/手机号" id="username" maxlength="36" type="text" class="inp">
                         </div>
                     </div>
