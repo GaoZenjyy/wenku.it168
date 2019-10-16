@@ -1,14 +1,13 @@
 <template>
   <el-container>
     <el-main>
+      <el-row>
+        <el-col :span="24">
+          <div class="grid-content bg-purple-dark">筛选项</div>
+        </el-col>
+      </el-row>
       <el-container>
-        <el-main>
-          <el-row>
-            <el-col :span="24">
-              <div class="grid-content bg-purple-dark">筛选项</div>
-            </el-col>
-          </el-row>
-        </el-main>
+        <el-main></el-main>
         <el-aside width="200px">Aside</el-aside>
       </el-container>
     </el-main>

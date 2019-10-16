@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Classification from './components/classification.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -14,8 +13,8 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: '/classification',
-          component:Classification
+          path: "/classification",
+          component:()=>import("./components/classification.vue")
         }
       ]
     }
