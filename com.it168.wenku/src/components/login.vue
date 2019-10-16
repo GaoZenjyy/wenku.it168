@@ -1,5 +1,5 @@
 <template>
-  <el-card class="box-card">
+  <div class="box-card">
         <div class="nav"><a href="/login" class="here"> 登录 <i></i> </a> <a href="/register"> 注册 <i></i> </a>
         </div>
         <form class="popup" method="post">
@@ -45,7 +45,7 @@
             <li class="pwd"><a class="here" type="2">密码登录</a></li>
                     </ul>
 
-</el-card>
+</div>
 
 
 </template>
