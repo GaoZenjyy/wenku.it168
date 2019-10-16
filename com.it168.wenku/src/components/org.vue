@@ -2,8 +2,8 @@
   <div>
     <!-- 图片栏 -->
     <div class="tupian">
-      <img src="../assets/image/lcs_01.jpg" alt class="tu_one" />
-      <img src="../assets/image/lcs_21-30-23.png" alt class="tu_two" />
+      <img src="../assets/image/lcs_img/lcs_01.jpg" alt class="tu_one" />
+      <img src="../assets/image/lcs_img/lcs_21-30-23.png" alt class="tu_two" />
     </div>
     <!-- 下边内容 -->
     <i class="tuijian"></i>
@@ -17,7 +17,7 @@
         <!-- 上部分 -->
         <div class="one_top">
           <div class="one_topleft">
-            <img src="../assets/image/lcs_21586906.jpg" alt class="a" />
+            <img src="../assets/image/lcs_img/lcs_21586906.jpg" alt class="a" />
             <i class="b"></i>
           </div>
         </div>
@@ -35,12 +35,8 @@
           </div>
           <div class="one_bottomright">
             <ul>
-              <li>
-              规范规划
-              </li>
-              <li>
-             粉红色方式
-              </li>
+              <li>规范规划</li>
+              <li>粉红色方式</li>
             </ul>
           </div>
         </div>
@@ -88,12 +84,12 @@
   position: relative;
   top: 6px;
   right: -11px;
-  background-image: url(/img/lcs_bg.c3182825.png);
+  background-image: url(../assets/image/lcs_img/lcs_bg.png);
   background-position: 0px -505px;
   background-repeat: no-repeat;
 }
 /* 整体大盒子 */
-.Big_box{
+.Big_box {
   width: 860px;
 }
 /* 第一个盒子 */
@@ -134,7 +130,7 @@
   position: relative;
   top: -69px;
   right: -136px;
-  background-image: url(/img/lcs_bg.c3182825.png);
+  background-image: url(../assets/image/lcs_img/lcs_bg.png);
   background-position: 32px -810px;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -154,13 +150,13 @@ ul {
   margin-left: -6px;
 }
 /* a标签 */
-a{
-  text-decoration:none;
+a {
+  text-decoration: none;
   color: #666666;
-  }
-  a:hover{
-    color: #d20131;
-  }
+}
+a:hover {
+  color: #d20131;
+}
 /* 下部分右边 */
 .one_bottomright {
   width: 330px;

@@ -25,10 +25,14 @@ export default new Router({
           path: "/details",
           component: () => import("./components/details.vue")
         },
-        // 会议路由
         {
           path: "/themeeting",
           component: () => import("./components/themeeting.vue")
+        },
+        // 会议机构
+        {
+          path: "/cooperation",
+      component: () => import("./components/org.vue")
         }
       ]
     },
