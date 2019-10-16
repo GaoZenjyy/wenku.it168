@@ -57,7 +57,20 @@
               <option value="">12月</option>
               </select> 
               <!-- 搜索文档 -->
-              <input type="">
+              <input type="button" class="btn2" value="搜索文档">
+        </div>
+        <div class="dq">
+          <div class="tit5">
+            <p>
+              <span class="n1">资料数量</span>
+              <span class="n1">会议地点</span>
+              <span class="n1">浏览量</span>
+              <span class="n2">会议时间</span>
+            </p>
+            会议大全
+          </div>
+          <!-- 会议大全 -->
+         
         </div>
       </div>
     </div>
