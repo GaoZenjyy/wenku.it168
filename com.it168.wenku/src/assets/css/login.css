@@ -1,0 +1,109 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, dl, dt, dd, ul, ol, li, pre, form, button, input, textarea, th, td {
+    margin: 0;
+    padding: 0;
+    color: #404040;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+body, button, input, select, textarea {
+    font: 12px/1.125 Helvetica Microsoft Yahei,微软雅黑,STHeiti,Arial,Hiragino Sans GB,sans-serif;
+}
+body {
+    background: url(../image//login/login_pic_bg.png) center top no-repeat;
+    overflow-x: hidden;
+}
+.box-card{
+    background-color: #fff;
+      width: 600px;
+      height: 451px;
+      display: block;
+      margin: 0 auto;
+      padding: 50px 0 40px 0;
+      box-shadow: 0 6px 40px 0 rgba(217, 217, 219, 0.44);
+      border-radius: 4px;
+      position: relative;
+  }
+  .nav {
+    margin: 0 auto;
+    width: 240px;
+    clear: both;
+    overflow: hidden;
+}
+  .nav a {
+      float: left;
+      width: 50%;
+      color: #cdcdcd;
+      text-align: center;
+      font-size: 24px;
+  }
+  .nav a.here, .nav a:hover {
+      color: #f15142;
+  }
+  ul, ol, li {
+    list-style: none;
+}
+  .list {
+    width: 320px;
+    margin: 0 auto;
+}
+
+ul {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.inp_box {
+    border: 1px solid #e3e6e9;
+    height: 46px;
+    border-radius: 4px;
+}
+.inp {
+    width: 90%;
+    border: 0;
+    font-size: 14px;
+    margin: 0 auto;
+    display: block;
+    height: 46px;
+}
+
+input {
+    outline: none;
+}
+.inp_box_1 span {
+    position: absolute;
+    left: 113px;
+    width: 46px;
+    height: 46px;
+    border-left: 1px solid #e3e6e9;
+    border-radius: 10%;
+}
+.inp_box_1 span.user {
+    background: url(../image/login/user.png) center no-repeat;
+    background-size: 46px;
+}
+/* 注册按钮 */
+.submit-btn {
+    cursor: pointer;
+    background: #f7978e;
+    text-align: center;
+    line-height: 50px;
+    box-shadow: 0 4px 15px 0 rgba(241, 81, 66, 0.42);
+    border-radius: 100px;
+    border: none;
+    color: #fff;
+    width: 320px;
+    height: 50px;
+    font-size: 16px;
+    position: relative;
+    transition: all .3s;
+    display: block;
+    outline: 0px;
+    -webkit-appearance: none;
+}
