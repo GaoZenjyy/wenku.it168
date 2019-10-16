@@ -1,4 +1,3 @@
-
 .w1200 {
   margin: 0 auto;
   width: 1200px;
@@ -23,4 +22,22 @@ img {
   border-bottom: 1px solid #d2d2d2;
   background-position: 11px -308px;
   color: #555;
+  background-image: url("http://wenku.it168.com/frontinc/images/bg.png");
+  background-repeat: no-repeat;
+}
+
+/* 筛选 */
+.shaixuan2 {
+  height: 32px;
+  overflow: hidden;
+  padding-top: 10px;
+}
+
+.sel {
+  width: 120px;
+  float: left;
+  border: 1px solid #c9c9c9;
+  padding: 3px 5px;
+  color: #676767;
+  margin-right: 13px;
 }
