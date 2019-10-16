@@ -15,6 +15,10 @@ export default new Router({
         {
           path: "/classification",
           component:()=>import("./components/classification.vue")
+        },
+        {
+          path:"/details",
+          component:()=>import("./components/details.vue")
         }
       ]
     }
