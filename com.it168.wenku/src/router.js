@@ -14,21 +14,22 @@ export default new Router({
       children: [
         {
           path: "/classification",
-          component:()=>import("./components/classification.vue")
+          component: () => import("./components/classification.vue")
         },
         {
-          path:"/details",
-          component:()=>import("./components/details.vue")
+          path: "/details",
+          component: () => import("./components/details.vue")
         },
         // 会议路由
         {
-          path:"/themeeting",
-          component :() =>import ("./components/themeeting.vue")
+          path: "/themeeting",
+          component: () => import("./components/themeeting.vue")
         }
       ]
-    },{
-      path:"/register",
-      component :() =>import ("./components/register.vue")
+    },
+    {
+      path: "/register",
+      component: () => import("./components/register.vue")
     }
   ]
 });
