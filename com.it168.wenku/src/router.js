@@ -26,6 +26,9 @@ export default new Router({
           component :() =>import ("./components/themeeting.vue")
         }
       ]
+    },{
+      path:"/register",
+      component :() =>import ("./components/register.vue")
     }
   ]
 });
