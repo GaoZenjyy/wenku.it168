@@ -80,7 +80,7 @@
 }
 .tu_two {
   float: right;
-  width: 330px;
+  width: 329px;
   height: 291px;
   /* margin-top: -3px; */
 }
