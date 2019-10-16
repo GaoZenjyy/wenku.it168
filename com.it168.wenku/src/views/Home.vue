@@ -78,8 +78,55 @@
       <el-main>
         <router-view></router-view>
       </el-main>
-      <el-footer style="height:200px">
-        <div class="certificate"></div>
+      <el-footer style="height:199px">
+        <div class="certificatea">
+          <div class="certificate">
+            <div class="bottomofthe">
+              <div class="bottomofthea">
+                <span>网站帮助：</span>
+                <a href="#">如何上传</a>
+                <a href="#">如何下载</a>
+                <a href="#">懒人充值</a>
+                <a href="#">常见问题</a>
+                <span>QQ群：14543488</span>
+              </div>
+              <div class="bottomofthea-bottom">
+                <p>
+                  盛拓传媒：
+                  <a href="#">IT168</a>|
+                  <a href="#">泡泡网</a>|
+                  <a href="#">爱极客</a>|
+                  <a href="#">试客</a>|
+                  <a href="#">ITPUB</a>|
+                  <a href="#">IT文库</a>|
+                  <a href="#">ChinaUnix</a>|
+                  <a href="#">本友会</a>|
+                  <a href="#">机友会</a>|
+                  <a href="#">哈喽维修</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="certificateb">
+          <div class="certificateb-comment">
+            <p>
+              <a href="#">关于我们</a>|
+              <a href="#">广告服务</a>|
+              <a href="#">使用条款</a>|
+              <a href="#">联系我们</a>
+            </p>
+            <div class="certificateb-bottom">
+              <span>北京盛拓优讯信息技术有限公司. 版权所有</span>
+              <a href="#">中华人民共和国增值电信业务经营许可证 编号：京B2-20170206</a>
+              <span>北京市公安局海淀分局网监中心备案编号：11010802020118</span>
+            </div>
+            <div class="certificateb-bottom-a">
+              <a href="#">广播电视节目制作经营许可证:(京) 字第07177号</a>
+              <span>测绘资质证书:乙测资字11005067 网络文化经营许可证:京网文(2018) 1456-138号</span>
+            </div>
+          </div>
+        </div>
       </el-footer>
     </el-container>
   </div>
@@ -314,5 +361,119 @@ export default {
   width: 1200px;
   height: 200px;
   margin: 0 auto;
+}
+.certificatea {
+  width: 100%;
+  height: 84px;
+  background-color: #f3f3f3;
+}
+.bottomofthe {
+  width: 100%;
+  height: 64px;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  // background-color: #f3f3f3;
+}
+.bottomofthea {
+  // margin: 0 auto;
+  height: 32px;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  color: #666;
+  // margin-left: 10px;
+}
+.bottomofthea a {
+  text-decoration: none;
+  // margin-left: 10px;
+  color: #666;
+
+  margin-right: 10px;
+}
+.bottomofthea a:hover {
+  color: #cc0000;
+  text-decoration: underline;
+}
+.bottomofthea-bottom {
+  height: 32px;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  color: #666;
+}
+.bottomofthea-bottom p {
+  margin: 0;
+}
+.bottomofthea-bottom a {
+  text-decoration: none;
+  margin-left: 1px;
+  margin-right: 4px;
+  color: #666;
+}
+.bottomofthea-bottom a:hover {
+  color: #cc0000;
+  text-decoration: underline;
+}
+.certificateb {
+  width: 100%;
+  height: 65px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: #00acd3;
+}
+.certificateb-comment {
+  width: 1200px;
+  height: 65px;
+  margin: 0 auto;
+  // background-color: #cc0000;
+}
+.certificateb-comment p {
+  margin: 0;
+  padding-bottom: 10px;
+}
+.certificateb-comment {
+  text-align: center;
+  // margin: 0;
+  font-size: 14px;
+}
+.certificateb-comment p > a {
+  text-decoration: none;
+  margin-right: 4px;
+  color: #006982;
+}
+.certificateb-comment p > a:hover {
+  color: #006982;
+  text-decoration: underline;
+}
+.certificateb-bottom {
+  // text-align: center;
+  // margin: 0 auto;
+  font-size: 14px;
+  color: #006982;
+}
+.certificateb-bottom a {
+  margin-left: 5px;
+  margin-right: 5px;
+  text-decoration: none;
+  color: #006982;
+}
+.certificateb-bottom a:hover {
+  color: #006982;
+  text-decoration: underline;
+}
+.certificateb-bottom-a {
+  color: #006982;
+  margin-top: 3px;
+}
+.certificateb-bottom-a a {
+  margin-left: 5px;
+  margin-right: 15px;
+  text-decoration: none;
+  color: #006982;
+}
+.certificateb-bottom-a a:hover{
+  color: #006982;
+  text-decoration: underline;
 }
 </style>
