@@ -13,21 +13,15 @@
         <div class="tit">筛选项</div>
         <!-- 下拉框 -->
         <div class="shaixuan2">
-          <select name="select" class="sel">
-            <option value>技术领域</option>
-            <option value>编程语言</option>
-            <option value>人工智能</option>
-            <option value>移动开发</option>
-            <option value>数据库</option>
-            <option value>操作系统</option>
-            <option value>云计算</option>
-            <option value>大数据</option>
-            <option value>信息化</option>
-            <option value>网络安全</option>
-            <option value>服务器</option>
-            <option value>存储</option>
-            <option value>汽车</option>
-          </select>
+          <el-select v-model="classifyselectd" placeholder="请选择">
+            <el-option
+              v-for="item in classifyList"
+              :key="item.id"
+              :label="item.attribute_name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+          <!-- <el-cascader v-model="classifyselectd" :option="classifyList" :props="classifyProps"></el-cascader> -->
           <select name="select" class="sel">
             <option value>年份</option>
             <option value>2020年</option>
@@ -228,48 +222,77 @@
             </dd>
           </dl>
         </div>
-       <div class="padd">
+        <div class="padd">
           <div class="title11">最新收录会议</div>
           <ul class="huiyi_list">
             <li>
-              <a href="">第十届中国数据库技术大会（DTCC）演讲PPT</a>
+              <a href>第十届中国数据库技术大会（DTCC）演讲PPT</a>
             </li>
-             <li>
-              <a href="">第九届中国数据库技术大会（DTCC）演讲集锦</a>
+            <li>
+              <a href>第九届中国数据库技术大会（DTCC）演讲集锦</a>
             </li>
-             <li>
-              <a href="">后直播时代技术</a>
+            <li>
+              <a href>后直播时代技术</a>
             </li>
-             <li>
-              <a href="">2017中国大数据技术大会</a>
+            <li>
+              <a href>2017中国大数据技术大会</a>
             </li>
-             <li>
-              <a href="">SDCC 2017互联网应用架构实战峰会</a>
+            <li>
+              <a href>SDCC 2017互联网应用架构实战峰会</a>
             </li>
-             <li>
-              <a href="">2017 全球云计算开源峰会</a>
+            <li>
+              <a href>2017 全球云计算开源峰会</a>
             </li>
-             <li>
-              <a href="">PostgreSQL 2017中国技术大会</a>
+            <li>
+              <a href>PostgreSQL 2017中国技术大会</a>
             </li>
-             <li>
-              <a href="">ECCS-2017企业云计算峰会</a>
+            <li>
+              <a href>ECCS-2017企业云计算峰会</a>
             </li>
-             <li>
-              <a href="">2017先知白帽大会（阿里云云盾先知）</a>
+            <li>
+              <a href>2017先知白帽大会（阿里云云盾先知）</a>
             </li>
-             <li>
-              <a href="">第九届中国Hadoop技术峰会2017 北京站</a>
+            <li>
+              <a href>第九届中国Hadoop技术峰会2017 北京站</a>
             </li>
           </ul>
-       </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      classifyselectd: [],
+      // 分类列表
+      classifyList: [],
+      classifyProps: {
+        lable: "attribute_name",
+        value: "id"
+      }
+    };
+  },
+  methods: {
+    async getcontentList() {
+      const { data: res } = await this.$http.get("classification");
+      // console.log(res);
+      if (res.code == 200) {
+        this.classifyList = res.data;
+        // console.log(this.classifyList);
+        // return this.$message.success("获取分类列表成功");
+      }
+      if (res.code !== 200) {
+        return this.$message.error("获取分类列表失败");
+      }
+    }
+  },
+  created() {
+    this.getcontentList();
+  }
+};
 </script>
 
 <style scoped>
