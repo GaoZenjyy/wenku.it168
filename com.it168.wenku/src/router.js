@@ -6,8 +6,7 @@ Vue.use(Router);
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: "/",
       redirect: "/different",
       component: Home,
@@ -29,17 +28,22 @@ export default new Router({
           path: "/themeeting",
           component: () => import("./components/themeeting.vue")
         },
-        // 会议机构
+        // 合作机构
         {
           path: "/cooperation",
-      component: () => import("./components/org.vue")
+          component: () => import("./components/org.vue")
+        },
+        // 有限公司
+        {
+          path: "/company",
+          component: () => import("./components/company.vue")
         }
       ]
     },
     {
       path: "/register",
       component: () => import("./components/register.vue")
-    },  {
+    }, {
       path: "/login",
       component: () => import("./components/login.vue")
     }
