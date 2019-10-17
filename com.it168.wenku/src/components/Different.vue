@@ -90,6 +90,7 @@
     </div>
     <!-- 内容二 -->
     <div class="content-b clearfix">
+      <!-- 热门文档 -->
       <div class="content-b-left">
         <div class="content-b-left-top">热门文档</div>
         <ul class="content-b-left-top-ul">
@@ -119,19 +120,90 @@
           <!-- <li></li> -->
         </ul>
       </div>
+      <!--做任务 赢金币  -->
       <div class="content-b-right">
-        <div>
+        <!-- 做任务 赢金币 头部 -->
+        <div class="content-b-right-tuobu">
           <div class="content-b-right-top">做任务 赢金币</div>
           <div class="content-b-right-top-d">
             <ul class="clearfix">
-              <li><a href="" class="content-b-right-top-f"></a></li>
-              <li><a href="" class="content-b-right-top-m"></a></li>
+              <li>
+                <a href class="content-b-right-top-f">完成认证</a>
+              </li>
+              <li>
+                <a href class="content-b-right-top-m">一键签到</a>
+              </li>
             </ul>
           </div>
-          <div></div>
+          <div class="content-b-right-top-n">
+            <span>任务奖励和说明</span>1、 每次签到，经验+2；为了鼓励签到，每连续签到10
+            天，再加送10个金币。
+            <br />2、完成认证审核通过后，获得系统奖励的200金币。
+          </div>
         </div>
-        <div></div>
-        <div></div>
+        <!-- 做任务 赢金币 中间身体 -->
+        <div class="content-b-right-zhongjian">
+          <div class="content-b-right-zhongjian-a">合作机构</div>
+          <div class="content-b-right-zhongjian-b clearfix">
+            <img src="../assets/image/gaoy/ruijie1.png" alt />
+            <span></span>
+          </div>
+          <!-- 文档量 -->
+          <ul class="content-b-right-zhongjian-c clearfix">
+            <li class="wdl">
+              <i>53</i>
+              文档量
+            </li>
+            <li class="wdl">
+              <i>54747</i>
+              浏览量
+            </li>
+            <li>
+              <i>61</i>
+              下载量
+            </li>
+          </ul>
+          <div
+            class="content-b-right-zhongjian-d"
+          >锐捷网络股份有限公司，中国数据通信解决方案领导品牌。多年来，我们致力于扎根行业、深入场景进行产品设计和创新，为各行业用户构建端到端的解决方案，为客户网络创造新价值。</div>
+          <a href="javascript:;" class="sqhzjg"></a>
+        </div>
+        <!-- 下载动态 -->
+        <div class="content-b-right-jiaobu">
+          <div class="content-b-right-jiaobu-a">下载动态</div>
+          <div class="content-b-right-jiaobu-b"></div>
+        </div>
+      </div>
+    </div>
+    <!-- 内容三-->
+    <div class="content-c">
+      <div class="content-b-left">
+        <div class="content-c-left-top">最新上传</div>
+        <ul class="content-b-left-top-ul">
+          <li v-for="(item,index) in listWenDangs" :key="index">
+            <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
+            <a href="javascript:;">
+              <!-- {{srcs}} -->
+              <img :src="simagesred[index].img" alt />
+              <span>{{item.file_name}}</span>
+            </a>
+            <!-- </div> -->
+            <p>
+              <i></i>
+              {{item.file_browse}}人阅读
+            </p>
+          </li>
+        </ul>
+        <ul class="content-b-left-top-ul-a clearfix">
+          <li v-for="item in listWenDangXzs" :key="item.id">
+            <em></em>
+            <span>
+              <a href="javascript:;">{{item.file_name}}</a>
+            </span>
+            <i>{{item.file_download}}下载</i>
+          </li>
+          <!-- <li></li> -->
+        </ul>
       </div>
     </div>
   </div>
@@ -183,7 +255,30 @@ export default {
         }
       ],
       // 热门文档下载
-      listWenDangXz: []
+      listWenDangXz: [],
+      // 最新上传
+      listWenDangs: [],
+      // 最新上传 图片
+      simagesred: [
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/red1.jpg")
+        },
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/red2.jpg")
+        },
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/red3.jpg")
+        },
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/red4.jpg")
+        }
+      ],
+      // 最新上传 下载
+      listWenDangXzs: []
     };
   },
   methods: {
@@ -207,12 +302,24 @@ export default {
       const { data: res } = await this.$http.get("/popular/document/download");
       // console.log(res);
       this.listWenDangXz = res.data;
+    },
+    async getListWenzusc() {
+      const { data: res } = await this.$http.get("/latest/upload/read");
+      // console.log(res);
+      this.listWenDangs = res.data;
+    },
+    async getListwedXz() {
+      const { data: res } = await this.$http.get("/latest/upload/download");
+      // console.log(res);
+      this.listWenDangXzs = res.data;
     }
   },
   created() {
     this.getListdata();
     this.getListWenDang();
     this.getListWenDangxz();
+    this.getListWenzusc();
+    this.getListwedXz();
   }
 };
 </script>
@@ -486,6 +593,18 @@ dd > span {
   background-position: 10px -498px;
   background-repeat: no-repeat;
 }
+.content-c-left-top {
+  width: 827px;
+  height: 40px;
+  padding-left: 35px;
+  font-size: 16px;
+  color: #008cd6;
+  line-height: 40px;
+  border-bottom: 1px solid #d2d2d2;
+  background-image: url("../assets/image/lcs_img/lcs_bg.png");
+  background-position: 10px -498px;
+  background-repeat: no-repeat;
+}
 .content-b-right-top {
   width: 294px;
   height: 40px;
@@ -622,15 +741,23 @@ dd > span {
   float: left;
 }
 .content-b-right-top-f {
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
   display: block;
   width: 80px;
   height: 60px;
   padding: 0 13px 0 47px;
   background-image: url("../assets/image/lcs_img/lcs_bg.png");
-  background-position: 10px -589px;
+  background-position: 0px -589px;
   background-repeat: no-repeat;
+  text-decoration: none;
+  color: #fff;
 }
-.content-b-right-top-m{
+.content-b-right-top-m {
+  text-align: center;
+  line-height: 60px;
+  font-size: 20px;
   display: block;
   width: 80px;
   height: 60px;
@@ -638,5 +765,133 @@ dd > span {
   background-image: url("../assets/image/lcs_img/lcs_bg.png");
   background-position: -140px -589px;
   background-repeat: no-repeat;
+  text-decoration: none;
+  color: #fff;
+}
+.content-b-right-top-n {
+  width: 294px;
+  height: 82px;
+  padding: 10px 18px 10px 18px;
+  font-size: 12px;
+}
+.content-b-right-top-n span {
+  width: 294px;
+  height: 20px;
+  display: block;
+  font-size: 14px;
+  padding-bottom: 2px;
+  color: #333;
+}
+.content-b-right-tuobu {
+  width: 330px;
+  height: 220px;
+  padding-bottom: 20px;
+}
+.content-b-right-zhongjian {
+  width: 330px;
+  height: 349px;
+  padding-bottom: 20px;
+}
+.content-b-right-zhongjian-a {
+  width: 294px;
+  height: 40px;
+  padding-left: 36px;
+  border-bottom: 1px solid #d2d2d2;
+  font-size: 16px;
+  line-height: 40px;
+  background-image: url("../assets/image/lcs_img/lcs_bg.png");
+  background-position: 10px -713px;
+  background-repeat: no-repeat;
+  color: #008cd6;
+}
+.content-b-right-zhongjian-b {
+  width: 284px;
+  height: 70px;
+  padding: 17px 0 0 45px;
+}
+.content-b-right-zhongjian-b img {
+  float: left;
+  width: 140px;
+  height: 70px;
+  margin-right: 10px;
+}
+.content-b-right-zhongjian-b span {
+  float: left;
+  width: 90px;
+  height: 30px;
+  margin-top: 20px;
+  background-image: url("../assets/image/lcs_img/lcs_bg.png");
+  background-position: 0px -828px;
+  background-repeat: no-repeat;
+}
+.content-b-right-zhongjian-c {
+  width: 320px;
+  height: 40px;
+  margin: 17px 5px 0 5px;
+  padding: 11px 0 11px 0;
+  border-bottom: 1px dashed #d2d2d2;
+  border-top: 1px solid #d2d2d2;
+}
+.content-b-right-zhongjian-c li {
+  list-style: none;
+  width: 106px;
+  height: 40px;
+  float: left;
+  text-align: center;
+  font-size: 10px;
+}
+.wdl {
+  border-right: 1px solid #d2d2d2;
+}
+.content-b-right-zhongjian-c li i {
+  font-size: 14px;
+  color: #f00;
+  display: block;
+  padding: 2px 0 3px;
+  font-style: normal;
+}
+.content-b-right-zhongjian-d {
+  width: 294px;
+  height: 80px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #666;
+  padding: 10px 18px 10px 18px;
+}
+.sqhzjg {
+  display: block;
+  width: 330px;
+  height: 40px;
+  // background-color: #008cd6;
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  font-size: 18px;
+  background-image: url("../assets/image/lcs_img/lcs_bg.png");
+  background-position: 0px -859px;
+  background-repeat: no-repeat;
+}
+.content-b-right-jiaobu {
+  width: 330px;
+  height: 255px;
+  // padding-bottom: 20px;
+}
+.content-b-right-jiaobu-a {
+  width: 294px;
+  height: 40px;
+  padding-left: 36px;
+  border-bottom: 1px solid #d2d2d2;
+  font-size: 16px;
+  line-height: 40px;
+  background-image: url("../assets/image/lcs_img/lcs_bg.png");
+  background-position: 10px -764px;
+  background-repeat: no-repeat;
+  color: #008cd6;
+}
+.content-b-right-jiaobu-b {
+  width: 330px;
+  height: 160px;
+  margin: 17px 0;
 }
 </style>

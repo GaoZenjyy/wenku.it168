@@ -42,6 +42,17 @@ body {
   .nav a.here, .nav a:hover {
       color: #f15142;
   }
+  .nav a.here i {
+    background: #f15142;
+}
+.nav a i {
+    width: 25px;
+    height: 4px;
+    overflow: hidden;
+    margin: 10px auto 0;
+    background: #fff;
+    display: block;
+}
   ul, ol, li {
     list-style: none;
 }
@@ -172,6 +183,7 @@ div {
     cursor: pointer;
     margin: 0;
 }
+/* 错误信息 */
 .error {
     background: url(../image/login/error.png) no-repeat;
     line-height: 16px;
@@ -188,7 +200,7 @@ div {
     cursor: pointer;
     position: absolute;
     right: 125px;
-    top: 265px;
+    top: 280px;
     display: block;
     background: none;
 }
@@ -273,4 +285,20 @@ div {
 .login_ways li.pwd a.here, .login_ways li.pwd:hover a {
     background: url(../image/login/lovk.png) center top no-repeat;
     color: #FF9F00;
+}
+a{
+    text-decoration: none;
+}
+
+.login_ways li.phone a.here, .login_ways li.phone:hover a {
+    background: url(../image/login/phone2.png) center top no-repeat;
+    color: #2E8AFF;
+}
+.popup .inp_box_gee {
+    border: none;
+}
+.inp_box {
+    border: 1px solid #e3e6e9;
+    height: 46px;
+    border-radius: 4px;
 }

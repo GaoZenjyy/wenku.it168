@@ -18,7 +18,7 @@
         <div class="one_top">
           <!-- 左边 -->
           <div class="one_topleft">
-            <img src="../assets/image/lcs_img/lcs_21586906.jpg" alt class="a" />
+            <img src="../assets/image/lcs_img/lcs_21586906.jpg" alt class="a" >
             <i class="b"></i>
           </div>
           <!-- 右边 -->
@@ -41,7 +41,7 @@
         <div class="one_bottom">
           <div class="one_bottomleft">
             <ul>
-              <li>
+              <li >
                 <a href>2019年国内云建设产业规模有望超过小龙虾的产业规模</a>
               </li>
               <li>
@@ -66,7 +66,17 @@
     </div>
   </div>
 </template>
- 
+
+  // <script>
+ // 传输数据
+  // const vm=new Vue({
+  //   data:{
+  //     el:"#one_bottom",
+  //     content:"2019年国内云建设产业规模有望超过小龙虾的产业规模",
+  //     aa:"阅读量"
+  //   }
+  // })
+  // </script>
 
 
 <style scoped>
@@ -218,6 +228,7 @@ a {
 }
 a:hover {
   color: #d20131;
+  text-decoration: underline;
 }
 /* 下部分右边 */
 .one_bottomright {
