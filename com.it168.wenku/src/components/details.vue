@@ -17,26 +17,61 @@
           <div class="details-pdf-top">
             <div class="details-pdf-top-left">
               <em></em>
-              <span>java从入门到精髓.基础篇</span>
+              <span>{{library[0].file_name}}</span>
             </div>
             <div class="details-pdf-top-right">
-              <span>收藏</span>
-              <span>分享</span>
+              <div
+                id="details-pdf-top-right-one"
+                class="details-pdf-top-right-one"
+                @click="changeCollection"
+              >
+                <i></i>
+                <span>收藏</span>
+              </div>
+              <div class="details-pdf-top-right-two">分享</div>
             </div>
           </div>
           <!-- 用户数据 -->
           <div class="details-pdf-bottom">
-            <a href="#">rainbowdragoon</a>
-            <span>2019-07-24 14:10:33</span>
-            <span>下载量：39次</span>
-            <span>浏览量：3081次</span>
+            <a href="#">{{library[0].file_author}}</a>
+            <span>{{library[0].file_time | formatDate}}</span>
+            <span>下载量：{{library[0].file_download}}次</span>
+            <span>浏览量：{{library[0].file_browse}}次</span>
           </div>
         </div>
       </div>
+      <div class="pdf">
+        <!-- 
+              pdf处理方法：
+              1.先将pdf文件像路径一样引入项目
+              2.调用pdf到此处
+        -->
+        <!-- <iframe src="/details" frameborder="0" width="830" height="700"></iframe> -->
+      </div>
     </el-col>
     <el-col :span="6" class="right">
-      <div class="right-top">
-        <a href="/javascript:;">热门文档</a>
+      <!-- 热门文档 -->
+      <div class="right-word">
+        <div class="right-word-title">
+          <span>热门文档</span>
+        </div>
+        <!-- 文档目录 -->
+        <div class="right-word-content">
+          <div class="right-word-content-title">
+            <i></i>
+            <a>java从入门到精通.基础篇</a>
+          </div>
+          <div class="right-word-content-details">
+            <span>
+              阅读：
+              <span>3080</span>
+            </span>
+            <span>
+              下载：
+              <span>21</span>
+            </span>
+          </div>
+        </div>
       </div>
     </el-col>
   </div>
@@ -45,7 +80,56 @@
 // 导入清除样式css
 import "../assets/css/reset.css";
 
-export default {};
+export default {
+  data() {
+    return {
+      library: []
+    };
+  },
+  methods: {
+    // 接收数据
+    async getLibrary() {
+      const { data: res } = await this.$http.get("library");
+      // console.log(res);
+      this.library = res.data;
+      console.log(this.library);
+    },
+    // 收藏切换
+    changeCollection() {
+      let span = document.querySelector("#details-pdf-top-right-one > span");
+      let div = document.getElementById("details-pdf-top-right-one");
+      let change = div.className;
+      // 此处还差判断是否登录
+      if (change == "details-pdf-top-right-one") {
+        div.className = "details-pdf-top-right-one-in";
+        span.innerHTML = "已收藏";
+      } else if (change == "details-pdf-top-right-one-in") {
+        div.className = "details-pdf-top-right-one";
+        span.innerHTML = "收藏";
+      }
+    }
+  },
+  created() {
+    this.getLibrary();
+  },
+  filters: {
+    formatDate: function(value) {
+      let date = new Date(value);
+      let y = date.getFullYear();
+      let MM = date.getMonth() + 1;
+      MM = MM < 10 ? "0" + MM : MM;
+      let d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      let h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      let m = date.getMinutes();
+      m = m < 10 ? "0" + m : m;
+      let s = date.getSeconds();
+      s = s < 10 ? "0" + s : s;
+      return y + "-" + MM + "-" + d + " " + h + ":" + m + ":" + s;
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -60,13 +144,12 @@ export default {};
       border-bottom: 1px dashed #ccc;
     }
     .pdf-title {
-      width: 100%;
-      height: 800px;
+      margin-bottom: 20px;
       .details-pdf-top {
         overflow: hidden;
         .details-pdf-top-left {
           float: left;
-          margin:10px 0;
+          margin: 10px 0;
           em {
             display: inline-block;
             width: 22px;
@@ -82,31 +165,96 @@ export default {};
         }
         .details-pdf-top-right {
           float: right;
-          margin:20px 0;
-          span{
-              font-size: 15px;
-              display: inline-block;
-              width: 20px;
-              height: 20px;
-
+          margin: 20px 0;
+          div {
+            font-size: 16px;
+            display: inline-block;
+            padding-left: 25px;
+            margin-right: 15px;
           }
+          .details-pdf-top-right-one {
+            background-image: url("../assets/image/lcs_img/lcs_bg.png");
+            background-repeat: no-repeat;
+            background-position: -132px -971px;
+          }
+          // 已关注
+          .details-pdf-top-right-one-in {
+            background-image: url("../assets/image/lcs_img/lcs_bg.png");
+            background-repeat: no-repeat;
+            background-position: 0px -971px;
+          }
+          .details-pdf-top-right-two {
+            background-image: url("../assets/image/lcs_img/lcs_bg.png");
+            background-repeat: no-repeat;
+            background-position: 0 -1003px;
+            margin-left: 30px;
+          }
+        }
+      }
+      .details-pdf-bottom {
+        font-size: 16px;
+        a {
+          color: #008cd6;
+          padding-left: 20px;
+          background-image: url("../assets/image/lcs_img/lcs_bg.png");
+          background-repeat: no-repeat;
+          background-position: -317px -1042px;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+        span {
+          display: inline-block;
+          margin-left: 50px;
         }
       }
     }
   }
-  .right-top {
-    margin-top: 15px;
-    padding-bottom: 6px;
-    font-size: 16px;
-    border-bottom: 1px solid #ccc;
-    background-image: url("../assets/image/lcs_img/lcs_bg.png");
-    background-repeat: no-repeat;
-    background-position: -300px -1108px;
-
-    a {
-      text-decoration: none;
-      color: #008cd6;
-      padding-left: 36px;
+  .right {
+    .right-word {
+      .right-word-title {
+        margin-top: 15px;
+        padding-bottom: 6px;
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+        background-image: url("../assets/image/lcs_img/lcs_bg.png");
+        background-repeat: no-repeat;
+        background-position: -300px -1108px;
+        span {
+          color: #008cd6;
+          padding-left: 36px;
+        }
+      }
+      .right-word-content {
+        width: 100%;
+        height: 66px;
+        .right-word-content-title {
+          padding-left: 40px;
+          position: relative;
+          i {
+            display: inline-block;
+            width: 22px;
+            height: 29px;
+            position: absolute;
+            left: 5px;
+            top: 15px;
+            background-image: url(/img/lcs_bg.c3182825.png);
+            background-repeat: no-repeat;
+            background-position: -230px -559px;
+          }
+          a {
+            margin: 15px 0;
+            display: inline-block;
+            font-size: 16px;
+            color: #666;
+          }
+        }
+        .right-word-content-details {
+          padding-left: 40px;
+          font-size: 12px;
+          color: #999;
+        }
+      }
     }
   }
 }

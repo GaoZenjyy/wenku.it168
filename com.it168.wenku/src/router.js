@@ -38,13 +38,21 @@ export default new Router({
         {
           path: "/company",
           component: () => import("./components/company.vue")
+        },
+        // 文集
+        {
+          path: "/thecorpus",
+          component: () => import("./components/collected.vue")
         }
       ]
     },
+    // 注册
     {
       path: "/register",
       component: () => import("./components/register.vue")
-    }, {
+    },
+    // 登录
+     {
       path: "/login",
       component: () => import("./components/login.vue")
     }
