@@ -41,10 +41,13 @@ export default new Router({
         }
       ]
     },
+    // 注册
     {
       path: "/register",
       component: () => import("./components/register.vue")
-    }, {
+    },
+    // 登录
+     {
       path: "/login",
       component: () => import("./components/login.vue")
     }

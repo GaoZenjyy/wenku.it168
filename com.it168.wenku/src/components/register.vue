@@ -10,71 +10,30 @@
         <i></i>
       </a>
     </div>
-    <form class="popup" action="#" method="post">
-      <ul class="list">
-        <li class="form-item">
-          <div class="inp_box">
-            <div class="inp_box_1">
-              <span class="user"></span>
-              <input value placeholder="用户名" id="username" maxlength="36" type="text" class="inp" />
-            </div>
-          </div>
-          <div class="error hide" for="username"></div>
-        </li>
-        <li>
-          <div class="inp_box">
-            <div class="inp_box_1" id="divphone">
-              <span class="phone"></span>
-              <div class="area-code" id="area-code">
-                <input value="+86" placeholder type="text" readonly="readonly" id="areacode" />
-              </div>
-              <input value="" placeholder="手机号码" id="phone" name="phone" maxlength="11" type="text" pattern="[0-9]*" class="inp2">
-            <!-- <ul class="areacode-select" style="display: block;"><li data-value="+86"><i>+86</i>中国</li><li data-value="+852"><i>+852</i>中国香港特别行政区</li><li data-value="+853"><i>+853</i>中国澳门特别行政区</li><li data-value="+886"><i>+886</i>中国台湾</li><li data-value="+1"><i>+1</i>美国</li><li data-value="+81"><i>+81</i>日本</li><li data-value="+82"><i>+82</i>韩国</li></ul> -->
-            </div>
-          </div>
-          <div class="error hide" for="phone"></div>
-        </li>
-        <li class="slide_code" style="display: none;">
-          <div class="inp_box inp_box_gee">
-            <div id="embed-captcha"></div>
-            <p id="wait" class="show">正在加载验证码......</p>
-            <p id="notice" class="hide">请先完成验证</p>
-          </div>
-          <div class="error hide" for="embed-captcha"></div>
-        </li>
-        <li>
-          <div class="inp_box">
-            <div class="inp_box_1" id="divbtncode">
-              <span class="phone2"></span>
-              <input value placeholder="手机验证码" id="code" maxlength="6" type="text" class="inp" />
-              <input class="code_btn" id="btnCode" value="获取验证码" type="button" />
-            </div>
-          </div>
-          <div class="error hide" for="code"></div>
-        </li>
-        <li>
-          <div class="inp_box">
-            <div class="inp_box_1">
-              <span class="password"></span>
-              <input
-                value
-                placeholder="请输入密码"
-                id="password"
-                maxlength="36"
-                type="password"
-                class="inp"
-              />
-            </div>
-          </div>
-          <div class="error hide" for="password"></div>
-        </li>
-        <li>
-          <input class="submit-btn" value="注册" id="btnSubmit" type="button" />
-        </li>
-      </ul>
-      <input type="hidden" name="_token" value="zYzBO9kLvLeGWifhEPC09Ho8x4Ti00Q9rJkMhO8N" />
-      <input type="hidden" name="_regToken" id="_regToken" value />
-    </form>
+    <el-form
+      :model="ruleForm"
+      status-icon
+      :rules="rules"
+      ref="ruleForm"
+      label-width="100px"
+      class="demo-ruleForm"
+    >
+      <el-form-item prop="username">
+        <el-input v-model="ruleForm.username" placeholder="用户名" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item prop="phone">
+        <el-input placeholder="手机号码" v-model="ruleForm.phone" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item prop="yanzheng">
+        <el-input v-model.number="ruleForm.yanzheng" placeholder="手机验证码"></el-input>
+      </el-form-item>
+      <el-form-item prop="password">
+        <el-input v-model.number="ruleForm.password" placeholder="密码"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button round type="primary" id="submit-btn" @click="submitForm('ruleForm')">注册</el-button>
+      </el-form-item>
+    </el-form>
     <div class="cue">
       点击“注册”按钮，即表示您同意并愿意遵守TPUB
       <br />
@@ -83,9 +42,141 @@
   </el-card>
 </template>
 <script>
+export default {
+  data() {
+    // 手机号校验
+    var checkyanzheng = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("验证码错误， 请重新输入"));
+      }
+    };
+    // 密码
+    var checkpass = (rule, value, callback) => {
+      if (!value) {
+        return callback(
+          new Error("密码格式错误，请重新输入字母数字，符号6-16字节")
+        );
+      }
+    };
+    // 用户名
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(
+          new Error(
+            "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]"
+          )
+        );
+        // 手机号
+      } else {
+        if (this.ruleForm.phone !== "") {
+          this.$refs.ruleForm.validateField("phone");
+        }
+        callback();
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("手机号格错误， 请重新输入"));
+      } else {
+        callback();
+      }
+    };
+    return {
+      ruleForm: {
+        username: "",
+        phone: "",
+        yanzheng: "",
+        password: ""
+      },
+      rules: {
+        username: [{ validator: validatePass, trigger: "blur" }],
+        phone: [{ validator: validatePass2, trigger: "blur" }],
+        yanzheng: [{ validator: checkyanzheng, trigger: "blur" }],
+        password: [{ validator: checkpass, trigger: "blur" }]
+      }
+    };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    }
+  }
+};
 </script>
 
 
 <style scoped>
 @import "../assets/css/login.css";
+</style>
+<style lang="less">
+.el-input {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  width: 70%;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.el-input__inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 47px;
+  line-height: 47px;
+  outline: 0;
+  padding: 0 15px;
+  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+}
+.el-button {
+cursor: pointer;
+    background: #f7978e;
+    text-align: center;
+    line-height: 50px;
+    box-shadow: 0 4px 15px 0 rgba(241, 81, 66, 0.42);
+    text-align: center;
+    padding:12px 50px;
+    border: none;
+    color: #fff;
+    width: 320px;
+    height: 50px;
+    font-size: 16px;
+    position: relative;
+    transition: all .3s;
+    display: block;
+    outline: 0px;
+    -webkit-appearance: none;
+    position: relative;
+    left: 20px;
+}
+.el-button span{
+  position: relative;
+  top: -10px;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    background: #f15142;
+    border-color: #f15142;
+    color: #FFF;
+}
+.el-button--primary {
+    color: #FFF;
+    background-color: #f7978e;
+    border-color: #f7978e;
+    // #f7978e
+}
 </style>

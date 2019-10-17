@@ -29,7 +29,7 @@
             </div>
             <div class="wktop-content-height">
               <a href="/register">注册</a>|
-              <a href="javascript:;">登录</a>|
+              <a href="/login">登录</a>|
               <a href="javascript:;">IT168文库</a>|
               <a href="javascript:;">帮助</a>
             </div>
