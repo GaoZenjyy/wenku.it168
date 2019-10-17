@@ -17,7 +17,7 @@
           <div class="details-pdf-top">
             <div class="details-pdf-top-left">
               <em></em>
-              <span>java从入门到精髓.基础篇</span>
+              <span>{{library[0].file_name}}</span>
             </div>
             <div class="details-pdf-top-right">
               <div
@@ -33,10 +33,10 @@
           </div>
           <!-- 用户数据 -->
           <div class="details-pdf-bottom">
-            <a href="#">rainbowdragoon</a>
-            <span>2019-07-24 14:10:33</span>
-            <span>下载量：39次</span>
-            <span>浏览量：3081次</span>
+            <a href="#">{{library[0].file_author}}</a>
+            <span>{{library[0].file_time | formatDate}}</span>
+            <span>下载量：{{library[0].file_download}}次</span>
+            <span>浏览量：{{library[0].file_browse}}次</span>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
               1.先将pdf文件像路径一样引入项目
               2.调用pdf到此处
         -->
-        <iframe src="/details" frameborder="0" width="830" height="700"></iframe>
+        <!-- <iframe src="/details" frameborder="0" width="830" height="700"></iframe> -->
       </div>
     </el-col>
     <el-col :span="6" class="right">
@@ -56,22 +56,6 @@
           <span>热门文档</span>
         </div>
         <!-- 文档目录 -->
-        <div class="right-word-content">
-          <div class="right-word-content-title">
-            <i></i>
-            <a>java从入门到精通.基础篇</a>
-          </div>
-          <div class="right-word-content-details">
-            <span>
-              阅读：
-              <span>3080</span>
-            </span>
-            <span>
-              下载：
-              <span>21</span>
-            </span>
-          </div>
-        </div>
         <div class="right-word-content">
           <div class="right-word-content-title">
             <i></i>
@@ -98,9 +82,18 @@ import "../assets/css/reset.css";
 
 export default {
   data() {
-    return {};
+    return {
+      library: []
+    };
   },
   methods: {
+    // 接收数据
+    async getLibrary() {
+      const { data: res } = await this.$http.get("library");
+      // console.log(res);
+      this.library = res.data;
+      console.log(this.library);
+    },
     // 收藏切换
     changeCollection() {
       let span = document.querySelector("#details-pdf-top-right-one > span");
@@ -114,6 +107,26 @@ export default {
         div.className = "details-pdf-top-right-one";
         span.innerHTML = "收藏";
       }
+    }
+  },
+  created() {
+    this.getLibrary();
+  },
+  filters: {
+    formatDate: function(value) {
+      let date = new Date(value);
+      let y = date.getFullYear();
+      let MM = date.getMonth() + 1;
+      MM = MM < 10 ? "0" + MM : MM;
+      let d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      let h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      let m = date.getMinutes();
+      m = m < 10 ? "0" + m : m;
+      let s = date.getSeconds();
+      s = s < 10 ? "0" + s : s;
+      return y + "-" + MM + "-" + d + " " + h + ":" + m + ":" + s;
     }
   }
 };
