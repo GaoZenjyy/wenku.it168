@@ -2,6 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+// import VueResource from 'vue-resource'; 
+// Vue.use(VueResource)
 //引入yy
 import axios  from "axios";
 axios.defaults.baseURL = "http://192.168.86.32:9968/api/v1/";
