@@ -21,6 +21,7 @@ export default new Router({
           path: "/classification",
           component: () => import("./components/classification.vue")
         },
+        // 详情页
         {
           path: "/details",
           component: () => import("./components/details.vue")
