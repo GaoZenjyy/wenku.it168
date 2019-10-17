@@ -10,29 +10,30 @@
     <div class="mechanism">
       <p class="tuij">推荐机构</p>
     </div>
+
     <!-- 文档 整体大盒子-->
     <div class="Big_box">
       <!-- 第一个大盒子 -->
-      <div class="one">
+      <div class="one" v-for="item in ListlcsData" :key="item.id">
         <!-- 上部分 -->
         <div class="one_top">
           <!-- 左边 -->
           <div class="one_topleft">
-            <img src="../assets/image/lcs_img/lcs_21586906.jpg" alt class="a" >
+            <img :src="item.image" alt class="a" />
             <i class="b"></i>
           </div>
           <!-- 右边 -->
           <div class="one_topright">
             <div class="topright_one">
-              <p class="one_p">24</p>
+              <p class="one_p">{{item.fileNumber}}</p>
               <p class="one_span">文档量</p>
             </div>
             <div class="topright_one">
-              <p class="one_p">7885</p>
+              <p class="one_p">{{item.browseNumber}}</p>
               <p class="one_span">浏览量</p>
             </div>
             <div class="topright_two">
-              <p class="one_p">3</p>
+              <p class="one_p">{{item.downloadNumber}}</p>
               <p class="one_span">下载量</p>
             </div>
           </div>
@@ -41,23 +42,19 @@
         <div class="one_bottom">
           <div class="one_bottomleft">
             <ul>
-              <li >
-                <a href>2019年国内云建设产业规模有望超过小龙虾的产业规模</a>
+              <li v-for="item1 in item.children" :key="item1.id">
+                <a href>{{item1.file_name}}</a>
               </li>
-              <li>
-                <a href>IPv6环境下的网络安全观察.绿盟科技</a>
-              </li>
+              <!-- <li>
+                <a href>{{item1.file_name}}</a>
+              </li>-->
             </ul>
           </div>
           <div class="one_bottomright">
             <ul>
-              <li class="bottomright">
-                <span class="yue">阅读量：3111</span>
-                <span class="xia">下载量：0</span>
-              </li>
-              <li class="bottomright">
-                <span class="yue">阅读量：644</span>
-                <span class="xia">下载量：0</span>
+              <li class="bottomright" v-for="item1 in item.children" :key="item1.id">
+                <span class="yue">阅读量：{{item1.file_browse}}</span>
+                <span class="xia">下载量：{{item1.file_download}}</span>
               </li>
             </ul>
           </div>
@@ -65,34 +62,70 @@
       </div>
     </div>
   </div>
-</template>
+  <!-- 分页 -->
+   <!-- <el-pagination
+    @size-change="handleSizeChange"
+    @current-change="handleCurrentChange"
+    :current-page="currentPage4"
+    :page-sizes="[2 ,4,6，8]"
+    :page-size="100"
+    layout="total, sizes, prev, pager, next, jumper"
+    :total="total"
+  ></el-pagination>  -->
+</template>  
 
-  // <script>
- // 传输数据
-  // const vm=new Vue({
-  //   data:{
-  //     el:"#one_bottom",
-  //     content:"2019年国内云建设产业规模有望超过小龙虾的产业规模",
-  //     aa:"阅读量"
-  //   }
-  // })
-  // </script>
+ 
+ <script>
+export default {
+  data() {
+    return {
+      // 数据
+      ListlcsData: [],
+      // 分页默认显示0
+      total:0
+
+    };
+  },
+  //  方法
+  methods: {
+    // 写函数
+    async lcsData() {
+      const { data: res } = await this.$http.get("/agency");
+      // console.log(res);
+      // 把数据放进数组
+      this.ListlcsData = res.data;
+      console.log(this.ListlcsData);
+    }
+  },
+  // 生命周期
+  created() {
+    this.lcsData();
+  }
+};
+</script>
 
 
 <style scoped>
 /* 图片 */
 .tupian {
+  position: relative;
   height: 295px;
 }
 .tu_one {
-  float: left;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* float: left; */
   width: 856px;
 }
 .tu_two {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* float: right; */
   width: 329px;
   height: 291px;
-  /* margin-top: -3px; */
+  margin-left: 5px;
 }
 .mechanism {
   height: 40px;
@@ -125,6 +158,7 @@
 /* 整体大盒子 */
 .Big_box {
   width: 860px;
+  overflow-y: hidden;
 }
 /* 第一个盒子 */
 .one {
