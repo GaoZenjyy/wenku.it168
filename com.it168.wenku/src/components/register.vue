@@ -21,62 +21,66 @@
       <el-form-item prop="username">
         <el-input v-model="ruleForm.username" placeholder="用户名" autocomplete="off"></el-input>
       </el-form-item>
+      <el-form-item prop="password">
+        <el-input v-model.number="ruleForm.password" placeholder="密码"></el-input>
+      </el-form-item>
       <el-form-item prop="phone">
         <el-input placeholder="手机号码" v-model="ruleForm.phone" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item prop="yanzheng">
         <el-input v-model.number="ruleForm.yanzheng" placeholder="手机验证码"></el-input>
       </el-form-item>
-      <el-form-item prop="password">
-        <el-input v-model.number="ruleForm.password" placeholder="密码"></el-input>
-      </el-form-item>
       <el-form-item>
         <el-button round type="primary" id="submit-btn" @click="submitForm('ruleForm')">注册</el-button>
       </el-form-item>
     </el-form>
-    <div class="cue">
+    <!-- <div class="cue">
       点击“注册”按钮，即表示您同意并愿意遵守TPUB
       <br />
       <a href="/useragreement.html" target="_blank">《用户协议》</a>
-    </div>
+    </div>-->
   </el-card>
 </template>
 <script>
 export default {
   data() {
-    // 手机号校验
-    var checkyanzheng = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error("验证码错误， 请重新输入"));
-      }
-    };
+    // // 手机号校验
+    // var checkyanzheng = (rule, value, callback) => {
+    //   if (!value) {
+    //     return callback(new Error("验证码错误， 请重新输入"));
+    //   } else {
+    //     callback();
+    //   }
+    // };
+      // 用户名
+      var validateUser = (rule, value, callback) => {
+        if (value === "") {
+          callback(
+            new Error(
+              "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]"
+            )
+          );
+        } else {
+          if (this.ruleForm.phone !== "") {
+            this.$refs.ruleForm.validateField("phone");
+          }
+          callback();
+        }
+      };
     // 密码
     var checkpass = (rule, value, callback) => {
       if (!value) {
         return callback(
           new Error("密码格式错误，请重新输入字母数字，符号6-16字节")
         );
-      }
-    };
-    // 用户名
-    var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(
-          new Error(
-            "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]"
-          )
-        );
-        // 手机号
       } else {
-        if (this.ruleForm.phone !== "") {
-          this.$refs.ruleForm.validateField("phone");
-        }
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
+    // 手机号
+    var validatePhone = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("手机号格错误， 请重新输入"));
+        callback(new Error("手机号格式错误， 请重新输入"));
       } else {
         callback();
       }
@@ -85,27 +89,49 @@ export default {
       ruleForm: {
         username: "",
         phone: "",
-        yanzheng: "",
+        // yanzheng: "",
         password: ""
       },
       rules: {
-        username: [{ validator: validatePass, trigger: "blur" }],
-        phone: [{ validator: validatePass2, trigger: "blur" }],
-        yanzheng: [{ validator: checkyanzheng, trigger: "blur" }],
-        password: [{ validator: checkpass, trigger: "blur" }]
+        username: [{ validator: validateUser, trigger: "blur" }],
+        password: [{ validator: checkpass, trigger: "blur" }],
+        phone: [{ validator: validatePhone, trigger: "blur" }]
+        // yanzheng: [{ validator: checkyanzheng, trigger: "blur" }],
       }
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
+    //  submitForm(formName) {
+    //         this.$refs[formName].validate((valid) => {
+    //           if (valid) {
+    //             alert('submit!');
+    //           } else {
+    //             console.log('error submit!!');
+    //             return false;
+    //           }
+    //         });
+    //       },
+    async submitForm(formName) {
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //     let _this = this
+      //     this.$http.post('/register',_this.ruleForm)
+      //       .then((response) => {
+      //         // this.$message.success('注册成功！')
+      //         this.$refs[formName].resetFields()
+      //         //  跳转到登录页
+      //         this.$router.push({path: '/login'})
+      //         +console.log()
+      //       })
+      //   } else {
+      //     console.log('error submit!!')
+      //     return false
+      //   }
+      // })
+      console.log(this.ruleForm);
+
+      const { data: res } = await this.$http.post("/register", this.ruleForm);
+      console.log(res);
     }
   }
 };
@@ -144,39 +170,40 @@ export default {
   width: 100%;
 }
 .el-button {
-cursor: pointer;
-    background: #f7978e;
-    text-align: center;
-    line-height: 50px;
-    box-shadow: 0 4px 15px 0 rgba(241, 81, 66, 0.42);
-    text-align: center;
-    padding:12px 50px;
-    border: none;
-    color: #fff;
-    width: 320px;
-    height: 50px;
-    font-size: 16px;
-    position: relative;
-    transition: all .3s;
-    display: block;
-    outline: 0px;
-    -webkit-appearance: none;
-    position: relative;
-    left: 20px;
+  cursor: pointer;
+  background: #f7978e;
+  text-align: center;
+  line-height: 50px;
+  box-shadow: 0 4px 15px 0 rgba(241, 81, 66, 0.42);
+  text-align: center;
+  padding: 12px 50px;
+  border: none;
+  color: #fff;
+  width: 320px;
+  height: 50px;
+  font-size: 16px;
+  position: relative;
+  transition: all 0.3s;
+  display: block;
+  outline: 0px;
+  -webkit-appearance: none;
+  position: relative;
+  left: 20px;
 }
-.el-button span{
+.el-button span {
   position: relative;
   top: -10px;
 }
-.el-button--primary:focus, .el-button--primary:hover {
-    background: #f15142;
-    border-color: #f15142;
-    color: #FFF;
+.el-button--primary:focus,
+.el-button--primary:hover {
+  background: #f15142;
+  border-color: #f15142;
+  color: #fff;
 }
 .el-button--primary {
-    color: #FFF;
-    background-color: #f7978e;
-    border-color: #f7978e;
-    // #f7978e
+  color: #fff;
+  background-color: #f7978e;
+  border-color: #f7978e;
+  // #f7978e
 }
 </style>

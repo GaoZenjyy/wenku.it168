@@ -206,6 +206,32 @@
         </ul>
       </div>
     </div>
+    <!-- 内容四 -->
+    <div class="content-d">
+      <div class="content-d-top" style="line-height: 25px">会议专辑</div>
+      <ul class="clearfix">
+        <li v-for="(item,index) in listConference" :key="index">
+          <a href="javascript:;">
+            <img :src="ConferenceImage[index].img" alt />
+            <span>{{item.meeting_title}}</span>
+          </a>
+        </li>
+        <!-- <li></li> -->
+      </ul>
+    </div>
+    <!-- 内容四 -->
+    <div class="content-d">
+      <div class="content-d-top">精品文集</div>
+      <ul class="clearfix">
+        <li v-for="(item,index) in listCollected" :key="index">
+          <a href="javascript:;">
+            <img :src="collectedimg[index].img" alt />
+            <span>{{item.meeting_title}}</span>
+          </a>
+        </li>
+        <!-- <li></li> -->
+      </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -278,7 +304,34 @@ export default {
         }
       ],
       // 最新上传 下载
-      listWenDangXzs: []
+      listWenDangXzs: [],
+      // 会议专辑
+      listConference: [],
+
+      // 会议图片
+      ConferenceImage: [
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/huiyi1.jpg")
+        },
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/huiyi2.jpg")
+        }
+      ],
+      // 精品文集
+      listCollected: [],
+      // 精品文集 图片
+      collectedimg: [
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/huiyi3.jpg")
+        },
+        {
+          url: "#",
+          img: require("../assets/image/gaoy/huiyi4.jpg")
+        }
+      ]
     };
   },
   methods: {
@@ -312,6 +365,16 @@ export default {
       const { data: res } = await this.$http.get("/latest/upload/download");
       // console.log(res);
       this.listWenDangXzs = res.data;
+    },
+    async getListconference() {
+      const { data: res } = await this.$http.get("/conference/albums");
+      // console.log(res);
+      this.listConference = res.data;
+    },
+    async getcollectedimg() {
+      const { data: res } = await this.$http.get("/conference/albums");
+      // console.log(res);
+      this.listCollected = res.data;
     }
   },
   created() {
@@ -320,6 +383,8 @@ export default {
     this.getListWenDangxz();
     this.getListWenzusc();
     this.getListwedXz();
+    this.getListconference();
+    this.getcollectedimg();
   }
 };
 </script>
@@ -592,6 +657,12 @@ dd > span {
   background-image: url("../assets/image/lcs_img/lcs_bg.png");
   background-position: 10px -498px;
   background-repeat: no-repeat;
+}
+.content-c {
+  width: 100%;
+  height: 541px;
+  padding-top: 12px;
+  padding-bottom: 20px;
 }
 .content-c-left-top {
   width: 827px;
@@ -893,5 +964,60 @@ dd > span {
   width: 330px;
   height: 160px;
   margin: 17px 0;
+}
+.content-d {
+  width: 862px;
+  height: 211px;
+  padding-bottom: 20px;
+}
+// .content-d-top-one{
+//   line-height: 0px;
+// }
+.content-d-top {
+  width: 827px;
+  height: 40px;
+  padding-left: 35px;
+  font-size: 16px;
+  color: #008cd6;
+  line-height: 40px;
+  // text-align: center;
+  border-bottom: 1px solid #d2d2d2;
+  background-image: url(/img/lcs_bg.c3182825.png);
+  background-position: 10px -498px;
+  background-repeat: no-repeat;
+}
+.content-d ul {
+  width: 100%;
+  height: 130px;
+  margin: 17px 338px 0 0;
+  padding: 0 0 5px 0;
+  border-bottom: 1px dashed #ccc;
+}
+.content-d ul li {
+  list-style: none;
+  float: left;
+  width: 360px;
+  height: 130px;
+  padding: 0 40px 0 30px;
+}
+.content-d ul li a {
+  text-decoration: none;
+  color: #000;
+}
+.content-d ul li a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+.content-d ul li img {
+  display: block;
+  width: 360px;
+  height: 90px;
+}
+.content-d ul li span {
+  display: block;
+  width: 360px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
 }
 </style>
