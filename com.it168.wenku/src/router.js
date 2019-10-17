@@ -38,6 +38,11 @@ export default new Router({
         {
           path: "/company",
           component: () => import("./components/company.vue")
+        },
+        // 文集
+        {
+          path: "/thecorpus",
+          component: () => import("./components/collected.vue")
         }
       ]
     },

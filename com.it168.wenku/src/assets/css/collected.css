@@ -1,0 +1,347 @@
+/* 文集 */
+.recomm{
+    position: relative;
+    width: 812px; 
+    font-size: 16px;
+    padding-left: 35px;
+    line-height: 40px;
+    border-bottom: 1px solid #d2d2d2;
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: 11px -499px;
+    color: #008cd6;
+    overflow: hidden;
+    height: 40px;
+    
+ 
+}
+/* 经典 */
+.wendang_txt{
+    position: relative;
+    margin: 17px auto 0;
+    width: 1200px;
+  
+    clear: both;
+    overflow: hidden;
+    padding-bottom: 5px;
+}
+.wendang_txt li {
+    float: left;
+    width: 360px;
+    padding: 0 40px 0 30px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.wendang_txt li a {
+    color: #333;
+}
+img {
+    border: 0;
+    vertical-align: top;
+}
+.wendang_txt li span {
+    display: block;
+    line-height: 40px;
+    font-size: 14px;
+    overflow: hidden;
+    height: 40px;
+    word-break: keep-all;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.wendang_txt li span:hover{
+    text-decoration: underline;
+
+}
+.wendang_list4 {
+    margin: 17px auto 0;
+    width: 862px;
+    clear: both;
+    overflow: hidden;
+}
+/* 列表 */
+.shaixuan2 {
+    height: 32px;
+    overflow: hidden;
+    padding-top: 10px;
+}
+.sel {
+    float: left;
+    width: 120px;
+    border: 1px solid #c9c9c9;
+    padding: 3px 5px;
+    color: #676767;
+    margin-right: 13px;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.btn2 {
+    float: left;
+    width: 124px;
+    height: 27px;
+    background: #e5e5e5;
+    color: #676767;
+    cursor: pointer;
+    border: 1px solid #c9c9c9;
+}
+/* 全部文集 */
+.wenji_list {
+    width: 862px;
+    /* clear: both; */
+    overflow: hidden;
+}
+.wenji_list li {
+    position: relative;
+    float: left;
+    width: 802px;
+    padding: 20px 30px;
+    border-bottom: 1px dashed #ccc;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    color: #666;
+}
+.wenji_list li .wenji_r {
+    float: right;
+    width: 430px;
+}
+.wenji_list li .title a {
+    color: #008cd6;
+}
+.wenji_list li .title a:hover {
+    text-decoration: underline;
+}
+.wenji_list li .title {
+    font-size: 18px;
+    height: 20px;
+    line-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.wenji_list li .time {
+    font-size: 14px;
+    color: #c00;
+    padding-top: 15px;
+}
+.wenji_list li .xiazai {
+    padding-top: 22px;
+}
+.wenji_list li .xiazai span {
+    display: inline-block;
+    padding-right: 20px;
+    color: #999;
+}
+.wenji_list li p {
+    clear: both;
+    width: 802px;
+    line-height: 24px;
+    font-size: 14px;
+    padding-top: 15px;
+}
+
+/* 页数 */
+.page {
+    text-align: center;
+    padding: 30px 0;
+}
+.page a {
+    padding: 0 13px;
+    background: #fff;
+    color: #666;
+    border: 1px #c9c9c9 solid;
+    margin-right: 10px;
+    cursor: pointer;
+    height: 32px;
+    line-height: 32px;
+    display: inline-block;
+    font-size: 14px;
+}
+.page a:hover, .page a.here {
+    color: #fff;
+    background: #00AFD6;
+    text-decoration: none;
+    border: 1px #c9c9c9 solid;
+}
+.page span {
+    color: #666;
+    font-size: 14px;
+}
+.inp3 {
+    background: #fff;
+    border: 1px solid #c9c9c9;
+    width: 38px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    vertical-align: top;
+}
+.btn3 {
+    background: #fff;
+    border: 1px solid #c9c9c9;
+    width: 68px;
+    height: 34px;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 8px;
+}
+input {
+    outline: none;
+}
+/* 扫描APP */
+.r2 {
+    float: right;
+    width: 330px;
+    margin-top: -211px;
+    margin-right: 8px;
+
+}
+.tit9 {
+    font-size: 16px;
+    padding-left: 36px;
+    line-height: 40px;
+    border-bottom: 1px solid #d2d2d2;
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: 10px -926px;
+    color: #008cd6;
+}
+/* 领取金币 */
+
+.tit6 {
+    font-size: 16px;
+    padding-left: 36px;
+    line-height: 40px;
+    border-bottom: 1px solid #d2d2d2;
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: 10px -665px;
+    color: #008cd6
+}
+.wancheng {
+    margin: 17px auto 0;
+    width: 308px;
+    clear: both;
+    overflow: hidden;
+}
+.wancheng img {
+    width: 134px;
+    height: 52px;
+}
+.wancheng rengzheng {
+    float: left;
+    width: 140px;
+    padding: 0 7px;
+    height: 60px;
+}
+.yijian qiandao{
+    float: right;
+    width: 140px;
+    padding: 0 7px;
+    height: 60px;
+    
+}
+.yijian img{
+    width: 134px;
+    height: 52px;
+    margin-left: 176px;
+    margin-top: -52px;
+
+}
+/* .wancheng  a.renzheng {
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: 0 -590px;
+} */
+/* .yijian a.qiandao {
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: -141px -590px;
+} */
+.addcoin {
+    float: right;
+    right: 65px;
+    top: 0px;
+    position: absolute;
+    color: yellowgreen;
+    font-size: 16px;
+    display: none;
+}
+.renwu_box {
+    padding: 10px 18px;
+    line-height: 20px;
+    color: #666;
+}
+.renwu_box span {
+    display: block;
+    font-size: 14px;
+    padding-bottom: 2px;
+    color: #333;
+}
+/* 合作机构 */
+.tit7 {
+    font-size: 16px;
+    padding-left: 36px;
+    line-height: 40px;
+    border-bottom: 1px solid #d2d2d2;
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: 10px -714px;
+    color: #008cd6;
+}
+.hezuo_box {
+    height: 70px;
+    overflow: hidden;
+    padding: 17px 0 0 45px;
+}
+.hezuo_box img {
+    float: left;
+    margin-right: 10px;
+}
+.hezuo_box span {
+    float: left;
+    width: 90px;
+    height: 30px;
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: 0 -828px;
+    margin-top: 20px;
+}
+.hezuo_list {
+    border-bottom: 1px dashed #d2d2d2;
+    border-top: 1px solid #d2d2d2;
+    height: 40px;
+    margin: 17px auto 0;
+    width: 320px;
+    padding: 11px 0;
+}
+.hezuo_list li {
+    float: left;
+    width: 106px;
+    height: 40px;
+    text-align: center;
+}
+.hezuo_list li i {
+    font-size: 14px;
+    color: #f00;
+    display: block;
+    padding: 5px 0 3px;
+}
+.hezuo_list li.cen {
+    border-left: 1px solid #d2d2d2;
+    border-right: 1px solid #d2d2d2;
+}
+.renwu_box {
+    padding: 10px 18px;
+    line-height: 20px;
+    color: #666;
+}
+a.hezuo_shengqing {
+    width: 330px;
+    height: 40px;
+    background: url(../image/images/words18.png) no-repeat;
+    background-position: 0 -859px;
+    display: block;
+    text-indent: -9999px;
+}
