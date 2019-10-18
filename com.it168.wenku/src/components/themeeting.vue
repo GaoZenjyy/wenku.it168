@@ -13,33 +13,18 @@
         <div class="tit">筛选项</div>
         <!-- 下拉框 -->
         <div class="shaixuan2">
-          <!-- 分类 -->
-          <el-select v-model="classifyselectd" value="全部">
-            <el-option
-              v-for="item in classifyList"
-              :key="item.id"
-              :label="item.attribute_name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
-          <!--年份 -->
-          <el-select>
-            <el-option label="年份" value>年份</el-option>
-            <el-option label="2020年"></el-option>
-            <el-option label="2019年"></el-option>
-            <el-option label="2018年"></el-option>
-            <el-option label="2017年"></el-option>
-            <el-option label="2016年"></el-option>
-            <el-option label="2015年"></el-option>
-            <el-option label="2014年"></el-option>
-            <el-option label="2013年"></el-option>
-            <el-option label="2012年"></el-option>
-            <el-option label="2011年"></el-option>
-          </el-select>
+          <!-- 全部技术 -->
+          <select name="select" class="sel">
+            <option v-for="item in classifyList" :key="item.id">{{item.attribute_name}}</option>
+          </select>
+          <!-- 年份 -->
+          <select name="select" class="sel">
+            <option v-for="item in yearList" :key="item.id">{{item.year}}</option>
+          </select>
           <!-- 月份 -->
-          <el-select>
-            <el-option></el-option>
-          </el-select>
+          <select name="select" class="sel">
+            <option v-for="item in monthList" :key="item.id">{{item.month}}</option>
+          </select>
           <!-- 搜索文档 -->
           <input type="button" class="btn2" value="搜索文档" />
         </div>
@@ -53,21 +38,31 @@
             </p>会议大全
           </div>
           <!-- 会议大全 -->
-          <el-table :data="meetingList" stripe style="width: 100%">
-            <el-table-column prop="meeting_title" width="180"></el-table-column>
-            <el-table-column prop="meeting_fileNumber" width="180"></el-table-column>
-            <el-table-column prop="meeting_place"></el-table-column>
-            <el-table-column prop="meeting_data"></el-table-column>
-          </el-table>
+          <ul class="wendang_list5">
+            <li v-for="item in meetingList" :key="item.id">
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>{{item.meeting_title}}</a>
+                </div>
+              </div>
+              <div class="n2">{{item.meeting_fileNumber}}</div>
+              <div class="n2">{{item.meeting_place}}</div>
+              <div class="n3">{{item.meeting_browse}}</div>
+              <div class="n4">{{item.meeting_data}}</div>
+            </li>
+          </ul>
           <!-- 分页 -->
-          <div class="page">
+          <div class="block">
             <el-pagination
+              background
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
-              :page-sizes="[2,5,8,10]"
-              layout="total, prev, pager, next"
-              :page-size="queryInfo.pagesize"
-              :current-page="queryInfo.pagenum"
+              :current-page="queryInfo.page"
+              :page-sizes="[5, 10, 15]"
+              :page-size="queryInfo.per_page"
+              layout="total, sizes, prev, pager, next, jumper"
               :total="total"
             ></el-pagination>
           </div>
@@ -96,36 +91,9 @@
         </div>
         <div class="padd">
           <div class="title11">最新收录会议</div>
-          <ul class="huiyi_list">
+          <ul class="huiyi_list" v-for="item in NewMeetingList" :key="item.id">
             <li>
-              <a href>第十届中国数据库技术大会（DTCC）演讲PPT</a>
-            </li>
-            <li>
-              <a href>第九届中国数据库技术大会（DTCC）演讲集锦</a>
-            </li>
-            <li>
-              <a href>后直播时代技术</a>
-            </li>
-            <li>
-              <a href>2017中国大数据技术大会</a>
-            </li>
-            <li>
-              <a href>SDCC 2017互联网应用架构实战峰会</a>
-            </li>
-            <li>
-              <a href>2017 全球云计算开源峰会</a>
-            </li>
-            <li>
-              <a href>PostgreSQL 2017中国技术大会</a>
-            </li>
-            <li>
-              <a href>ECCS-2017企业云计算峰会</a>
-            </li>
-            <li>
-              <a href>2017先知白帽大会（阿里云云盾先知）</a>
-            </li>
-            <li>
-              <a href>第九届中国Hadoop技术峰会2017 北京站</a>
+              <a href="javascript:;">{{item.meeting_title}}</a>
             </li>
           </ul>
         </div>
@@ -141,56 +109,95 @@ export default {
       classifyselectd: [],
       // 分类列表
       classifyList: [],
+      // 会议记录列表
       meetingList: [],
-
+      // 最新记录列表
+      NewMeetingList: [],
       classifyProps: {
         lable: "attribute_name",
         value: "id"
       },
       queryInfo: {
-        pagenum: 1,
-        pagesize: 2
+        page: 1,
+        per_page: 5
       },
       // 总条数
-      total: ""
+      total: 0,
+      // 年份列表
+      yearList: [
+        { year: "年份" },
+        { year: "2020年" },
+        { year: "2019年" },
+        { year: "2018年" },
+        { year: "2017年" },
+        { year: "2016年" },
+        { year: "2015年" },
+        { year: "2014年" },
+        { year: "2013年" },
+        { year: "2012年" },
+        { year: "2011年" }
+      ],
+      //月份列表monthList
+      monthList: [
+        { month: "月份" },
+        { month: "01月" },
+        { month: "02月" },
+        { month: "03月" },
+        { month: "04月" },
+        { month: "05月" },
+        { month: "06月" },
+        { month: "07月" },
+        { month: "08月" },
+        { month: "09月" },
+        { month: "10月" },
+        { month: "11月" },
+        { month: "12月" }
+      ]
     };
   },
   methods: {
     // 获取分类列表
     async getcontentList() {
       const { data: res } = await this.$http.get("classification");
-      if (res.code == 200) {
-        this.classifyList = res.data;
-      }
-      if (res.code !== 200) {
-        return this.$message.error("获取分类列表失败");
-      }
+
+      // if (res.code == 200) {
+      this.classifyList = res.data;
+      // }
+      // if (res.code !== 200) {
+      //   return this.$message.error("获取分类列表失败");
+      // }
+      // console.log(res);
     },
     // 获取会议大全列表
     async getmeetingList() {
       const { data: res } = await this.$http.get("collections", {
         params: this.queryInfo
       });
-      console.log(res);
-      if (res.code == 200) {
-        this.meetingList = res.data;
-        this.total = res.total;
-      }
+      // console.log(res);
+      this.meetingList = res.data;
+      this.total = res.total;
     },
     // 处理 每页显示多少条数据
-    handleSizeChange(size) {
-      this.queryInfo.pagesize = size;
+    handleSizeChange(newsize) {
+      this.queryInfo.per_page = newsize;
       this.getmeetingList();
     },
     // 跳转到第几页 要把页码要传出来
-    handleCurrentChange(num) {
-      this.queryInfo.pagenum = num;
+    handleCurrentChange(newpagenum) {
+      this.queryInfo.page = newpagenum;
       this.getmeetingList();
+    },
+    // 获取最新记录会议
+    async getNewmeetinglist() {
+      const { data: res } = await this.$http.get("included/meeting");
+      // console.log(res);
+      this.NewMeetingList = res.data;
     }
   },
   created() {
     this.getcontentList();
     this.getmeetingList();
+    this.getNewmeetinglist();
   }
 };
 </script>

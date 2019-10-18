@@ -22,7 +22,7 @@
         <el-input v-model="ruleForm.username" placeholder="用户名" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input v-model.number="ruleForm.password" placeholder="密码"></el-input>
+        <el-input v-model.number="ruleForm.password" type="password" placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item prop="phone">
         <el-input placeholder="手机号码" v-model="ruleForm.phone" autocomplete="off"></el-input>
@@ -34,57 +34,16 @@
         <el-button round type="primary" id="submit-btn" @click="submitForm('ruleForm')">注册</el-button>
       </el-form-item>
     </el-form>
-    <!-- <div class="cue">
+    <div class="cue">
       点击“注册”按钮，即表示您同意并愿意遵守TPUB
       <br />
       <a href="/useragreement.html" target="_blank">《用户协议》</a>
-    </div>-->
+    </div>
   </el-card>
 </template>
 <script>
 export default {
   data() {
-    // // 手机号校验
-    // var checkyanzheng = (rule, value, callback) => {
-    //   if (!value) {
-    //     return callback(new Error("验证码错误， 请重新输入"));
-    //   } else {
-    //     callback();
-    //   }
-    // };
-      // 用户名
-      var validateUser = (rule, value, callback) => {
-        if (value === "") {
-          callback(
-            new Error(
-              "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]"
-            )
-          );
-        } else {
-          if (this.ruleForm.phone !== "") {
-            this.$refs.ruleForm.validateField("phone");
-          }
-          callback();
-        }
-      };
-    // 密码
-    var checkpass = (rule, value, callback) => {
-      if (!value) {
-        return callback(
-          new Error("密码格式错误，请重新输入字母数字，符号6-16字节")
-        );
-      } else {
-        callback();
-      }
-    };
-    // 手机号
-    var validatePhone = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("手机号格式错误， 请重新输入"));
-      } else {
-        callback();
-      }
-    };
     return {
       ruleForm: {
         username: "",
@@ -93,44 +52,38 @@ export default {
         password: ""
       },
       rules: {
-        username: [{ validator: validateUser, trigger: "blur" }],
-        password: [{ validator: checkpass, trigger: "blur" }],
-        phone: [{ validator: validatePhone, trigger: "blur" }]
+        username: [
+         {required: true,message: '请输入用户名',trigger: "blur" },
+          { min: 2, max: 7, message: "长度在 2 到 7 个字符" },
+          { pattern: /^(?![0-9]{11}$)[A-Za-z\d_\u4e00-\u9fa5]{4,16}$/, message: "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]" }
+        ],
+        password: [
+          {required: true,message: '请输入密码',trigger: "blur" },
+          { min: 6, max: 16, message: "长度在 5 到 25个字符" },
+          {
+            pattern: /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
+            message: "只能输入6-16个字母、数字、下划线"
+          }
+        ],
+        phone:[{ required: true,message: ' 请重新输入手机号',trigger: 'blur'},
+	    	{validator:function(rule,value,callback){
+	            if(/^1[34578]\d{9}$/.test(value) == false){
+	                callback(new Error("请输入正确的手机号"));
+	            }else{
+	                callback();
+	            }
+	        }, trigger: 'blur'}],
         // yanzheng: [{ validator: checkyanzheng, trigger: "blur" }],
       }
     };
   },
   methods: {
-    //  submitForm(formName) {
-    //         this.$refs[formName].validate((valid) => {
-    //           if (valid) {
-    //             alert('submit!');
-    //           } else {
-    //             console.log('error submit!!');
-    //             return false;
-    //           }
-    //         });
-    //       },
     async submitForm(formName) {
-      // this.$refs[formName].validate((valid) => {
-      //   if (valid) {
-      //     let _this = this
-      //     this.$http.post('/register',_this.ruleForm)
-      //       .then((response) => {
-      //         // this.$message.success('注册成功！')
-      //         this.$refs[formName].resetFields()
-      //         //  跳转到登录页
-      //         this.$router.push({path: '/login'})
-      //         +console.log()
-      //       })
-      //   } else {
-      //     console.log('error submit!!')
-      //     return false
-      //   }
-      // })
-      console.log(this.ruleForm);
-
-      const { data: res } = await this.$http.post("/register", this.ruleForm);
+      await this.$http.post("/register", this.ruleForm).then(response => {
+        // this.$message.success('注册成功！')
+        //  跳转到登录页
+        this.$router.push({ path: "/login" });
+      });
       console.log(res);
     }
   }

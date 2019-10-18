@@ -53,20 +53,24 @@
         </el-row>
         <el-row>
           <el-table :data="correlationlist" style="width: 100%">
-            <el-table-column prop="file_name" width="620px"></el-table-column>
-            <el-table-column style="color:#e48b00" prop="file_price"></el-table-column>
-            <el-table-column style="color:#008cd6" prop="file_browse" width="50px"></el-table-column>
-            <el-table-column prop="file_time"></el-table-column>
+            <el-table-column prop="file_name" width="620px">
+              <template></template>
+            </el-table-column>
+            <el-table-column style="color:#e48b00" prop="file_price" width="50px"></el-table-column>
+            <el-table-column style="color:#008cd6" prop="file_browse" width="65px"></el-table-column>
+            <el-table-column prop="file_time">
+              <template slot-scope="scope">{{scope.row.file_time|dateFormats}}</template>
+            </el-table-column>
           </el-table>
           <el-pagination
             background
             layout="prev,sizes, pager, next,total,jumper"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="queryinfor.per_page"
+            :current-page="queryinfor.page"
             :total="total"
-            :page-sizes="[10,20]"
-            :page-size="queryinfor.page"
+            :page-sizes="[10,15]"
+            :page-size="queryinfor.per_page"
           ></el-pagination>
         </el-row>
       </el-main>
@@ -141,6 +145,7 @@
   </el-container>
 </template>
 <script>
+import { log } from 'util';
 export default {
   data() {
     return {
@@ -165,30 +170,34 @@ export default {
     // 获取筛选项
     async technical() {
       const { data: res } = await this.$http.get("screen");
-      console.log(res);
+      // console.log(res);
       this.classificationList = res.data;
-      console.log(this.classificationList);
+      // console.log(this.classificationList);
     },
     // 获取相关文档
     async documents() {
       const { data: res } = await this.$http.get("elated/documents", {
         params: this.queryinfor
       });
-      console.log(res);
+      // console.log(res);
       this.correlationlist = res.data;
       this.total = res.total;
     },
     handleSizeChange(size) {
-      this.queryinfor.page = size;
+      // console.log(size);
+      
+      this.queryinfor.per_page = size;
       this.documents();
     },
-    handleCurrentChange(num) {
-      this.queryinfor.per_page = num;
+    handleCurrentChange(newnum) {
+      // console.log(newnum);
+
+      this.queryinfor.page = newnum;
       this.documents();
     },
     // 给筛选项一个点击事件
     aClick(item) {
-      console.log(item);
+      // console.log(item);
       // 判断是否有子选项
       if ("children" in item) {
         this.toggleChild = true;
@@ -201,7 +210,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 el-container {
   margin: 0 auto;
   width: 1200px;
