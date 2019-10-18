@@ -5,7 +5,7 @@
         <!-- d登录导航 -->
         <div class="outline">
           <div class="wktop">
-            <div class="wktop-content-left">
+            <div class="wktop-content-left" ref="abc">
               <span>hi ,</span>&nbsp;
               <b>
                 <a href="javascript:;">用户</a>
@@ -16,10 +16,10 @@
                 <img alt="Vue logo" src="../assets/image/lrtd.gif" />
               </a>
               <a href="javascript:;">修改密码</a>
-              <a href="javascript:;">退出</a>
+              <a href="javascript:;" @click="logout">退出</a>
               <a href="javascript:;">帮助</a>
             </div>
-            <div class="wktop-content-right">
+            <div class="wktop-content-right" ref="cba">
               <a href="javascript:;">我的积分</a> |
               <a href="javascript:;">我的文档</a> |
               <a href="javascript:;">我的收藏</a> |
@@ -27,7 +27,7 @@
               <a href="javascript:;">我的消息</a>
               <span>(8)</span>
             </div>
-            <div class="wktop-content-height">
+            <div class="wktop-content-height" ref="ddb">
               <a href="/register">注册</a>|
               <a href="/login">登录</a>|
               <a href="javascript:;">IT168文库</a>|
@@ -66,11 +66,11 @@
               active-text-color="#ffb74f"
               router
             >
-              <el-menu-item index="/" >首页</el-menu-item>
-              <el-menu-item index="/classification" >分类</el-menu-item>
-              <el-menu-item index="/thecorpus" >文集</el-menu-item>
-              <el-menu-item index="/themeeting" >会议</el-menu-item>
-              <el-menu-item index="/cooperation" >合作机构</el-menu-item>
+              <el-menu-item index="/">首页</el-menu-item>
+              <el-menu-item index="/classification">分类</el-menu-item>
+              <el-menu-item index="/thecorpus">文集</el-menu-item>
+              <el-menu-item index="/themeeting">会议</el-menu-item>
+              <el-menu-item index="/cooperation">合作机构</el-menu-item>
             </el-menu>
           </div>
         </div>
@@ -136,8 +136,35 @@
 export default {
   data() {
     return {
-      activeIndex2: "/"
+      activeIndex2: "/",
+      token: ""
     };
+  },
+  methods: {
+    logout() {
+      window.sessionStorage.removeItem("token");
+      this.$router.push("/login");
+    }
+  },
+  created() {
+    let token = window.sessionStorage.getItem("token");
+    this.token = token;
+    // console.log(this.token);
+  },
+  mounted() {
+    // if(this.token)
+    // console.log(this.token);
+    if (this.token) {
+      this.$refs.abc.style.display = "block";
+      this.$refs.cba.style.display = "block";
+      this.$refs.ddb.style.display = "none";
+    } else {
+      this.$refs.abc.style.display = "none";
+      this.$refs.cba.style.display = "none";
+      this.$refs.ddb.style.display = "block";
+    }
+
+    // console.log(this.$refs.abc.style.display);
   }
 };
 </script>
@@ -472,7 +499,7 @@ export default {
   text-decoration: none;
   color: #006982;
 }
-.certificateb-bottom-a a:hover{
+.certificateb-bottom-a a:hover {
   color: #006982;
   text-decoration: underline;
 }
