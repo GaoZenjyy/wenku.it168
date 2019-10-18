@@ -66,11 +66,11 @@
               active-text-color="#ffb74f"
               router
             >
-              <el-menu-item index="/">首页</el-menu-item>
-              <el-menu-item index="/classification">分类</el-menu-item>
-              <el-menu-item index="/thecorpus">文集</el-menu-item>
-              <el-menu-item index="/themeeting">会议</el-menu-item>
-              <el-menu-item index="/cooperation">合作机构</el-menu-item>
+              <el-menu-item index="/" >首页</el-menu-item>
+              <el-menu-item index="/classification" >分类</el-menu-item>
+              <el-menu-item index="/thecorpus" >文集</el-menu-item>
+              <el-menu-item index="/themeeting" >会议</el-menu-item>
+              <el-menu-item index="/cooperation" >合作机构</el-menu-item>
             </el-menu>
           </div>
         </div>

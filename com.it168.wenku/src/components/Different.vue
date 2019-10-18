@@ -9,7 +9,8 @@
             <div class="content-top-left-a-bottom">
               <ul class="clearfix">
                 <li v-for="(item,index) in listData" :key="index">
-                  <a href="#">{{item.attribute_name}}</a>
+                  <router-link :to="{path:'/classification'}" >{{item.attribute_name}}</router-link>
+                  <!-- <a href="#"></a> -->
                 </li>
               </ul>
             </div>
@@ -171,7 +172,15 @@
         <!-- 下载动态 -->
         <div class="content-b-right-jiaobu">
           <div class="content-b-right-jiaobu-a">下载动态</div>
-          <div class="content-b-right-jiaobu-b"></div>
+          <div class="content-b-right-jiaobu-b">
+            <ul>
+              <li v-for="item in downloads" :key="item.id">
+                <a href="javascript:;">{{item.file_author}}</a>
+                下载了
+                <a href="javascript:;">{{item.file_name}}</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -238,6 +247,7 @@
 export default {
   data() {
     return {
+      numbers: 100,
       // 轮播图 图片
       simage: [
         {
@@ -331,7 +341,9 @@ export default {
           url: "#",
           img: require("../assets/image/gaoy/huiyi4.jpg")
         }
-      ]
+      ],
+      // 下载
+      downloads: []
     };
   },
   methods: {
@@ -375,6 +387,14 @@ export default {
       const { data: res } = await this.$http.get("/conference/albums");
       // console.log(res);
       this.listCollected = res.data;
+    },
+    async getfenlie() {
+      const { data: res } = await this.$http.get("elated/documents");
+      // console.log(res);
+      this.downloads = res.data;
+    },
+    getid(id) {
+      console.log(id);
     }
   },
   created() {
@@ -385,6 +405,7 @@ export default {
     this.getListwedXz();
     this.getListconference();
     this.getcollectedimg();
+    this.getfenlie();
   }
 };
 </script>
@@ -1019,5 +1040,33 @@ dd > span {
   height: 40px;
   line-height: 40px;
   font-size: 14px;
+}
+.content-b-right-jiaobu-b ul {
+  padding: 0;
+  width: 300px;
+  height: 320px;
+  margin: 0 15px 0 15px;
+  overflow: hidden;
+}
+.content-b-right-jiaobu-b ul li {
+  list-style: none;
+  width: 300px;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 20px;
+  overflow: hidden;
+  font-size: 12px;
+  color: #666666;
+  background-image: url(/img/lcs_bg.c3182825.png);
+  background-position: -321px -602px;
+  background-repeat: no-repeat;
+}
+.content-b-right-jiaobu-b ul li a {
+  text-decoration: none;
+  color: #666666;
+}
+.content-b-right-jiaobu-b ul li a:hover {
+  text-decoration: underline;
+  color: #cf0000;
 }
 </style>
