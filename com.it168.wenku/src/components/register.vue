@@ -101,36 +101,14 @@ export default {
     };
   },
   methods: {
-    //  submitForm(formName) {
-    //         this.$refs[formName].validate((valid) => {
-    //           if (valid) {
-    //             alert('submit!');
-    //           } else {
-    //             console.log('error submit!!');
-    //             return false;
-    //           }
-    //         });
-    //       },
-    async submitForm(formName) {
-      // this.$refs[formName].validate((valid) => {
-      //   if (valid) {
-      //     let _this = this
-      //     this.$http.post('/register',_this.ruleForm)
-      //       .then((response) => {
-      //         // this.$message.success('注册成功！')
-      //         this.$refs[formName].resetFields()
-      //         //  跳转到登录页
-      //         this.$router.push({path: '/login'})
-      //         +console.log()
-      //       })
-      //   } else {
-      //     console.log('error submit!!')
-      //     return false
-      //   }
-      // })
-      console.log(this.ruleForm);
 
-      const { data: res } = await this.$http.post("/register", this.ruleForm);
+    async submitForm(formName) {
+
+  await this.$http.post("/register", this.ruleForm).then((response) => {
+              // this.$message.success('注册成功！')
+              //  跳转到登录页
+              this.$router.push({path: '/login'})
+            });
       console.log(res);
     }
   }
