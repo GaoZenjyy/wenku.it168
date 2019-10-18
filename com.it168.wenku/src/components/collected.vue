@@ -6,7 +6,7 @@
       <li v-for="item in getUserList" :key="item.id">
         <a href="javascript:;" >
           <img
-            src="../assets/image/images/words1.jpg"
+            :src="item.meeting_image"
             width="360"
             height="90"
             :alt="item.meeting_title"
@@ -91,7 +91,7 @@
       <li v-for="item in getAllList" :key="item.id">
         <a href="javascript:;">
           <img
-            src="imagePreviewPath"
+            :src="item.meeting_image"
             alt="item.meeting_title"
             width="360"
             height="90"
@@ -132,7 +132,6 @@
 export default {
   data() {
     return {
-      
       classifyselectd: [],
       //文集推荐
       getUserList: [],
@@ -145,8 +144,6 @@ export default {
         lable: "attribute_name",
         value: "id"
       },
-      imagePreviewDialog: false,
-      imagePreviewPath: "",
       queryInfo: {
         page: 1,
         per_page: 2
@@ -154,7 +151,6 @@ export default {
       // 总条数
       total: 0
     };
-     
   },
   methods: {
     //文集推荐
@@ -163,6 +159,12 @@ export default {
       // console.log(res);
       this.getUserList = res.data;
       // console.log(this.getUserList);
+    },
+    // 图片
+    async showDataimg() {
+      const { data: res } = await this.$http.get("/conference/albums");
+      console.log(res);
+      this.getimgList = res.data;
     },
     // 分类列表
     async classifyData() {
@@ -203,21 +205,16 @@ export default {
       // console.log(this.getteamList);
     }
   },
-  // 图片
-  handlePreview(file) {
-      // console.log("111");
-      this.imagePreviewPath = file.response.data.url;
-      this.imagePreviewDialog = true;
-    },
   created: function() {
     this.showData();
     this.allData();
     this.wordData();
     this.classifyData();
+    this.showDataimg();
   }
 };
 </script>
-<style scoped>
+<style>
 @import "../assets/css/collected.css";
 /* @import "../assets/css/reset.css"; */
 </style>
