@@ -13,33 +13,18 @@
         <div class="tit">筛选项</div>
         <!-- 下拉框 -->
         <div class="shaixuan2">
-          <!-- 分类 -->
-          <!-- <el-select v-model="classifyselectd" value="全部">
-            <el-option
-              v-for="item in classifyList"
-              :key="item.id"
-              :label="item.attribute_name"
-              :value="item.id"
-            ></el-option>
-          </el-select> -->
-          <!--年份 -->
-          <!-- <el-select>
-            <el-option label="年份" value>年份</el-option>
-            <el-option label="2020年"></el-option>
-            <el-option label="2019年"></el-option>
-            <el-option label="2018年"></el-option>
-            <el-option label="2017年"></el-option>
-            <el-option label="2016年"></el-option>
-            <el-option label="2015年"></el-option>
-            <el-option label="2014年"></el-option>
-            <el-option label="2013年"></el-option>
-            <el-option label="2012年"></el-option>
-            <el-option label="2011年"></el-option>
-          </el-select>-->
+          <!-- 全部技术 -->
+          <select name="select" class="sel">
+            <option v-for="item in classifyList" :key="item.id">{{item.attribute_name}}</option>
+          </select>
+          <!-- 年份 -->
+          <select name="select" class="sel">
+            <option v-for="item in yearList" :key="item.id">{{item.year}}</option>
+          </select>
           <!-- 月份 -->
-          <!-- <el-select>
-            <el-option></el-option>
-          </el-select>-->
+          <select name="select" class="sel">
+            <option v-for="item in monthList" :key="item.id">{{item.month}}</option>
+          </select>
           <!-- 搜索文档 -->
           <input type="button" class="btn2" value="搜索文档" />
         </div>
@@ -130,7 +115,37 @@ export default {
         per_page: 5
       },
       // 总条数
-      total: 0
+      total: 0,
+      // 年份列表
+      yearList: [
+        { year: "年份" },
+        { year: "2020年" },
+        { year: "2019年" },
+        { year: "2018年" },
+        { year: "2017年" },
+        { year: "2016年" },
+        { year: "2015年" },
+        { year: "2014年" },
+        { year: "2013年" },
+        { year: "2012年" },
+        { year: "2011年" }
+      ],
+      //月份列表monthList
+      monthList: [
+        { month: "月份" },
+        { month: "01月" },
+        { month: "02月" },
+        { month: "03月" },
+        { month: "04月" },
+        { month: "05月" },
+        { month: "06月" },
+        { month: "07月" },
+        { month: "08月" },
+        { month: "09月" },
+        { month: "10月" },
+        { month: "11月" },
+        { month: "12月" }
+      ]
     };
   },
   methods: {
@@ -152,7 +167,6 @@ export default {
         params: this.queryInfo
       });
       // console.log(res);
-
       this.meetingList = res.data;
       this.total = res.total;
     },
@@ -169,7 +183,7 @@ export default {
     // 获取最新记录会议
     async getNewmeetinglist() {
       const { data: res } = await this.$http.get("included/meeting");
-      console.log(res);
+      // console.log(res);
       this.NewMeetingList = res.data;
     }
   },
