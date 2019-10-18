@@ -44,7 +44,7 @@
             <el-input v-model="phoneForm.phone" placeholder="手机号" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model.number="phoneForm.password" placeholder="密码"></el-input>
+            <el-input type="password" v-model.number="phoneForm.password" placeholder="密码"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button round type="primary" id="submit-btn" @click="login('phoneForm')">登录</el-button>
@@ -69,32 +69,6 @@
 <script>
 export default {
   data() {
-    
-    var validateuser = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]"));
-      } else {
-        if (this.ruleForm.checkPass !== "") {
-          this.$refs.ruleForm.validateField("checkPass");
-        }
-        callback();
-      }
-    };
-    var validatepassword = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("密码格式错误，请重新输入字母数字，符号6-16字节"));
-      } else {
-        callback();
-      }
-    };
-        // 手机号
-    var validatePhone = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("手机号格式错误， 请重新输入"));
-      } else {
-        callback();
-      }
-    };
     return {
       activeName: "first",
       ruleForm: {
@@ -105,11 +79,36 @@ export default {
         password: ""
       },
       urules: {
-        username: [{ validator: validateuser, trigger: "blur" }],
-        password: [{ validator: validatepassword, trigger: "blur" }]
+        username:  [
+         {required: true,message: '请输入用户名',trigger: "blur" },
+          { min: 2, max: 7, message: "长度在 2 到 7 个字符" },
+          { pattern: /^(?![0-9]{11}$)[A-Za-z\d_\u4e00-\u9fa5]{4,16}$/, message: "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]" }
+        ],
+        password: [
+          {required: true,message: '请输入密码',trigger: "blur" },
+          { min: 6, max: 16, message: "长度在 5 到 25个字符" },
+          {
+            pattern: /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
+            message: "只能输入6-16个字母、数字、下划线"
+          }
+        ]
       },prules: {
-        phone: [{ validator: validatePhone, trigger: "blur" }],
-        password: [{ validator: validatepassword, trigger: "blur" }]
+        phone: [{ required: true,message: ' 请重新输入手机号',trigger: 'blur'},
+	    	{validator:function(rule,value,callback){
+	            if(/^1[34578]\d{9}$/.test(value) == false){
+	                callback(new Error("请输入正确的手机号"));
+	            }else{
+	                callback();
+	            }
+	        }, trigger: 'blur'}],
+        password: [
+          {required: true,message: '请输入密码',trigger: "blur" },
+          { min: 6, max: 16, message: "长度在 5 到 25个字符" },
+          {
+            pattern: /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
+            message: "只能输入6-16个字母、数字、下划线"
+          }
+        ]
       }
     };
   },
@@ -121,12 +120,10 @@ export default {
 
     await this.$http.post("/login", this.ruleForm)
       .then((response) => {
-          // window.sessionStorage.setItem("token", "asdadwqdw");
-          localStorage.setItem("token","1qwe112eqewe11")
-              //  跳转到登录页
+      window.sessionStorage.setItem("token", "asdadwqdw");
+              //  跳转到首页
               this.$router.push({path: '/different'})
             });
-      // console.log(res.data.token);
 
     },
     handleClick(tab, event) {
