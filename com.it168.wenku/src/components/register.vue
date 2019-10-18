@@ -54,7 +54,7 @@ export default {
       rules: {
         username: [
          {required: true,message: '请输入用户名',trigger: "blur" },
-          { min: 2, max: 7, message: "长度在 2 到 7 个字符" },
+          { min: 4, max: 16, message: "长度在 4 到 16 个字符" },
           { pattern: /^(?![0-9]{11}$)[A-Za-z\d_\u4e00-\u9fa5]{4,16}$/, message: "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]" }
         ],
         password: [
