@@ -59,10 +59,10 @@ export default {
         ],
         password: [
           {required: true,message: '请输入密码',trigger: "blur" },
-          { min: 6, max: 16, message: "长度在 5 到 25个字符" },
+          { min: 6, max: 16, message: "长度在 6 到 16个字符" },
           {
-            pattern: /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
-            message: "只能输入6-16个字母、数字、下划线"
+            pattern:  /^(\w){6,16}$/,
+            message: "只能输入6-16个字母、数字、下划线必须以字母开头"
           }
         ],
         phone:[{ required: true,message: ' 请重新输入手机号',trigger: 'blur'},

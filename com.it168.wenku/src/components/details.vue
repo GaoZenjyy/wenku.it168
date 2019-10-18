@@ -33,7 +33,7 @@
           </div>
           <!-- 用户数据 -->
           <div class="details-pdf-bottom">
-            <a href="#">{{library[0].file_author}}</a>
+            <a href="javascript:;">{{library[0].file_author}}</a>
             <span>{{library[0].file_time | formatDate}}</span>
             <span>下载量：{{library[0].file_download}}次</span>
             <span>浏览量：{{library[0].file_browse}}次</span>

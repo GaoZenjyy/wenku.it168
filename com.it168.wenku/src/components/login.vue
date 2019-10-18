@@ -24,7 +24,7 @@
             <el-input v-model="ruleForm.username" placeholder="用户名" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input v-model.number="ruleForm.password" placeholder="密码"></el-input>
+            <el-input v-model.number="ruleForm.password" show-password placeholder="密码"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button round type="primary" id="submit-btn" @click="login('ruleForm')">登录</el-button>
@@ -44,7 +44,7 @@
             <el-input v-model="phoneForm.phone" placeholder="手机号" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" v-model.number="phoneForm.password" placeholder="密码"></el-input>
+            <el-input show-password v-model.number="phoneForm.password" placeholder="密码"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button round type="primary" id="submit-btn" @click="login('phoneForm')">登录</el-button>
@@ -86,10 +86,10 @@ export default {
         ],
         password: [
           {required: true,message: '请输入密码',trigger: "blur" },
-          { min: 6, max: 16, message: "长度在 5 到 25个字符" },
+          { min: 6, max: 16, message: "长度在 6 到 16个字符" },
           {
-            pattern: /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
-            message: "只能输入6-16个字母、数字、下划线"
+            pattern:  /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
+            message: "只能输入6-16个字母、数字、下划线必须以字母开头"
           }
         ]
       },prules: {
@@ -103,10 +103,10 @@ export default {
 	        }, trigger: 'blur'}],
         password: [
           {required: true,message: '请输入密码',trigger: "blur" },
-          { min: 6, max: 16, message: "长度在 5 到 25个字符" },
+          { min: 6, max: 16, message: "长度在 6 到 16个字符" },
           {
-            pattern: /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
-            message: "只能输入6-16个字母、数字、下划线"
+            pattern:  /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
+            message: "只能输入6-16个字母、数字、下划线,必须以字母开头"
           }
         ]
       }
