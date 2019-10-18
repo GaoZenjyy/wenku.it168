@@ -14,14 +14,14 @@
         <!-- 下拉框 -->
         <div class="shaixuan2">
           <!-- 分类 -->
-          <el-select v-model="classifyselectd" value="全部">
+          <!-- <el-select v-model="classifyselectd" value="全部">
             <el-option
               v-for="item in classifyList"
               :key="item.id"
               :label="item.attribute_name"
               :value="item.id"
             ></el-option>
-          </el-select>
+          </el-select> -->
           <!--年份 -->
           <!-- <el-select>
             <el-option label="年份" value>年份</el-option>
@@ -68,7 +68,7 @@
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
               :current-page="queryInfo.page"
-              :page-sizes="[2, 5, 10, 15]"
+              :page-sizes="[5, 10, 15]"
               :page-size="queryInfo.per_page"
               layout="total, sizes, prev, pager, next, jumper"
               :total="total"
@@ -127,7 +127,7 @@ export default {
       },
       queryInfo: {
         page: 1,
-        per_page: 2
+        per_page: 5
       },
       // 总条数
       total: 0
