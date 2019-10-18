@@ -17,7 +17,7 @@
           <div class="details-pdf-top">
             <div class="details-pdf-top-left">
               <em></em>
-              <span>{{library[0].file_name}}</span>
+              <span>{{library.file_name}}</span>
             </div>
             <div class="details-pdf-top-right">
               <div
@@ -33,20 +33,57 @@
           </div>
           <!-- 用户数据 -->
           <div class="details-pdf-bottom">
-            <a href="javascript:;">{{library[0].file_author}}</a>
-            <span>{{library[0].file_time | formatDate}}</span>
-            <span>下载量：{{library[0].file_download}}次</span>
-            <span>浏览量：{{library[0].file_browse}}次</span>
+            <a href="javascript:;">{{library.file_author}}</a>
+            <span>{{library.file_time | formatDate}}</span>
+            <span>下载量：{{library.file_download}}次</span>
+            <span>浏览量：{{library.file_browse}}次</span>
           </div>
         </div>
       </div>
       <div class="pdf">
-        <!-- 
-              pdf处理方法：
-              1.先将pdf文件像路径一样引入项目
-              2.调用pdf到此处
-        -->
-        <iframe src="/details" frameborder="0" width="830" height="700"></iframe>
+        <!-- pdf控制框 -->
+        <div class="pdf-control">
+          <botton class="pdf-pageup">
+            上一页
+            <i></i>
+          </botton>
+          <botton class="pdf-pagedown">
+            下一页
+            <i></i>
+          </botton>
+        </div>
+        <!-- pdf展示框 -->
+        <div class="pdf-container">
+          <canvas v-for="page in pages" :id="'canvas' + page" :key="page"></canvas>
+        </div>
+        <!-- pdf详情下载框 -->
+        <div class="pdf-detailsBox">
+          <div class="pdf-detailsBox-left">
+            <span>
+              大小：
+              <i></i>
+              .
+              <i></i>
+              MB
+            </span>
+            <span>
+              所需金币：
+              <i></i>
+            </span>
+            <span>
+              文档标签：
+              <i></i>
+            </span>
+          </div>
+          <div class="pdf-detailsBox-right">
+            <a href="javascript:;">
+              <div class="pdf-detailsBox-right-one"></div>
+            </a>
+            <a href="javascript:;">
+              <div class="pdf-detailsBox-right-two"></div>
+            </a>
+          </div>
+        </div>
       </div>
     </el-col>
     <el-col :span="6" class="right">
@@ -102,8 +139,10 @@
 <script>
 // 导入清除样式css
 import "../assets/css/reset.css";
-
+import PDF from "pdfjs-dist";
+PDF.disableWorker = true;
 export default {
+  name: "",
   data() {
     return {
       // 文档
@@ -111,13 +150,19 @@ export default {
       // 热门文档
       documents: [],
       // 相关推荐
-      recommendations: []
+      recommendations: [],
+      // pdfjs-dist
+      width: 100,
+      pdfDoc: null,
+      pages: 0
     };
   },
   methods: {
     // 获取文件数据
     async getLibrary() {
-      const { data: res } = await this.$http.get("library");
+      const { data: res } = await this.$http.get("library", {
+        params: { id: 2 }
+      });
       // console.log(res);
       this.library = res.data;
       // console.log(this.library);
@@ -147,12 +192,55 @@ export default {
         div.className = "details-pdf-top-right-one";
         span.innerHTML = "收藏";
       }
+    },
+    // pdfjs-dist
+    loadFile(url) {
+      PDF.getDocument(url).then(pdf => {
+        this.pdfDoc = pdf;
+        // console.log(111);
+        this.pages = this.pdfDoc.numPages;
+        this.$nextTick(() => {
+          this.renderPage(1);
+        });
+      });
+    },
+    // 渲染pdf
+    renderPage(num) {
+      this.pdfDoc.getPage(num).then(page => {
+        let canvas = document.getElementById("canvas" + num);
+        let ctx = canvas.getContext("2d");
+        let dpr = window.devicePixelRatio || 1; // 设备像素比
+        let bsr =
+          ctx.webkitBackingStorePixelRatio ||
+          ctx.mozBackingStorePixelRatio ||
+          ctx.msBackingStorePixelRatio ||
+          ctx.oBackingStorePixelRatio ||
+          ctx.backingStorePixelRatio ||
+          1; // 浏览器在渲染canvas之前会用几个像素来来存储画布信息,类似img
+        let ratio = dpr / bsr;
+        let viewport = page.getViewport(1.5);
+        canvas.width = viewport.width * ratio; // 画布大小,默认值是width:300px,height:150px
+        canvas.height = viewport.height * ratio;
+        canvas.style.width = viewport.width + "px"; // 画布的框架大小
+        canvas.style.height = viewport.height + "px";
+        let renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        page.render(renderContext);
+        if (this.pages > num) {
+          this.renderPage(num + 1);
+        } else {
+          this.closeServerLoadingHandle();
+        }
+      });
     }
   },
   created() {
     this.getLibrary();
     this.getDocuments();
     this.getRecommendations();
+    this.loadFile("/pdfFile/pdf-5.pdf");
   },
   filters: {
     formatDate: function(value) {
@@ -248,6 +336,120 @@ export default {
         span {
           display: inline-block;
           margin-left: 50px;
+        }
+      }
+    }
+    .pdf {
+      width: 800px;
+      height: 850px;
+      border: 1px solid #999;
+      .pdf-control {
+        width: 800px;
+        height: 50px;
+        background-color: #f9f9f9;
+        overflow: hidden;
+        .pdf-pageup {
+          position: relative;
+          float: left;
+          width: 50%;
+          height: 60px;
+          color: #666;
+          text-align: center;
+          line-height: 45px;
+          border-right: 1px solid #999;
+          box-sizing: border-box;
+          i {
+            position: absolute;
+            left: 245px;
+            top: 10px;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-image: url("../assets/image/lcs_img/lcs_bg.png");
+            background-repeat: no-repeat;
+            background-position: -270px -992px;
+          }
+        }
+        .pdf-pageup:hover {
+          color: #c00;
+          text-decoration: underline;
+        }
+        .pdf-pagedown {
+          position: relative;
+          float: left;
+          width: 50%;
+          height: 60px;
+          color: #666;
+          text-align: center;
+          line-height: 45px;
+          i {
+            position: absolute;
+            left: 245px;
+            top: 10px;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-image: url("../assets/image/lcs_img/lcs_bg.png");
+            background-repeat: no-repeat;
+            background-position: -300px -992px;
+          }
+        }
+        .pdf-pagedown:hover {
+          color: #c00;
+          text-decoration: underline;
+        }
+      }
+      .pdf-container {
+        width: 800px;
+        height: 700px;
+        overflow: auto;
+        position: absolute;
+        border-bottom: 1px solid #999;
+        border-top: 1px solid #999;
+        box-sizing: border-box;
+      }
+      .pdf-detailsBox {
+        overflow: hidden;
+        margin-top: 700px;
+        width: 800px;
+        height: 100px;
+        .pdf-detailsBox-left {
+          float: left;
+          width: 55%;
+          height: 60px;
+          text-align: center;
+          line-height: 50px;
+          margin-top: 20px;
+          border-right: 1px dashed #999;
+          box-sizing: border-box;
+          span {
+            color: #333;
+            margin-left: 40px;
+          }
+        }
+        .pdf-detailsBox-right {
+          float: left;
+          width: 40%;
+          height: 60px;
+          margin-top: 20px;
+          overflow: hidden;
+          .pdf-detailsBox-right-one {
+            float: left;
+            width: 45%;
+            height: 60px;
+            margin-left: 30px;
+            background-image: url("../assets/image/lcs_img/lcs_bg.png");
+            background-repeat: no-repeat;
+            background-position: 0 -1100px;
+          }
+          .pdf-detailsBox-right-two {
+            float: right;
+            width: 45%;
+            height: 60px;
+            background-image: url("../assets/image/lcs_img/lcs_bg.png");
+            background-repeat: no-repeat;
+            background-position: 0 -1100px;
+          }
         }
       }
     }
