@@ -85,7 +85,7 @@ export default {
           { pattern: /^(?![0-9]{11}$)[A-Za-z\d_\u4e00-\u9fa5]{4,16}$/, message: "用户名不正确，请重新输入[字母，数字,汉字,下划线4-16字符。不能为11位纯数字]" }
         ],
         password: [
-          {required: true,message: '请输入密码',trigger: "blur" },
+          {required: true,message: '只能输入6-16个字母、数字、下划线必须以字母开头',trigger: "blur" },
           { min: 6, max: 16, message: "长度在 6 到 16个字符" },
           {
             pattern:  /^[A-Za-z0-9~!@#$%\^&\*\(\)_\+\[\]\\{\}\|;':",\.\/<>\?]{6,16}$/,
