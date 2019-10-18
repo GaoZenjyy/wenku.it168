@@ -53,13 +53,14 @@
             </p>会议大全
           </div>
           <!-- 会议大全 -->
-
-          <el-table :data="meetingList" stripe style="width: 100%">
+          <el-table :data="meetingList" style="width: 100%">
             <el-table-column prop="meeting_title" width="350" label="会议大全"></el-table-column>
             <el-table-column prop="meeting_fileNumber" width="150" label="资料数量"></el-table-column>
             <el-table-column prop="meeting_place" label="会议地点" width="150"></el-table-column>
             <el-table-column prop="meeting_browse" label="浏览量"></el-table-column>
-            <el-table-column prop="meeting_data" label="会议时间"></el-table-column>
+            <el-table-column label="会议时间">
+              <template slot-scope="scoped">{{scoped.row.meeting_data | dateFormats}}</template>
+            </el-table-column>
           </el-table>
           <!-- 分页 -->
           <div class="block">
@@ -100,7 +101,7 @@
           <div class="title11">最新收录会议</div>
           <ul class="huiyi_list" v-for="item in NewMeetingList" :key="item.id">
             <li>
-              <a href >{{item.meeting_title}}}</a>
+              <a href="javascript:;">{{item.meeting_title}}</a>
             </li>
           </ul>
         </div>
