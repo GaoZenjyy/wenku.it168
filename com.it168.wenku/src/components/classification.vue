@@ -145,7 +145,8 @@
   </el-container>
 </template>
 <script>
-import { log } from 'util';
+import { log } from "util";
+import bus from "./bus.js";
 export default {
   data() {
     return {
@@ -185,7 +186,7 @@ export default {
     },
     handleSizeChange(size) {
       // console.log(size);
-      
+
       this.queryinfor.per_page = size;
       this.documents();
     },
@@ -207,6 +208,13 @@ export default {
         this.toggleChild = false;
       }
     }
+  },
+  created() {
+    bus.$on("hit", data => {
+      // console.log(data);
+    });
+    // console.log(123);
+    
   }
 };
 </script>

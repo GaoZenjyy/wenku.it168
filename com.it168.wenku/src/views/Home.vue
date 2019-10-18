@@ -143,7 +143,8 @@ export default {
   methods: {
     logout() {
       window.sessionStorage.removeItem("token");
-      this.$router.push("/login");
+      location.reload() 
+      this.$router.push("/different");
     }
   },
   created() {

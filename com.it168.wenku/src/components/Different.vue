@@ -253,6 +253,7 @@
   </div>
 </template>
 <script>
+import bus from "./bus.js";
 export default {
   data() {
     return {
@@ -359,9 +360,21 @@ export default {
     async getid(id) {
       // console.log(id);
       const { data: res } = await this.$http.get("/mm", { params: { id: id } });
-      // console.log(res);
-      this.$router.push("/details")
+      let idd = res.data[0].id;
+      bus.$emit("hit", idd);
+      //   // console.log(id);
+      // console.log(idd);
+      this.$router.push("/details");
     },
+    // getid(id) {
+    //   // console.log(id);
+    //   bus.$emit("hit", id);
+    //   // console.log(id);
+
+    //   this.$router.push("/classification");
+    //   // location.href = "/classification";
+    // },
+    setget(id) {},
     async getListdata() {
       const { data: res } = await this.$http.get("/technology");
       // console.log(res);

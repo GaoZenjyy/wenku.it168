@@ -133,6 +133,7 @@
           </div>
         </div>
       </div>
+      {{dataList}}
     </el-col>
   </div>
 </template>
@@ -140,11 +141,13 @@
 // 导入清除样式css
 import "../assets/css/reset.css";
 import PDF from "pdfjs-dist";
+import bus from "./bus.js";
 PDF.disableWorker = true;
 export default {
   name: "",
   data() {
     return {
+      dataList:'',
       // 文档
       library: [],
       // 热门文档
@@ -237,10 +240,16 @@ export default {
     }
   },
   created() {
+    bus.$on("hit", data => {
+      console.log(data);
+      // this.dataList = data;
+    });
     this.getLibrary();
     this.getDocuments();
     this.getRecommendations();
     this.loadFile("/pdfFile/pdf-5.pdf");
+
+    // console.log(123);
   },
   filters: {
     formatDate: function(value) {
