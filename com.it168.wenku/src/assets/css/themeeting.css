@@ -126,6 +126,9 @@ img {
   width: 448px;
 }
 
+.el-pagination{
+  margin-top: 10px;
+}
 .wendang_list5 li .n5 em {
   left: 0;
   top: 0;

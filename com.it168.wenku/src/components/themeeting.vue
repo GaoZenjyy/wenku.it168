@@ -23,7 +23,7 @@
             ></el-option>
           </el-select>
           <!--年份 -->
-          <el-select>
+          <!-- <el-select>
             <el-option label="年份" value>年份</el-option>
             <el-option label="2020年"></el-option>
             <el-option label="2019年"></el-option>
@@ -35,11 +35,11 @@
             <el-option label="2013年"></el-option>
             <el-option label="2012年"></el-option>
             <el-option label="2011年"></el-option>
-          </el-select>
+          </el-select>-->
           <!-- 月份 -->
-          <el-select>
+          <!-- <el-select>
             <el-option></el-option>
-          </el-select>
+          </el-select>-->
           <!-- 搜索文档 -->
           <input type="button" class="btn2" value="搜索文档" />
         </div>
@@ -53,21 +53,22 @@
             </p>会议大全
           </div>
           <!-- 会议大全 -->
+
           <el-table :data="meetingList" stripe style="width: 100%">
-            <el-table-column prop="meeting_title" width="180"></el-table-column>
-            <el-table-column prop="meeting_fileNumber" width="180"></el-table-column>
-            <el-table-column prop="meeting_place"></el-table-column>
-            <el-table-column prop="meeting_data"></el-table-column>
+            <el-table-column prop="meeting_title" width="350" label="会议大全"></el-table-column>
+            <el-table-column prop="meeting_fileNumber" width="150" label="资料数量"></el-table-column>
+            <el-table-column prop="meeting_place" label="会议地点" width="150"></el-table-column>
+            <el-table-column prop="meeting_data" label="浏览量"></el-table-column>
           </el-table>
           <!-- 分页 -->
-          <div class="page">
+          <div class="block">
             <el-pagination
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
-              :page-sizes="[2,5,8,10]"
-              layout="total, prev, pager, next"
-              :page-size="queryInfo.pagesize"
               :current-page="queryInfo.pagenum"
+              :page-sizes="[2, 5, 10, 15]"
+              :page-size="queryInfo.pagesize"
+              layout="total, sizes, prev, pager, next, jumper"
               :total="total"
             ></el-pagination>
           </div>
@@ -148,43 +149,44 @@ export default {
         value: "id"
       },
       queryInfo: {
-        pagenum: 1,
-        pagesize: 2
+        page: 1,
+        per_page: 3
       },
       // 总条数
-      total: ""
+      total: 0
     };
   },
   methods: {
     // 获取分类列表
     async getcontentList() {
       const { data: res } = await this.$http.get("classification");
-      if (res.code == 200) {
-        this.classifyList = res.data;
-      }
-      if (res.code !== 200) {
-        return this.$message.error("获取分类列表失败");
-      }
+
+      // if (res.code == 200) {
+      this.classifyList = res.data;
+      // }
+      // if (res.code !== 200) {
+      //   return this.$message.error("获取分类列表失败");
+      // }
+      // console.log(res);
     },
     // 获取会议大全列表
     async getmeetingList() {
       const { data: res } = await this.$http.get("collections", {
         params: this.queryInfo
       });
-      console.log(res);
-      if (res.code == 200) {
-        this.meetingList = res.data;
-        this.total = res.total;
-      }
+      // console.log(res);
+
+      this.meetingList = res.data;
+      this.total = res.total;
     },
     // 处理 每页显示多少条数据
-    handleSizeChange(size) {
-      this.queryInfo.pagesize = size;
+    handleSizeChange(newsize) {
+      this.queryInfo.per_page = newsize;
       this.getmeetingList();
     },
     // 跳转到第几页 要把页码要传出来
-    handleCurrentChange(num) {
-      this.queryInfo.pagenum = num;
+    handleCurrentChange(newpagenum) {
+      this.queryInfo.page = newpagenum;
       this.getmeetingList();
     }
   },
