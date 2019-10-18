@@ -38,7 +38,7 @@
             </p>会议大全
           </div>
           <!-- 会议大全 -->
-          <el-table :data="meetingList" style="width: 100%">
+          <!-- <el-table :data="meetingList" style="width: 100%">
             <el-table-column prop="meeting_title" width="350" label="会议大全"></el-table-column>
             <el-table-column prop="meeting_fileNumber" width="150" label="资料数量"></el-table-column>
             <el-table-column prop="meeting_place" label="会议地点" width="150"></el-table-column>
@@ -46,7 +46,22 @@
             <el-table-column label="会议时间">
               <template slot-scope="scoped">{{scoped.row.meeting_data | dateFormats}}</template>
             </el-table-column>
-          </el-table>
+          </el-table>-->
+          <ul class="wendang_list5">
+            <li v-for="item in meetingList" :key="item.id">
+              <div class="n5">
+                <!-- 五角星 -->
+                <em></em>
+                <div class="title">
+                  <a href>{{item.meeting_title}}</a>
+                </div>
+              </div>
+              <div class="n2">{{item.meeting_fileNumber}}</div>
+              <div class="n2">{{item.meeting_place}}</div>
+              <div class="n3">{{item.meeting_browse}}</div>
+              <div class="n4">{{item.meeting_data}}</div>
+            </li>
+          </ul>
           <!-- 分页 -->
           <div class="block">
             <el-pagination
