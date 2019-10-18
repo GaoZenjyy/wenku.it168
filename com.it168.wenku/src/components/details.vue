@@ -46,29 +46,52 @@
               1.先将pdf文件像路径一样引入项目
               2.调用pdf到此处
         -->
-        <!-- <iframe src="/details" frameborder="0" width="830" height="700"></iframe> -->
+        <iframe src="/details" frameborder="0" width="830" height="700"></iframe>
       </div>
     </el-col>
     <el-col :span="6" class="right">
       <!-- 热门文档 -->
       <div class="right-word">
-        <div class="right-word-title">
+        <div class="right-word-title-top">
           <span>热门文档</span>
         </div>
         <!-- 文档目录 -->
-        <div class="right-word-content">
+        <div v-for="(item,index) in documents" :key="index" class="right-word-content">
           <div class="right-word-content-title">
             <i></i>
-            <a>java从入门到精通.基础篇</a>
+            <a>{{item.file_name}}</a>
           </div>
           <div class="right-word-content-details">
             <span>
               阅读：
-              <span>3080</span>
+              <span>{{item.file_browse}}</span>
             </span>
-            <span>
+            <span class="right-word-content-details-x">
               下载：
-              <span>21</span>
+              <span>{{item.file_download}}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- 相关推荐 -->
+      <div class="right-word">
+        <div class="right-word-title-bottom">
+          <span>相关推荐</span>
+        </div>
+        <!-- 文档目录 -->
+        <div v-for="(item1,index) in recommendations" :key="index" class="right-word-content">
+          <div class="right-word-content-title">
+            <i></i>
+            <a>{{item1.file_name}}</a>
+          </div>
+          <div class="right-word-content-details">
+            <span>
+              阅读：
+              <span>{{item1.file_browse}}</span>
+            </span>
+            <span class="right-word-content-details-x">
+              下载：
+              <span>{{item1.file_download}}</span>
             </span>
           </div>
         </div>
@@ -83,16 +106,33 @@ import "../assets/css/reset.css";
 export default {
   data() {
     return {
-      library: []
+      // 文档
+      library: [],
+      // 热门文档
+      documents: [],
+      // 相关推荐
+      recommendations: []
     };
   },
   methods: {
-    // 接收数据
+    // 获取文件数据
     async getLibrary() {
       const { data: res } = await this.$http.get("library");
       // console.log(res);
       this.library = res.data;
-      console.log(this.library);
+      // console.log(this.library);
+    },
+    // 获取热门文档
+    async getDocuments() {
+      const { data: res } = await this.$http.get("/popular/documents");
+      // console.log(res);
+      this.documents = res.data;
+      // console.log(this.documents)
+    },
+    // 获取相关推荐
+    async getRecommendations() {
+      const { data: res } = await this.$http.get("/recommendations");
+      this.recommendations = res.data;
     },
     // 收藏切换
     changeCollection() {
@@ -111,6 +151,8 @@ export default {
   },
   created() {
     this.getLibrary();
+    this.getDocuments();
+    this.getRecommendations();
   },
   filters: {
     formatDate: function(value) {
@@ -212,7 +254,7 @@ export default {
   }
   .right {
     .right-word {
-      .right-word-title {
+      .right-word-title-top {
         margin-top: 15px;
         padding-bottom: 6px;
         font-size: 16px;
@@ -220,6 +262,19 @@ export default {
         background-image: url("../assets/image/lcs_img/lcs_bg.png");
         background-repeat: no-repeat;
         background-position: -300px -1108px;
+        span {
+          color: #008cd6;
+          padding-left: 36px;
+        }
+      }
+      .right-word-title-bottom {
+        margin-top: 15px;
+        padding-bottom: 6px;
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+        background-image: url("../assets/image/lcs_img/lcs_bg.png");
+        background-repeat: no-repeat;
+        background-position: 11px -511px;
         span {
           color: #008cd6;
           padding-left: 36px;
@@ -253,6 +308,9 @@ export default {
           padding-left: 40px;
           font-size: 12px;
           color: #999;
+          .right-word-content-details-x {
+            margin-left: 40px;
+          }
         }
       }
     }
