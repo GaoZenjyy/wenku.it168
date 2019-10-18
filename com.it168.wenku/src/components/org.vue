@@ -45,9 +45,6 @@
               <li v-for="item1 in item.children" :key="item1.id">
                 <a href>{{item1.file_name}}</a>
               </li>
-              <!-- <li>
-                <a href>{{item1.file_name}}</a>
-              </li>-->
             </ul>
           </div>
           <div class="one_bottomright">
@@ -61,17 +58,19 @@
         </div>
       </div>
     </div>
+    <!-- 分页 -->
+    <el-pagination
+      class="pagination"
+      background
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="pagingList.page"
+      :page-sizes="[ 2 , total / 2, 10 ]"
+      :page-size="pagingList.per_page"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total"
+    ></el-pagination>
   </div>
-  <!-- 分页 -->
-   <!-- <el-pagination
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
-    :current-page="currentPage4"
-    :page-sizes="[2 ,4,6，8]"
-    :page-size="100"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="total"
-  ></el-pagination>  -->
 </template>  
 
  
@@ -81,20 +80,40 @@ export default {
     return {
       // 数据
       ListlcsData: [],
+      // 分页数据
+      pagingList: {
+        // 页数
+        page: 1,
+        // 条数
+        per_page: 2
+      },
       // 分页默认显示0
-      total:0
-
+      total: 0
     };
   },
   //  方法
   methods: {
     // 写函数
     async lcsData() {
-      const { data: res } = await this.$http.get("/agency");
-      // console.log(res);
+      const { data: res } = await this.$http.get("/agency", {
+        params: this.pagingList
+      });
+      console.log(res);
       // 把数据放进数组
       this.ListlcsData = res.data;
-      console.log(this.ListlcsData);
+      // 把分页总条数放进数组
+      this.total = res.total;
+      // console.log(this.ListlcsData);
+    },
+    handleSizeChange(val) {
+      this.pagingList.per_page = val;
+      // 调用
+      this.lcsData();
+    },
+    handleCurrentChange(val) {
+      this.pagingList.page = val;
+      // 调用
+      this.lcsData();
     }
   },
   // 生命周期
@@ -301,5 +320,10 @@ a:hover {
   margin-left: 20px;
   display: inline-block;
   margin-top: -30px;
+}
+
+.pagination {
+  margin-top: 30px;
+  margin-left: 120px;
 }
 </style>
