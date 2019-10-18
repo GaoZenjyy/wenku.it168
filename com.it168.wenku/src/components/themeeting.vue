@@ -44,7 +44,10 @@
                 <!-- 五角星 -->
                 <em></em>
                 <div class="title">
-                  <a href>{{item.meeting_title}}</a>
+                  <a
+                    href="javascript:;"
+                    style="text-decoration: none; color:#333"
+                  >{{item.meeting_title}}</a>
                 </div>
               </div>
               <div class="n2">{{item.meeting_fileNumber}}</div>
@@ -66,7 +69,6 @@
               :total="total"
             ></el-pagination>
           </div>
-          
         </div>
       </div>
       <!-- 右边 -->
@@ -90,11 +92,14 @@
             </dd>
           </dl>
         </div>
-        <div class="padd">
+        <div class="padd" style="margin:0">
           <div class="title11">最新收录会议</div>
           <ul class="huiyi_list" v-for="item in NewMeetingList" :key="item.id">
             <li>
-              <a href="javascript:;">{{item.meeting_title}}</a>
+              <a
+                href="javascript:;"
+                style="text-decoration: none; color:#333"
+              >{{item.meeting_title}}</a>
             </li>
           </ul>
         </div>
@@ -205,5 +210,5 @@ export default {
 
 <style scoped>
 @import "../assets/css/themeeting.css";
-@import "../assets/css/reset.css";
+/* @import "../assets/css/reset.css"; */
 </style>

@@ -217,7 +217,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 @import "../assets/css/collected.css";
-@import "../assets/css/reset.css";
+/* @import "../assets/css/reset.css"; */
 </style>
