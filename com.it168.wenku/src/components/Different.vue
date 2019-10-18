@@ -8,8 +8,9 @@
             <div class="content-top-left-a-top">技术分类</div>
             <div class="content-top-left-a-bottom">
               <ul class="clearfix">
-                <li v-for="(item,index) in listData" :key="index">
-                  <router-link :to="{path:'/classification'}" >{{item.attribute_name}}</router-link>
+                <li v-for="(item,index) in listData" :key="index" >
+                  <a href="javascript:;">{{item.attribute_name}}</a>
+                  <!-- <router-link :to="{path:'/classification'}">{{item.attribute_name}}</router-link> -->
                   <!-- <a href="#"></a> -->
                 </li>
               </ul>
@@ -95,8 +96,10 @@
       <div class="content-b-left">
         <div class="content-b-left-top">热门文档</div>
         <ul class="content-b-left-top-ul">
-          <li v-for="(item,index) in listWenDang" :key="index">
+          <!-- <template slot-scope="scoped">{{scoped.row}}</template> -->
+          <li v-for="(item,index) in listWenDang" :key="item.id">
             <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
+            <!-- {{item.id}} -->
             <a href="javascript:;">
               <!-- {{srcs}} -->
               <img :src="simages[index].img" alt />
@@ -110,8 +113,14 @@
             </p>
           </li>
         </ul>
+        <!-- <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
+          <el-table-column prop="date" label="日期" width="180"></el-table-column>
+          <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+          <el-table-column prop="address" label="地址"></el-table-column>
+        </el-table>-->
         <ul class="content-b-left-top-ul-a clearfix">
-          <li v-for="item in listWenDangXz" :key="item.id">
+          <li v-for="item in listWenDangXz" :key="item.id" @click="getid(item.id)">
+            <!-- {{item.id}} -->
             <em></em>
             <span>
               <a href="javascript:;">{{item.file_name}}</a>
@@ -347,6 +356,12 @@ export default {
     };
   },
   methods: {
+    async getid(id) {
+      // console.log(id);
+      const { data: res } = await this.$http.get("/mm", { params: { id: id } });
+      // console.log(res);
+      this.$router.push("/details")
+    },
     async getListdata() {
       const { data: res } = await this.$http.get("/technology");
       // console.log(res);
@@ -392,9 +407,6 @@ export default {
       const { data: res } = await this.$http.get("elated/documents");
       // console.log(res);
       this.downloads = res.data;
-    },
-    getid(id) {
-      console.log(id);
     }
   },
   created() {
