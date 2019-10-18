@@ -8,7 +8,7 @@
             <div class="content-top-left-a-top">技术分类</div>
             <div class="content-top-left-a-bottom">
               <ul class="clearfix">
-                <li v-for="(item,index) in listData" :key="index" >
+                <li v-for="(item,index) in listData" :key="index">
                   <a href="javascript:;">{{item.attribute_name}}</a>
                   <!-- <router-link :to="{path:'/classification'}">{{item.attribute_name}}</router-link> -->
                   <!-- <a href="#"></a> -->
@@ -375,6 +375,7 @@ export default {
     //   // location.href = "/classification";
     // },
     setget(id) {},
+    // 技术分类
     async getListdata() {
       const { data: res } = await this.$http.get("/technology");
       // console.log(res);
@@ -385,32 +386,38 @@ export default {
       // console.log(res.data);
       // console.log(this.listData);
     },
+    // 热门文档
     async getListWenDang() {
       const { data: res } = await this.$http.get("popular/document/read");
       // console.log(res);
       this.listWenDang = res.data;
       // console.log(this.listWenDang);
     },
+    // 热门文档下载
     async getListWenDangxz() {
       const { data: res } = await this.$http.get("/popular/document/download");
       // console.log(res);
       this.listWenDangXz = res.data;
     },
+    // 最新上传
     async getListWenzusc() {
       const { data: res } = await this.$http.get("/latest/upload/read");
       // console.log(res);
       this.listWenDangs = res.data;
     },
+    // 最新上传 下载
     async getListwedXz() {
       const { data: res } = await this.$http.get("/latest/upload/download");
       // console.log(res);
       this.listWenDangXzs = res.data;
     },
+    // 会议专辑
     async getListconference() {
       const { data: res } = await this.$http.get("/conference/albums");
       // console.log(res);
       this.listConference = res.data;
     },
+    // 会议图片
     async getcollectedimg() {
       const { data: res } = await this.$http.get("/conference/albums");
       // console.log(res);
