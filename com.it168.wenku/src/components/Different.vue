@@ -97,12 +97,12 @@
         <div class="content-b-left-top">热门文档</div>
         <ul class="content-b-left-top-ul">
           <!-- <template slot-scope="scoped">{{scoped.row}}</template> -->
-          <li v-for="(item,index) in listWenDang" :key="item.id">
+          <li v-for="item in listWenDang" :key="item.id">
             <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
             <!-- {{item.id}} -->
             <a href="javascript:;">
               <!-- {{srcs}} -->
-              <img :src="simages[index].img" alt />
+              <img :src="item.file_image" alt />
               <span>{{item.file_name}}</span>
             </a>
             <!-- </div> -->
@@ -202,7 +202,7 @@
             <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
             <a href="javascript:;">
               <!-- {{srcs}} -->
-              <img :src="simagesred[index].img" alt />
+              <img :src="item.file_image" alt />
               <span>{{item.file_name}}</span>
             </a>
             <!-- </div> -->
@@ -230,7 +230,7 @@
       <ul class="clearfix">
         <li v-for="(item,index) in listConference" :key="index">
           <a href="javascript:;">
-            <img :src="ConferenceImage[index].img" alt />
+            <img :src="item.meeting_image" alt />
             <span>{{item.meeting_title}}</span>
           </a>
         </li>
@@ -243,7 +243,7 @@
       <ul class="clearfix">
         <li v-for="(item,index) in listCollected" :key="index">
           <a href="javascript:;">
-            <img :src="collectedimg[index].img" alt />
+            <img :src="item.meeting_image" alt />
             <span>{{item.meeting_title}}</span>
           </a>
         </li>
@@ -282,76 +282,76 @@ export default {
       // 热门文档
       listWenDang: [],
       // 热门文档图片
-      simages: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz1.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz2.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz3.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz4.jpg")
-        }
-      ],
+      // simages: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz1.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz2.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz3.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz4.jpg")
+      //   }
+      // ],
       // 热门文档下载
       listWenDangXz: [],
       // 最新上传
       listWenDangs: [],
       // 最新上传 图片
-      simagesred: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red1.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red2.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red3.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red4.jpg")
-        }
-      ],
+      // simagesred: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red1.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red2.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red3.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red4.jpg")
+      //   }
+      // ],
       // 最新上传 下载
       listWenDangXzs: [],
       // 会议专辑
       listConference: [],
 
       // 会议图片
-      ConferenceImage: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi1.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi2.jpg")
-        }
-      ],
+      // ConferenceImage: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi1.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi2.jpg")
+      //   }
+      // ],
       // 精品文集
       listCollected: [],
       // 精品文集 图片
-      collectedimg: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi3.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi4.jpg")
-        }
-      ],
+      // collectedimg: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi3.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi4.jpg")
+      //   }
+      // ],
       // 下载
       downloads: []
     };
