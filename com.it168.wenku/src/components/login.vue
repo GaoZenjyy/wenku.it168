@@ -115,17 +115,18 @@ export default {
   },
 
   methods: {
-      async   login(formName){
+      async login(formName){
 
       console.log(this.ruleForm);
 
-       await this.$http.post("/login", this.ruleForm)
+    await this.$http.post("/login", this.ruleForm)
       .then((response) => {
-              // this.$message.success('注册成功！')
+          // window.sessionStorage.setItem("token", "asdadwqdw");
+          localStorage.setItem("token","1qwe112eqewe11")
               //  跳转到登录页
               this.$router.push({path: '/different'})
             });
-      // console.log(res);
+      // console.log(res.data.token);
 
     },
     handleClick(tab, event) {
@@ -228,5 +229,14 @@ export default {
     overflow: hidden;
     position: relative;
     left: 200px;
+}
+.el-tabs--card>.el-tabs__header {
+    border-bottom:0px solid #E4E7ED;
+}
+.el-tabs--card>.el-tabs__header .el-tabs__item {
+    border-bottom-color: #E4E7ED;
+}
+.el-tabs--card>.el-tabs__header .el-tabs__item.is_action {
+    border-bottom-color: #E4E7ED;
 }
 </style>
