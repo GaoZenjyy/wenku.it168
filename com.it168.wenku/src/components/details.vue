@@ -254,7 +254,7 @@ export default {
   },
   created() {
     this.getLibrary();
-    this.getDocuments();
+    this.getDocuments(); 
     this.getRecommendations();
     this.pdfUrlPush();
     this.loadFile(this.pdfUrl);
