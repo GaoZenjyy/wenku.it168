@@ -447,7 +447,7 @@ export default {
           box-sizing: border-box;
           span {
             color: #333;
-            margin-left: 40px;
+            margin-left: 30px;
           }
         }
         .pdf-detailsBox-right {
