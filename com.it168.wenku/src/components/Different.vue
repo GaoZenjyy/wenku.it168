@@ -377,6 +377,8 @@ export default {
       this.$store.commit("getId", id);
       this.$router.push("/themeeting");
     },
+    // 鼠标移入事件
+    // mousess() {},
 
     // 技术分类
     async getListdata() {
@@ -1109,6 +1111,9 @@ dd > span {
 .content-b-right-jiaobu-b ul li a {
   text-decoration: none;
   color: #666666;
+}
+.content-b-right-jiaobu-b ul:hover {
+  animation-play-state: paused;
 }
 .content-b-right-jiaobu-b ul li a:hover {
   text-decoration: underline;
