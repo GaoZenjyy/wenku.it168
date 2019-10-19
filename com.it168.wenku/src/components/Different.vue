@@ -374,7 +374,7 @@ export default {
     // 会议页面
     async liuminggetid(id) {
       // console.log(id);
-      this.$store.commit("getId", id);
+      this.$store.commit("getId", id); 
       this.$router.push("/themeeting");
     },
 
