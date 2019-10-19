@@ -46,7 +46,9 @@
                 <div class="title">
                   <a
                     href="javascript:;"
-                    style="text-decoration: none; color:#333" class="font_size"
+                    style="text-decoration: none; color:#333"
+                    class="font_size"
+                    @click="getid(item.id)"
                   >{{item.meeting_title}}</a>
                 </div>
               </div>
@@ -109,6 +111,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -162,6 +165,12 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["getid"]),
+    // 跳转到 王永晨页面
+    getid(id) {
+      this.$store.commit("getId", id);
+      this.$router.push("/album");
+    },
     // 获取分类列表
     async getcontentList() {
       const { data: res } = await this.$http.get("classification");
