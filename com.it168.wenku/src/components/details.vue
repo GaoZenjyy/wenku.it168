@@ -43,14 +43,14 @@
       <div class="pdf">
         <!-- pdf控制框 -->
         <div class="pdf-control">
-          <botton class="pdf-pageup">
+          <a class="pdf-pageup">
             上一页
             <i></i>
-          </botton>
-          <botton class="pdf-pagedown">
+          </a>
+          <a class="pdf-pagedown">
             下一页
             <i></i>
-          </botton>
+          </a>
         </div>
         <!-- pdf展示框 -->
         <div class="pdf-container">
@@ -143,7 +143,6 @@ import PDF from "pdfjs-dist";
 import bus from "./bus.js";
 PDF.disableWorker = true;
 export default {
-  name: "",
   data() {
     return {
       dataList: "",
@@ -200,6 +199,8 @@ export default {
         }
       } else {
         alert("请登录");
+        // 跳转到登录页
+        this.$router.push('/login');
       }
     },
     // pdfjs-dist
@@ -239,8 +240,6 @@ export default {
         page.render(renderContext);
         if (this.pages > num) {
           this.renderPage(num + 1);
-        } else {
-          this.closeServerLoadingHandle();
         }
       });
     },
