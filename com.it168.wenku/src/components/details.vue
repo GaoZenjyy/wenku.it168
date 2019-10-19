@@ -244,7 +244,7 @@ export default {
     },
     // 处理pdf文件路径
     pdfUrlPush(){
-      let pdfNum = Math.floor(Math.random() * 9);
+      let pdfNum = Math.floor(Math.random() * 8);
       // console.log(pdfNum);
       this.pdfUrl = '/pdfFile/pdf-' + pdfNum + '.pdf';
       console.log(this.pdfUrl);
