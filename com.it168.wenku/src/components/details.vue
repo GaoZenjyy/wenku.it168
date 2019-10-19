@@ -163,7 +163,7 @@ export default {
     // 获取文件数据
     async getLibrary() {
       const { data: res } = await this.$http.get("library", {
-        params: { id: this.$store.state.age}
+        params: { id: this.$store.state.id}
       });
       // console.log(res);
       this.library = res.data;
