@@ -244,14 +244,12 @@ export default {
     },
     // 处理pdf文件路径
     pdfUrlPush(){
-      let pdfNum = Math.floor(Math.random() * 8);
+      let pdfNum = Math.floor(Math.random() * 50);
       // console.log(pdfNum);
       this.pdfUrl = '/pdfFile/pdf-' + pdfNum + '.pdf';
       console.log(this.pdfUrl);
     },
-    pdfUpFile(){
-      
-    },
+    pdfUpFile(){},
     pdfDownFile(){}
   },
   created() {
@@ -283,6 +281,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    // width: 300px;
 .details {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
@@ -523,6 +522,7 @@ export default {
             background-position: -230px -559px;
           }
           a {
+            width: 500px;
             margin: 15px 0;
             display: inline-block;
             font-size: 16px;
