@@ -15,14 +15,14 @@
                 </li>
               </ul>
             </div>
-            <div class="content-top-left-a-bottom-a">热搜分类</div>
+            <div class="content-top-left-a-bottom-a" >热搜分类</div>
             <div class="content-top-left-a-bottom-b">
-              <a href="#">Python</a>
-              <a href="#">javaScript</a>
-              <a href="#">MySQL</a>
-              <a href="#">NoSQL</a>
-              <a href="#">java</a>
-              <a href="#">C/C++</a>
+              <a href="javascript:;">Python</a>
+              <a href="javascript:;">javaScript</a>
+              <a href="javascript:;">MySQL</a>
+              <a href="javascript:;">NoSQL</a>
+              <a href="javascript:;">java</a>
+              <a href="javascript:;">C/C++</a>
             </div>
           </div>
         </div>
@@ -43,12 +43,12 @@
           <div class="content-top-middle-top-bottom">文库首发</div>
           <ul class="content-top-middle-top-bottom-a">
             <li>
-              <a href="#">
+              <a href="javascript:;">
                 <img src="../assets/image/gaoy/wenksf1.png" alt />
               </a>
             </li>
             <li style=" margin-left:10px">
-              <a href="#">
+              <a href="javascript:;">
                 <img src="../assets/image/gaoy/wenksf2.png" alt />
               </a>
             </li>
@@ -375,7 +375,7 @@ export default {
     async liuminggetid(id) {
       // console.log(id);
       this.$store.commit("getId", id);
-      this.$router.push("/themeeting");
+      this.$router.push("/album");
     },
     // 鼠标移入事件
     // mousess() {},

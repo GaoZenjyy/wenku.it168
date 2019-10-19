@@ -137,7 +137,9 @@ export default {
   data() {
     return {
       activeIndex2: "/",
-      token: ""
+      token: "",
+      // 搜索
+      file_name: ""
     };
   },
   methods: {
