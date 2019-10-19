@@ -147,7 +147,7 @@ export default {
   name: "",
   data() {
     return {
-      dataList:'',
+      dataList: "",
       // 文档
       library: [],
       // 热门文档
@@ -157,14 +157,14 @@ export default {
       // pdfjs-dist
       width: 100,
       pdfDoc: null,
-      pages: 0
+      pages: 0,
     };
   },
   methods: {
     // 获取文件数据
     async getLibrary() {
       const { data: res } = await this.$http.get("library", {
-        params: { id: 2 }
+        params: { id: this.$store.state.age || 1 }
       });
       // console.log(res);
       this.library = res.data;

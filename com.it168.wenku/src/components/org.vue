@@ -19,7 +19,7 @@
         <div class="one_top">
           <!-- 左边 -->
           <div class="one_topleft">
-            <img :src="item.image" alt class="a" />
+            <img :src="item.image" alt class="a" @click="mm(item.id)" />
             <i class="b"></i>
           </div>
           <!-- 右边 -->
@@ -75,6 +75,7 @@
 
  
  <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -93,12 +94,17 @@ export default {
   },
   //  方法
   methods: {
+    ...mapMutations(["mm"]),
+    mm(id) {
+      this.$store.commit("mm", id);
+      this.$router.push("/company");
+    },
     // 写函数
     async lcsData() {
       const { data: res } = await this.$http.get("/agency", {
         params: this.pagingList
       });
-      console.log(res);
+      // console.log(res);
       // 把数据放进数组
       this.ListlcsData = res.data;
       // 把分页总条数放进数组
@@ -118,6 +124,8 @@ export default {
   },
   // 生命周期
   created() {
+    // console.log(mapState);
+
     this.lcsData();
   }
 };

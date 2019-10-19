@@ -6,7 +6,7 @@ import store from "./store";
 // Vue.use(VueResource)
 //引入yy
 import axios from "axios";
-axios.defaults.baseURL = "http://192.168.86.32:9968/api/v1/";
+axios.defaults.baseURL = "http://127.0.0.1:9968/api/v1/";
 Vue.prototype.$http = axios;
 // 引入element-ui
 import ElementUI from "element-ui";

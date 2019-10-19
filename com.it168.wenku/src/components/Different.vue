@@ -253,7 +253,8 @@
   </div>
 </template>
 <script>
-import bus from "./bus.js";
+// import bus from "./bus.js";
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -357,23 +358,12 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["getid"]),
     async getid(id) {
       // console.log(id);
-      const { data: res } = await this.$http.get("/mm", { params: { id: id } });
-      let idd = res.data[0].id;
-      bus.$emit("hit", idd);
-      //   // console.log(id);
-      // console.log(idd);
+      this.$store.commit("mm", id);
       this.$router.push("/details");
     },
-    // getid(id) {
-    //   // console.log(id);
-    //   bus.$emit("hit", id);
-    //   // console.log(id);
-
-    //   this.$router.push("/classification");
-    //   // location.href = "/classification";
-    // },
     setget(id) {},
     // 技术分类
     async getListdata() {

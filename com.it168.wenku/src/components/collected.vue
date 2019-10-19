@@ -146,7 +146,7 @@ export default {
       },
       queryInfo: {
         page: 1,
-        per_page: 2
+        per_page: 5
       },
       // 总条数
       total: 0
