@@ -43,14 +43,14 @@
       <div class="pdf">
         <!-- pdf控制框 -->
         <div class="pdf-control">
-          <botton class="pdf-pageup">
+          <a class="pdf-pageup">
             上一页
             <i></i>
-          </botton>
-          <botton class="pdf-pagedown">
+          </a>
+          <a class="pdf-pagedown">
             下一页
             <i></i>
-          </botton>
+          </a>
         </div>
         <!-- pdf展示框 -->
         <div class="pdf-container">
@@ -133,7 +133,6 @@
           </div>
         </div>
       </div>
-      {{dataList}}
     </el-col>
   </div>
 </template>
@@ -144,7 +143,6 @@ import PDF from "pdfjs-dist";
 import bus from "./bus.js";
 PDF.disableWorker = true;
 export default {
-  name: "",
   data() {
     return {
       dataList: "",
@@ -166,6 +164,8 @@ export default {
       const { data: res } = await this.$http.get("library", {
         params: { id: this.$store.state.age}
       });
+      console.log("哈哈哈   " + this.dataList + "gggg===");
+
       // console.log(res);
       this.library = res.data;
       // console.log(this.library);
@@ -184,16 +184,23 @@ export default {
     },
     // 收藏切换
     changeCollection() {
-      let span = document.querySelector("#details-pdf-top-right-one > span");
-      let div = document.getElementById("details-pdf-top-right-one");
-      let change = div.className;
-      // 此处还差判断是否登录
-      if (change == "details-pdf-top-right-one") {
-        div.className = "details-pdf-top-right-one-in";
-        span.innerHTML = "已收藏";
-      } else if (change == "details-pdf-top-right-one-in") {
-        div.className = "details-pdf-top-right-one";
-        span.innerHTML = "收藏";
+      let token = window.sessionStorage.getItem("token");
+      if (token !== null) {
+        let span = document.querySelector("#details-pdf-top-right-one > span");
+        let div = document.getElementById("details-pdf-top-right-one");
+        let change = div.className;
+        // 此处还差判断是否登录
+        if (change == "details-pdf-top-right-one") {
+          div.className = "details-pdf-top-right-one-in";
+          span.innerHTML = "已收藏";
+        } else if (change == "details-pdf-top-right-one-in") {
+          div.className = "details-pdf-top-right-one";
+          span.innerHTML = "收藏";
+        }
+      } else {
+        alert("请登录");
+        // 跳转到登录页
+        this.$router.push('/login');
       }
     },
     // pdfjs-dist
@@ -233,24 +240,28 @@ export default {
         page.render(renderContext);
         if (this.pages > num) {
           this.renderPage(num + 1);
-        } else {
-          this.closeServerLoadingHandle();
         }
+      });
+    },
+    ser() {
+      bus.$on("hit", data => {
+        // this.dataList.push(data);
+        let ss = data;
+        console.log(ss);
+        this.dataList = ss;
+        console.log(this.dataList);
       });
     }
   },
   created() {
-    bus.$on("hit", data => {
-      console.log(data);
-      // this.dataList = data;
-    });
     this.getLibrary();
     this.getDocuments();
     this.getRecommendations();
     this.loadFile("/pdfFile/pdf-5.pdf");
-
+    this.ser();
     // console.log(123);
   },
+  mounted() {},
   filters: {
     formatDate: function(value) {
       let date = new Date(value);
@@ -449,7 +460,7 @@ export default {
             margin-left: 30px;
             background-image: url("../assets/image/lcs_img/lcs_bg.png");
             background-repeat: no-repeat;
-            background-position: 0 -1100px;
+            background-position: 0 -1040px;
           }
           .pdf-detailsBox-right-two {
             float: right;
@@ -457,7 +468,7 @@ export default {
             height: 60px;
             background-image: url("../assets/image/lcs_img/lcs_bg.png");
             background-repeat: no-repeat;
-            background-position: 0 -1100px;
+            background-position: 0 -1160px;
           }
         }
       }
