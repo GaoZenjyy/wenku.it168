@@ -53,7 +53,7 @@
               <div class="n2">{{item.meeting_fileNumber}}</div>
               <div class="n2">{{item.meeting_place}}</div>
               <div class="n3">{{item.meeting_browse}}</div>
-              <div class="n4">{{item.meeting_data}}</div>
+              <div class="n4">{{item.meeting_data | dateFormats}}</div>
             </li>
           </ul>
           <!-- 分页 -->
