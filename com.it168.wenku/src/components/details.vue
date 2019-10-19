@@ -139,6 +139,7 @@
 <script>
 // 导入清除样式css
 import "../assets/css/reset.css";
+// pdfjs-dist
 import PDF from "pdfjs-dist";
 import bus from "./bus.js";
 PDF.disableWorker = true;
