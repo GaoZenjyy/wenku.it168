@@ -213,7 +213,7 @@
           </li>
         </ul>
         <ul class="content-b-left-top-ul-a clearfix">
-          <li v-for="item in listWenDangXzs" :key="item.id">
+          <li v-for="item in listWenDangXzs" :key="item.id" @click="getid(item.id)">
             <em></em>
             <span>
               <a href="javascript:;">{{item.file_name}}</a>
