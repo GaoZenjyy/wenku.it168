@@ -164,8 +164,6 @@ export default {
       const { data: res } = await this.$http.get("library", {
         params: { id: this.$store.state.age}
       });
-      console.log("哈哈哈   " + this.dataList + "gggg===");
-
       // console.log(res);
       this.library = res.data;
       // console.log(this.library);
