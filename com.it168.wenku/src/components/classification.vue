@@ -65,9 +65,9 @@
                     <a class="filenamea" href="javascirpt:;">{{item.file_name}}</a>
                   </p>
                   <span>标签：</span>
-                  <a class="spana" href="javascirpt:;">{{item.file_label}}</a>
+                  <a class="spana" href="javascirpt:;">{{item.file_label}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
                   <span>分类：</span>
-                  <a class="spana" href="javascirpt:;">{{item.technologyName}}</a>
+                  <a class="spana" href="javascirpt:;">{{item.technologyName}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
                   <span>贡献者：</span>
                   <a class="spana" href="javascirpt:;">{{item.file_author}}</a>
                 </td>
