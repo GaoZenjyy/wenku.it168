@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="words">
     <!-- 文集 -->
     <div class="recomm">文集推荐</div>
     <ul class="wendang_txt">
       <li v-for="item in getUserList" :key="item.id">
-        <a href target="_blnk">
+        <a href="javascript:;" >
           <img
-            src="../assets/image/images/words1.jpg"
+            :src="item.meeting_image"
             width="360"
             height="90"
             :alt="item.meeting_title"
@@ -14,17 +14,7 @@
           <span>{{item.meeting_title}}</span>
         </a>
       </li>
-      <!-- <li>
-        <a href="" target="_blank">
-          <img
-            src="../assets/image/images/words2.png"
-            width="360"
-            height="90"
-            alt="PostgreSQL 2017中国技术大会"
-          />
-          <span>PostgreSQL 2017中国技术大会</span>
-        </a>
-      </li>-->
+
     </ul>
     <ul class="wendang_list4"></ul>
     <!-- 扫描APP -->
@@ -75,7 +65,7 @@
         多年来，我们致力于扎根行业、深入场景进行产品设计和创新，
         为各行业用户构建端到端的解决方案，为客户网络创造新价值。
       </div>
-      <a href class="hezuo_shengqing">申请合作机构入驻</a>
+      <a href="javascript:;" class="hezuo_shengqing">申请合作机构入驻</a>
     </div>
 
     <!-- 列表 -->
@@ -99,9 +89,9 @@
     <div class="recomm">全部文集</div>
     <ul class="wenji_list">
       <li v-for="item in getAllList" :key="item.id">
-        <a href="/wenji/2745">
+        <a href="javascript:;">
           <img
-            src="../assets/image/images/words3.png"
+            :src="item.meeting_image"
             alt="item.meeting_title"
             width="360"
             height="90"
@@ -109,7 +99,7 @@
         </a>
         <div class="wenji_r">
           <div class="title">
-            <a href>{{item.meeting_title}}</a>
+            <a href="javascript:;">{{item.meeting_title}}</a>
           </div>
           <div class="time">
             <span>{{item.meeting_data | dateFormat}}更新</span>
@@ -156,7 +146,7 @@ export default {
       },
       queryInfo: {
         page: 1,
-        per_page: 2
+        per_page: 5
       },
       // 总条数
       total: 0
@@ -169,6 +159,12 @@ export default {
       // console.log(res);
       this.getUserList = res.data;
       // console.log(this.getUserList);
+    },
+    // 图片
+    async showDataimg() {
+      const { data: res } = await this.$http.get("/conference/albums");
+      console.log(res);
+      this.getimgList = res.data;
     },
     // 分类列表
     async classifyData() {
@@ -214,10 +210,11 @@ export default {
     this.allData();
     this.wordData();
     this.classifyData();
+    this.showDataimg();
   }
 };
 </script>
 <style>
 @import "../assets/css/collected.css";
-@import "../assets/css/reset.css";
+/* @import "../assets/css/reset.css"; */
 </style>

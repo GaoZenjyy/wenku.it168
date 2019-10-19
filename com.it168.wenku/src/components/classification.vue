@@ -52,16 +52,31 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-table :data="correlationlist" style="width: 100%">
-            <el-table-column prop="file_name" width="620px">
-              <template></template>
-            </el-table-column>
-            <el-table-column style="color:#e48b00" prop="file_price" width="50px"></el-table-column>
-            <el-table-column style="color:#008cd6" prop="file_browse" width="65px"></el-table-column>
-            <el-table-column prop="file_time">
-              <template slot-scope="scope">{{scope.row.file_time|dateFormats}}</template>
-            </el-table-column>
-          </el-table>
+          <table style="width: 100%">
+            <tr class="filerow" v-for="item in correlationlist" :key="item.id">
+              <div class="filerowbox">
+                <em v-if="item.formatName=='PDF'" class="doc_conent pdf"></em>
+                <em v-else-if="item.formatName=='DOC'" class="doc_conent doc"></em>
+                <em v-else-if="item.formatName=='PPT'" class="doc_conent ppt"></em>
+                <em v-else-if="item.formatName=='PPTX'" class="doc_conent ppt"></em>
+                <em v-else-if="item.formatName=='DOCX'" class="doc_conent doc"></em>
+                <td class="filename">
+                  <p>
+                    <a class="filenamea" href="javascirpt:;">{{item.file_name}}</a>
+                  </p>
+                  <span>标签：</span>
+                  <a class="spana" href="javascirpt:;">{{item.file_label}}</a>
+                  <span>分类：</span>
+                  <a class="spana" href="javascirpt:;">{{item.technologyName}}</a>
+                  <span>贡献者：</span>
+                  <a class="spana" href="javascirpt:;">{{item.file_author}}</a>
+                </td>
+                <td class="fileprice">{{item.file_price}}金币</td>
+                <td class="filebrowse">{{item.file_browse}}</td>
+                <td class="filetime">{{item.file_time|dateFormats}}</td>
+              </div>
+            </tr>
+          </table>
           <el-pagination
             background
             layout="prev,sizes, pager, next,total,jumper"
@@ -146,7 +161,6 @@
 </template>
 <script>
 import { log } from "util";
-import bus from "./bus.js";
 export default {
   data() {
     return {
@@ -208,13 +222,6 @@ export default {
         this.toggleChild = false;
       }
     }
-  },
-  created() {
-    bus.$on("hit", data => {
-      // console.log(data);
-    });
-    // console.log(123);
-    
   }
 };
 </script>
@@ -476,5 +483,85 @@ el-container {
   text-decoration: none;
   outline: none;
   color: #666;
+}
+.filerow {
+  position: relative;
+}
+/* 文章行样式 */
+.filerowbox {
+  position: relative;
+  border-bottom: 1px dashed #ccc;
+}
+/* 文章名称 */
+.filenamea {
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  margin-left: 15px;
+}
+.filenamea:hover {
+  font-size: 14px;
+  color: #c00;
+  text-decoration: underline;
+}
+.filename {
+  width: 610px;
+}
+/* 文档标签样式 */
+.filename span {
+  font-size: 12px;
+  color: #999;
+}
+.spana {
+  font-size: 12px;
+  color: #999;
+  text-decoration: none;
+}
+.spana:hover {
+  font-size: 12px;
+  color: #c00;
+  text-decoration: underline;
+}
+/* 售价样式 */
+.fileprice {
+  font-size: 12px;
+  text-align: center;
+  width: 50px;
+  color: #e48b00;
+}
+/* 浏览量样式 */
+.filebrowse {
+  font-size: 12px;
+  width: 70px;
+  color: #008cd6;
+  text-align: center;
+}
+.filetime {
+  font-size: 12px;
+  width: 78px;
+  text-align: right;
+  color: #999;
+}
+.doc_conent {
+  background-image: url("../assets/image/it168/ia_100000025.png");
+  width: 20px;
+  height: 24px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 348px;
+  top: 18px;
+  left: -10px;
+}
+.pdf {
+  background-position: -245px -598px;
+}
+.doc {
+  background-position: -134px -598px;
+}
+.ppt {
+  background-position: -1px -598px;
+}
+.pptx{
+  background-position: -1px -598px;
 }
 </style>

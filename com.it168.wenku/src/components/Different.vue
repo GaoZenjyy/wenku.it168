@@ -8,7 +8,7 @@
             <div class="content-top-left-a-top">技术分类</div>
             <div class="content-top-left-a-bottom">
               <ul class="clearfix">
-                <li v-for="(item,index) in listData" :key="index" >
+                <li v-for="(item,index) in listData" :key="index">
                   <a href="javascript:;">{{item.attribute_name}}</a>
                   <!-- <router-link :to="{path:'/classification'}">{{item.attribute_name}}</router-link> -->
                   <!-- <a href="#"></a> -->
@@ -97,12 +97,12 @@
         <div class="content-b-left-top">热门文档</div>
         <ul class="content-b-left-top-ul">
           <!-- <template slot-scope="scoped">{{scoped.row}}</template> -->
-          <li v-for="(item,index) in listWenDang" :key="item.id">
+          <li v-for="item in listWenDang" :key="item.id">
             <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
             <!-- {{item.id}} -->
             <a href="javascript:;">
               <!-- {{srcs}} -->
-              <img :src="simages[index].img" alt />
+              <img :src="item.file_image" alt />
               <span>{{item.file_name}}</span>
             </a>
             <!-- </div> -->
@@ -202,7 +202,7 @@
             <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
             <a href="javascript:;">
               <!-- {{srcs}} -->
-              <img :src="simagesred[index].img" alt />
+              <img :src="item.file_image" alt />
               <span>{{item.file_name}}</span>
             </a>
             <!-- </div> -->
@@ -230,7 +230,7 @@
       <ul class="clearfix">
         <li v-for="(item,index) in listConference" :key="index">
           <a href="javascript:;">
-            <img :src="ConferenceImage[index].img" alt />
+            <img :src="item.meeting_image" alt />
             <span>{{item.meeting_title}}</span>
           </a>
         </li>
@@ -243,7 +243,7 @@
       <ul class="clearfix">
         <li v-for="(item,index) in listCollected" :key="index">
           <a href="javascript:;">
-            <img :src="collectedimg[index].img" alt />
+            <img :src="item.meeting_image" alt />
             <span>{{item.meeting_title}}</span>
           </a>
         </li>
@@ -253,7 +253,8 @@
   </div>
 </template>
 <script>
-import bus from "./bus.js";
+// import bus from "./bus.js";
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -282,99 +283,89 @@ export default {
       // 热门文档
       listWenDang: [],
       // 热门文档图片
-      simages: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz1.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz2.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz3.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/wendangxz4.jpg")
-        }
-      ],
+      // simages: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz1.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz2.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz3.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/wendangxz4.jpg")
+      //   }
+      // ],
       // 热门文档下载
       listWenDangXz: [],
       // 最新上传
       listWenDangs: [],
       // 最新上传 图片
-      simagesred: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red1.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red2.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red3.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/red4.jpg")
-        }
-      ],
+      // simagesred: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red1.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red2.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red3.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/red4.jpg")
+      //   }
+      // ],
       // 最新上传 下载
       listWenDangXzs: [],
       // 会议专辑
       listConference: [],
 
       // 会议图片
-      ConferenceImage: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi1.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi2.jpg")
-        }
-      ],
+      // ConferenceImage: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi1.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi2.jpg")
+      //   }
+      // ],
       // 精品文集
       listCollected: [],
       // 精品文集 图片
-      collectedimg: [
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi3.jpg")
-        },
-        {
-          url: "#",
-          img: require("../assets/image/gaoy/huiyi4.jpg")
-        }
-      ],
+      // collectedimg: [
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi3.jpg")
+      //   },
+      //   {
+      //     url: "#",
+      //     img: require("../assets/image/gaoy/huiyi4.jpg")
+      //   }
+      // ],
       // 下载
       downloads: []
     };
   },
   methods: {
+    ...mapMutations(["getid"]),
     async getid(id) {
       // console.log(id);
-      const { data: res } = await this.$http.get("/mm", { params: { id: id } });
-      let idd = res.data[0].id;
-      bus.$emit("hit", idd);
-      //   // console.log(id);
-      // console.log(idd);
+      this.$store.commit("mm", id);
       this.$router.push("/details");
     },
-    // getid(id) {
-    //   // console.log(id);
-    //   bus.$emit("hit", id);
-    //   // console.log(id);
-
-    //   this.$router.push("/classification");
-    //   // location.href = "/classification";
-    // },
     setget(id) {},
+    // 技术分类
     async getListdata() {
       const { data: res } = await this.$http.get("/technology");
       // console.log(res);
@@ -385,32 +376,38 @@ export default {
       // console.log(res.data);
       // console.log(this.listData);
     },
+    // 热门文档
     async getListWenDang() {
       const { data: res } = await this.$http.get("popular/document/read");
       // console.log(res);
       this.listWenDang = res.data;
       // console.log(this.listWenDang);
     },
+    // 热门文档下载
     async getListWenDangxz() {
       const { data: res } = await this.$http.get("/popular/document/download");
       // console.log(res);
       this.listWenDangXz = res.data;
     },
+    // 最新上传
     async getListWenzusc() {
       const { data: res } = await this.$http.get("/latest/upload/read");
       // console.log(res);
       this.listWenDangs = res.data;
     },
+    // 最新上传 下载
     async getListwedXz() {
       const { data: res } = await this.$http.get("/latest/upload/download");
       // console.log(res);
       this.listWenDangXzs = res.data;
     },
+    // 会议专辑
     async getListconference() {
       const { data: res } = await this.$http.get("/conference/albums");
       // console.log(res);
       this.listConference = res.data;
     },
+    // 会议图片
     async getcollectedimg() {
       const { data: res } = await this.$http.get("/conference/albums");
       // console.log(res);

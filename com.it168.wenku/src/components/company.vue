@@ -125,6 +125,7 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="total"
     ></el-pagination>
+    <!-- <div class="header-right">{{this.city}}</div> -->
   </div>
 </template>
 
@@ -151,7 +152,9 @@ export default {
     // 写一个函数 查询公司信息
     async companyList() {
       // axios 请求
-      const { data: res } = await this.$http.get("/company/information");
+      const { data: res } = await this.$http.get("/company/information", {
+        params: { id: this.$store.state.age || 1 }
+      });
       // console.log(res);
       // 把数据放进数组
       this.companyDate = res.data;
@@ -162,7 +165,7 @@ export default {
       const { data: res } = await this.$http.get("/partner/documents", {
         params: this.pagingList
       });
-      console.log(res);
+      // console.log(res);
       this.organizationData = res.data;
       // console.log(this.organizationData);
       // 把分页总条数放进数组
@@ -223,15 +226,15 @@ export default {
 }
 /* 图片 */
 .box_left_top img {
-  width: 140px;
+  /* width: 140px; */
   height: 70px;
 }
 /* 文字 */
 .top_wenzi {
   font-size: 21px;
-  position: absolute;
-  top: 20px;
-  right: 313px;
+  position: relative;
+  top: -28px;
+  left: 10px;
 }
 /* 精灵图 */
 .jing {
