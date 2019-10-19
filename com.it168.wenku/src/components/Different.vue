@@ -8,7 +8,7 @@
             <div class="content-top-left-a-top">技术分类</div>
             <div class="content-top-left-a-bottom">
               <ul class="clearfix">
-                <li v-for="(item,index) in listData" :key="index">
+                <li v-for="(item,index) in listData" :key="index" @click="setget(item.id)">
                   <a href="javascript:;">{{item.attribute_name}}</a>
                   <!-- <router-link :to="{path:'/classification'}">{{item.attribute_name}}</router-link> -->
                   <!-- <a href="#"></a> -->
@@ -17,12 +17,12 @@
             </div>
             <div class="content-top-left-a-bottom-a">热搜分类</div>
             <div class="content-top-left-a-bottom-b">
-              <a href="javascipt:;">Python</a>
-              <a href="javascipt:;">javaScript</a>
-              <a href="javascipt:;">MySQL</a>
-              <a href="javascipt:;">NoSQL</a>
-              <a href="javascipt:;">java</a>
-              <a href="javascipt:;">C/C++</a>
+              <a href="#">Python</a>
+              <a href="#">javaScript</a>
+              <a href="#">MySQL</a>
+              <a href="#">NoSQL</a>
+              <a href="#">java</a>
+              <a href="#">C/C++</a>
             </div>
           </div>
         </div>
@@ -31,8 +31,8 @@
             <template>
               <div class="block">
                 <el-carousel height="290px">
-                  <el-carousel-item v-for="(item,index) in simage" :key="index">
-                    <a :href="item.url">
+                  <el-carousel-item v-for="(item,index) in simage" :key="index" >
+                    <a :href="item.url" @click="getid(item.id)">
                       <img :src="item.img" alt />
                     </a>
                   </el-carousel-item>
@@ -43,12 +43,12 @@
           <div class="content-top-middle-top-bottom">文库首发</div>
           <ul class="content-top-middle-top-bottom-a">
             <li>
-              <a href="javascipt:;">
+              <a href="#">
                 <img src="../assets/image/gaoy/wenksf1.png" alt />
               </a>
             </li>
             <li style=" margin-left:10px">
-              <a href="javascipt:;">
+              <a href="#">
                 <img src="../assets/image/gaoy/wenksf2.png" alt />
               </a>
             </li>
@@ -76,13 +76,13 @@
             <div class="content-top-right-bottom-b">
               <ul>
                 <li>
-                  <a href="javascipt:;">IT168文库新版上线，充值立打八八折！</a>
+                  <a href="#">IT168文库新版上线，充值立打八八折！</a>
                 </li>
                 <li>
-                  <a href="javascipt:;">关注文库微信公众号，凭用户名领取50金币！</a>
+                  <a href="#">关注文库微信公众号，凭用户名领取50金币！</a>
                 </li>
                 <li>
-                  <a href="javascipt:;">IT168文库APP推出，手机也可看文档！</a>
+                  <a href="#">IT168文库APP推出，手机也可看文档！</a>
                 </li>
               </ul>
             </div>
@@ -100,7 +100,7 @@
           <li v-for="item in listWenDang" :key="item.id">
             <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
             <!-- {{item.id}} -->
-            <a href="javascript:;">
+            <a href="javascript:;" @click="getid(item.id)">
               <!-- {{srcs}} -->
               <img :src="item.file_image" alt />
               <span>{{item.file_name}}</span>
@@ -138,10 +138,10 @@
           <div class="content-b-right-top-d">
             <ul class="clearfix">
               <li>
-                <a href="javascipt:;" class="content-b-right-top-f">完成认证</a>
+                <a href="javascript:;" class="content-b-right-top-f">完成认证</a>
               </li>
               <li>
-                <a href="javascipt:;" class="content-b-right-top-m">一键签到</a>
+                <a href="javascript:;" class="content-b-right-top-m">一键签到</a>
               </li>
             </ul>
           </div>
@@ -200,7 +200,7 @@
         <ul class="content-b-left-top-ul">
           <li v-for="(item,index) in listWenDangs" :key="index">
             <!-- <div v-for="(srcs,indexs) in simages" :key="indexs"> -->
-            <a href="javascript:;">
+            <a href="javascript:;" @click="getid(item.id)">
               <!-- {{srcs}} -->
               <img :src="item.file_image" alt />
               <span>{{item.file_name}}</span>
@@ -228,7 +228,7 @@
     <div class="content-d">
       <div class="content-d-top" style="line-height: 25px">会议专辑</div>
       <ul class="clearfix">
-        <li v-for="(item,index) in listConference" :key="index">
+        <li v-for="(item,index) in listConference" :key="index" @click="liuminggetid(item.id)">
           <a href="javascript:;">
             <img :src="item.meeting_image" alt />
             <span>{{item.meeting_title}}</span>
@@ -241,7 +241,7 @@
     <div class="content-d">
       <div class="content-d-top">精品文集</div>
       <ul class="clearfix">
-        <li v-for="(item,index) in listCollected" :key="index">
+        <li v-for="(item,index) in listCollected" :key="index" @click="liuminggetid(item.id)">
           <a href="javascript:;">
             <img :src="item.meeting_image" alt />
             <span>{{item.meeting_title}}</span>
@@ -358,13 +358,26 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["getid"]),
+    ...mapMutations(["getid", "setget"]),
+    // 李远东页面
     async getid(id) {
       // console.log(id);
       this.$store.commit("getId", id);
       this.$router.push("/details");
     },
-    setget(id) {},
+    // 亮亮页面
+    async setget(id) {
+      // console.log(id);
+      this.$store.commit("mm", id);
+      this.$router.push("/classification");
+    },
+    // 会议页面
+    async liuminggetid(id) {
+      // console.log(id);
+      this.$store.commit("mm", id);
+      this.$router.push("/themeeting");
+    },
+
     // 技术分类
     async getListdata() {
       const { data: res } = await this.$http.get("/technology");
