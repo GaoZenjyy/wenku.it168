@@ -94,9 +94,9 @@ export default {
   },
   //  方法
   methods: {
-    ...mapMutations(["mm"]),
-    mm(id) {
-      this.$store.commit("mm", id);
+    ...mapMutations(["getid"]),
+    getid(id) {
+      this.$store.commit("getId", id);
       this.$router.push("/company");
     },
     // 写函数

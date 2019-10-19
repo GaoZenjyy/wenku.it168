@@ -153,7 +153,7 @@ export default {
     async companyList() {
       // axios 请求
       const { data: res } = await this.$http.get("/company/information", {
-        params: { id: this.$store.state.age}
+        params: { id: this.$store.state.id}
       });
       // console.log(res);
       // 把数据放进数组

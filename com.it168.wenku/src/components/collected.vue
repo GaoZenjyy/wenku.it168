@@ -4,17 +4,17 @@
     <div class="recomm">文集推荐</div>
     <ul class="wendang_txt">
       <li v-for="item in getUserList" :key="item.id">
-        <a href="javascript:;" >
+        <a href="javascript:;">
           <img
             :src="item.meeting_image"
             width="360"
             height="90"
             :alt="item.meeting_title"
+            @click="getid(item.id)"
           />
-          <span>{{item.meeting_title}}</span>
+          <span @click="getid(item.id)">{{item.meeting_title}}</span>
         </a>
       </li>
-
     </ul>
     <ul class="wendang_list4"></ul>
     <!-- 扫描APP -->
@@ -93,13 +93,14 @@
           <img
             :src="item.meeting_image"
             alt="item.meeting_title"
-            width="360"
-            height="90"
+            style="width:360px;
+            height:90px"
+            @click="getid(item.id)"
           />
         </a>
         <div class="wenji_r">
           <div class="title">
-            <a href="javascript:;">{{item.meeting_title}}</a>
+            <a href="javascript:;" @click="getid(item.id)">{{item.meeting_title}}</a>
           </div>
           <div class="time">
             <span>{{item.meeting_data | dateFormat}}更新</span>
@@ -129,6 +130,7 @@
   </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -153,6 +155,13 @@ export default {
     };
   },
   methods: {
+    // 到王永晨
+    ...mapMutations(["getid"]),
+    // 跳转到 王永晨页面
+    getid(id) {
+      this.$store.commit("getId", id);
+      this.$router.push("/album");
+    },
     //文集推荐
     async showData() {
       const { data: res } = await this.$http.get("/conference/albums");

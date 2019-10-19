@@ -39,7 +39,7 @@
           </div>
           <!-- 会议大全 -->
           <ul class="wendang_list5">
-            <li v-for="item in meetingList" :key="item.id">
+            <li v-for="item in meetingList" :key="item.id" class="wendang_list5_li">
               <div class="n5">
                 <!-- 五角星 -->
                 <em></em>
@@ -47,13 +47,15 @@
                   <a
                     href="javascript:;"
                     style="text-decoration: none; color:#333"
+                    class="font_size"
+                    @click="getid(item.id)"
                   >{{item.meeting_title}}</a>
                 </div>
               </div>
-              <div class="n2">{{item.meeting_fileNumber}}</div>
-              <div class="n2">{{item.meeting_place}}</div>
-              <div class="n3">{{item.meeting_browse}}</div>
-              <div class="n4">{{item.meeting_data | dateFormats}}</div>
+              <div class="n2 font_size">{{item.meeting_fileNumber}}</div>
+              <div class="n2 font_size">{{item.meeting_place}}</div>
+              <div class="n3 font_size">{{item.meeting_browse}}</div>
+              <div class="n4 font_size">{{item.meeting_data | dateFormats}}</div>
             </li>
           </ul>
           <!-- 分页 -->
@@ -109,6 +111,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -162,6 +165,12 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["getid"]),
+    // 跳转到 王永晨页面
+    getid(id) {
+      this.$store.commit("getId", id);
+      this.$router.push("/album");
+    },
     // 获取分类列表
     async getcontentList() {
       const { data: res } = await this.$http.get("classification");
