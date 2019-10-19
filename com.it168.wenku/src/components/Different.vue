@@ -368,13 +368,13 @@ export default {
     // 亮亮页面
     async setget(id) {
       // console.log(id);
-      this.$store.commit("mm", id);
+      this.$store.commit("getId", id);
       this.$router.push("/classification");
     },
     // 会议页面
     async liuminggetid(id) {
       // console.log(id);
-      this.$store.commit("mm", id);
+      this.$store.commit("getId", id);
       this.$router.push("/themeeting");
     },
 
