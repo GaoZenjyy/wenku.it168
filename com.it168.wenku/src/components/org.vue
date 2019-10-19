@@ -43,7 +43,7 @@
           <div class="one_bottomleft">
             <ul>
               <li v-for="item1 in item.children" :key="item1.id">
-                <a href>{{item1.file_name}}</a>
+                <a href="javascipt:;">{{item1.file_name}}</a>
               </li>
             </ul>
           </div>

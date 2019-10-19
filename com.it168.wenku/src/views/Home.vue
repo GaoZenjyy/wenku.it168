@@ -84,25 +84,25 @@
             <div class="bottomofthe">
               <div class="bottomofthea">
                 <span>网站帮助：</span>
-                <a href="#">如何上传</a>
-                <a href="#">如何下载</a>
-                <a href="#">懒人充值</a>
-                <a href="#">常见问题</a>
+                <a href="javascipt:;">如何上传</a>
+                <a href="javascipt:;">如何下载</a>
+                <a href="javascipt:;">懒人充值</a>
+                <a href="javascipt:;">常见问题</a>
                 <span>QQ群：14543488</span>
               </div>
               <div class="bottomofthea-bottom">
                 <p>
                   盛拓传媒：
-                  <a href="#">IT168</a>|
-                  <a href="#">泡泡网</a>|
-                  <a href="#">爱极客</a>|
-                  <a href="#">试客</a>|
-                  <a href="#">ITPUB</a>|
-                  <a href="#">IT文库</a>|
-                  <a href="#">ChinaUnix</a>|
-                  <a href="#">本友会</a>|
-                  <a href="#">机友会</a>|
-                  <a href="#">哈喽维修</a>
+                  <a href="javascipt:;">IT168</a>|
+                  <a href="javascipt:;">泡泡网</a>|
+                  <a href="javascipt:;">爱极客</a>|
+                  <a href="javascipt:;">试客</a>|
+                  <a href="javascipt:;">ITPUB</a>|
+                  <a href="javascipt:;">IT文库</a>|
+                  <a href="javascipt:;">ChinaUnix</a>|
+                  <a href="javascipt:;">本友会</a>|
+                  <a href="javascipt:;">机友会</a>|
+                  <a href="javascipt:;">哈喽维修</a>
                 </p>
               </div>
             </div>
@@ -111,18 +111,18 @@
         <div class="certificateb">
           <div class="certificateb-comment">
             <p>
-              <a href="#">关于我们</a>|
-              <a href="#">广告服务</a>|
-              <a href="#">使用条款</a>|
-              <a href="#">联系我们</a>
+              <a href="javascipt:;">关于我们</a>|
+              <a href="javascipt:;">广告服务</a>|
+              <a href="javascipt:;">使用条款</a>|
+              <a href="javascipt:;">联系我们</a>
             </p>
             <div class="certificateb-bottom">
               <span>北京盛拓优讯信息技术有限公司. 版权所有</span>
-              <a href="#">中华人民共和国增值电信业务经营许可证 编号：京B2-20170206</a>
+              <a href="javascipt:;">中华人民共和国增值电信业务经营许可证 编号：京B2-20170206</a>
               <span>北京市公安局海淀分局网监中心备案编号：11010802020118</span>
             </div>
             <div class="certificateb-bottom-a">
-              <a href="#">广播电视节目制作经营许可证:(京) 字第07177号</a>
+              <a href="javascipt:;">广播电视节目制作经营许可证:(京) 字第07177号</a>
               <span>测绘资质证书:乙测资字11005067 网络文化经营许可证:京网文(2018) 1456-138号</span>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default {
   methods: {
     logout() {
       window.sessionStorage.removeItem("token");
-      location.reload() 
+      location.reload();
       this.$router.push("/different");
     }
   },

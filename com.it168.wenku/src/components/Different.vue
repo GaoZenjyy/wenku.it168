@@ -17,12 +17,12 @@
             </div>
             <div class="content-top-left-a-bottom-a">热搜分类</div>
             <div class="content-top-left-a-bottom-b">
-              <a href="#">Python</a>
-              <a href="#">javaScript</a>
-              <a href="#">MySQL</a>
-              <a href="#">NoSQL</a>
-              <a href="#">java</a>
-              <a href="#">C/C++</a>
+              <a href="javascipt:;">Python</a>
+              <a href="javascipt:;">javaScript</a>
+              <a href="javascipt:;">MySQL</a>
+              <a href="javascipt:;">NoSQL</a>
+              <a href="javascipt:;">java</a>
+              <a href="javascipt:;">C/C++</a>
             </div>
           </div>
         </div>
@@ -43,12 +43,12 @@
           <div class="content-top-middle-top-bottom">文库首发</div>
           <ul class="content-top-middle-top-bottom-a">
             <li>
-              <a href="#">
+              <a href="javascipt:;">
                 <img src="../assets/image/gaoy/wenksf1.png" alt />
               </a>
             </li>
             <li style=" margin-left:10px">
-              <a href="#">
+              <a href="javascipt:;">
                 <img src="../assets/image/gaoy/wenksf2.png" alt />
               </a>
             </li>
@@ -76,13 +76,13 @@
             <div class="content-top-right-bottom-b">
               <ul>
                 <li>
-                  <a href="#">IT168文库新版上线，充值立打八八折！</a>
+                  <a href="javascipt:;">IT168文库新版上线，充值立打八八折！</a>
                 </li>
                 <li>
-                  <a href="#">关注文库微信公众号，凭用户名领取50金币！</a>
+                  <a href="javascipt:;">关注文库微信公众号，凭用户名领取50金币！</a>
                 </li>
                 <li>
-                  <a href="#">IT168文库APP推出，手机也可看文档！</a>
+                  <a href="javascipt:;">IT168文库APP推出，手机也可看文档！</a>
                 </li>
               </ul>
             </div>
@@ -138,10 +138,10 @@
           <div class="content-b-right-top-d">
             <ul class="clearfix">
               <li>
-                <a href class="content-b-right-top-f">完成认证</a>
+                <a href="javascipt:;" class="content-b-right-top-f">完成认证</a>
               </li>
               <li>
-                <a href class="content-b-right-top-m">一键签到</a>
+                <a href="javascipt:;" class="content-b-right-top-m">一键签到</a>
               </li>
             </ul>
           </div>

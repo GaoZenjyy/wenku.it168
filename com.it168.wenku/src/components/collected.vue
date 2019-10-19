@@ -30,10 +30,10 @@
           <div class="content-b-right-top-d">
             <ul class="clearfix">
               <li>
-                <a href class="content-b-right-top-f">完成认证</a>
+                <a href="javascipt:;" class="content-b-right-top-f">完成认证</a>
               </li>
               <li>
-                <a href class="content-b-right-top-m">一键签到</a>
+                <a href="javascipt:;" class="content-b-right-top-m">一键签到</a>
               </li>
             </ul>
           </div>
