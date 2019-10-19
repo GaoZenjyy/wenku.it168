@@ -31,7 +31,7 @@
             <template>
               <div class="block">
                 <el-carousel height="290px">
-                  <el-carousel-item v-for="(item,index) in simage" :key="index" >
+                  <el-carousel-item v-for="(item,index) in simage" :key="index">
                     <a :href="item.url" @click="getid(item.id)">
                       <img :src="item.img" alt />
                     </a>
@@ -184,9 +184,9 @@
           <div class="content-b-right-jiaobu-b">
             <ul>
               <li v-for="item in downloads" :key="item.id">
-                <a href="javascript:;">{{item.file_author}}</a>
+                <a href="javascript:;" @click="getid(item.id)">{{item.file_author}}</a>
                 下载了
-                <a href="javascript:;">{{item.file_name}}</a>
+                <a href="javascript:;" @click="getid(item.id)">{{item.file_name}}</a>
               </li>
             </ul>
           </div>
@@ -374,7 +374,7 @@ export default {
     // 会议页面
     async liuminggetid(id) {
       // console.log(id);
-      this.$store.commit("getId", id); 
+      this.$store.commit("getId", id);
       this.$router.push("/themeeting");
     },
 
@@ -1020,6 +1020,7 @@ dd > span {
   width: 330px;
   height: 160px;
   margin: 17px 0;
+  overflow: hidden;
 }
 .content-d {
   width: 862px;
@@ -1079,9 +1080,18 @@ dd > span {
 .content-b-right-jiaobu-b ul {
   padding: 0;
   width: 300px;
-  height: 320px;
+  height: 300px;
   margin: 0 15px 0 15px;
   overflow: hidden;
+  animation: move 8s linear infinite;
+}
+@keyframes move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100px);
+  }
 }
 .content-b-right-jiaobu-b ul li {
   list-style: none;
