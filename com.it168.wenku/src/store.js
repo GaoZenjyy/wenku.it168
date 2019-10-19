@@ -11,7 +11,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     // city: defaultcity,
-    age: 0
+    age: 1
   },
   actions: {
     // setCityName(context, city) {
