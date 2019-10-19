@@ -137,8 +137,6 @@
   </div>
 </template>
 <script>
-// 导入清除样式css
-import "../assets/css/reset.css";
 // pdfjs-dist
 import PDF from "pdfjs-dist";
 import bus from "./bus.js";
@@ -288,6 +286,9 @@ export default {
 .details {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    a {
+      text-decoration: none;
+    }
   .left {
     .left-top {
       margin-top: 15px;
