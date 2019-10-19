@@ -102,7 +102,7 @@ img {
 
 /* 会议大全 */
 .wendang_list5 {
-  width: 838px;
+  width: 862px;
   margin: 0 auto;
   overflow: hidden;
   clear: both;
@@ -112,7 +112,7 @@ img {
 
 .wendang_list5 li {
   float: left;
-  width: 838px;
+  width: 862px;
   line-height: 26px;
   padding: 15px 0;
   border-bottom: 1px dashed #ccc;
@@ -147,10 +147,10 @@ img {
 
 .wendang_list5 li .n2 {
   width: 90px;
-  height: 1px;
   float: left;
   color: #e48b00;
   text-align: center;
+  margin-right: 20px;
 }
 
 .wendang_list5 li .n3 {
@@ -251,4 +251,10 @@ img {
   text-decoration: underline;
   color: #c00;
 }
+.font_size {
+  font-size: 12px;
+}
 
+.wendang_list5_li {
+  position: relative;
+}

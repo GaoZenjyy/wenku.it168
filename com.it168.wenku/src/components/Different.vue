@@ -361,7 +361,7 @@ export default {
     ...mapMutations(["getid"]),
     async getid(id) {
       // console.log(id);
-      this.$store.commit("mm", id);
+      this.$store.commit("getId", id);
       this.$router.push("/details");
     },
     setget(id) {},
