@@ -167,7 +167,7 @@ export default {
       });
       // console.log(res);
       this.library = res.data;
-      console.log(this.library);
+      // console.log(this.library);
     },
     // 获取热门文档
     async getDocuments() {
@@ -244,7 +244,7 @@ export default {
     },
     // 处理pdf文件路径
     pdfUrlPush(){
-      let pdfNum = Math.floor(Math.random() * 50);
+      let pdfNum = Math.floor(Math.random() * 49);
       // console.log(pdfNum);
       this.pdfUrl = '/pdfFile/pdf-' + pdfNum + '.pdf';
       console.log(this.pdfUrl);
