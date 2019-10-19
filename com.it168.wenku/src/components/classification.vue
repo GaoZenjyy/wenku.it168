@@ -62,12 +62,19 @@
                 <em v-else-if="item.formatName=='DOCX'" class="doc_conent doc"></em>
                 <td class="filename">
                   <p>
-                    <a class="filenamea" href="javascirpt:;">{{item.file_name}}</a>
+                    <a
+                      class="filenamea"
+                      href="javascirpt:;"
+                      @click="getId(item.id)"
+                    >{{item.file_name}}</a>
                   </p>
                   <span>标签：</span>
                   <a class="spana" href="javascirpt:;">{{item.file_label}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
                   <span>分类：</span>
-                  <a class="spana" href="javascirpt:;">{{item.technologyName}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                  <a
+                    class="spana"
+                    href="javascirpt:;"
+                  >{{item.technologyName}}&nbsp;&nbsp;&nbsp;&nbsp;</a>
                   <span>贡献者：</span>
                   <a class="spana" href="javascirpt:;">{{item.file_author}}</a>
                 </td>
@@ -161,6 +168,7 @@
 </template>
 <script>
 import { log } from "util";
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -182,6 +190,13 @@ export default {
     this.documents();
   },
   methods: {
+    ...mapMutations(["getid"]),
+    // 跳转到 李远东页面
+    getId(id) {
+      // console.log(id);
+      this.$store.commit("getId", id);
+      this.$router.push("/details");
+    },
     // 获取筛选项
     async technical() {
       const { data: res } = await this.$http.get("screen");
@@ -561,7 +576,7 @@ el-container {
 .ppt {
   background-position: -1px -598px;
 }
-.pptx{
+.pptx {
   background-position: -1px -598px;
 }
 </style>
