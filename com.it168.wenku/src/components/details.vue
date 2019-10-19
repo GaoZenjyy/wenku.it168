@@ -43,11 +43,11 @@
       <div class="pdf">
         <!-- pdf控制框 -->
         <div class="pdf-control">
-          <a class="pdf-pageup">
+          <a href="javascript:;" class="pdf-pageup">
             上一页
             <i></i>
           </a>
-          <a class="pdf-pagedown">
+          <a href="javascript:;" class="pdf-pagedown">
             下一页
             <i></i>
           </a>
@@ -96,7 +96,7 @@
         <div v-for="(item,index) in documents" :key="index" class="right-word-content">
           <div class="right-word-content-title">
             <i></i>
-            <a>{{item.file_name}}</a>
+            <a href="javascript:;">{{item.file_name}}</a>
           </div>
           <div class="right-word-content-details">
             <span>
@@ -119,7 +119,7 @@
         <div v-for="(item1,index) in recommendations" :key="index" class="right-word-content">
           <div class="right-word-content-title">
             <i></i>
-            <a>{{item1.file_name}}</a>
+            <a href="javascript:;">{{item1.file_name}}</a>
           </div>
           <div class="right-word-content-details">
             <span>
