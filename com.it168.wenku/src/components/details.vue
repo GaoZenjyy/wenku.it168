@@ -6,8 +6,8 @@
         <!-- 面包屑 -->
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ path: '/' }">文库首页</el-breadcrumb-item>
-          <el-breadcrumb-item>编程语言</el-breadcrumb-item>
-          <el-breadcrumb-item>Java</el-breadcrumb-item>
+          <el-breadcrumb-item>{{library.technology}}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{library.sub}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <!-- content-pdf -->
@@ -61,14 +61,14 @@
           <div class="pdf-detailsBox-left">
             <span>
               大小：
-              <i></i>
+              <i>{{library.file_browse}}</i>
               .
-              <i></i>
+              <i>{{library.file_download}}</i>
               MB
             </span>
             <span>
               所需金币：
-              <i></i>
+              <i>{{library.file_browse}}</i>
             </span>
             <span>
               文档标签：
@@ -156,6 +156,8 @@ export default {
       width: 100,
       pdfDoc: null,
       pages: 0,
+      // 文件路径
+      pdfUrl:''
     };
   },
   methods: {
@@ -164,11 +166,9 @@ export default {
       const { data: res } = await this.$http.get("library", {
         params: { id: this.$store.state.age || 1 }
       });
-      console.log("哈哈哈   " + this.dataList + "gggg===");
-
       // console.log(res);
       this.library = res.data;
-      // console.log(this.library);
+      console.log(this.library);
     },
     // 获取热门文档
     async getDocuments() {
@@ -243,23 +243,24 @@ export default {
         }
       });
     },
-    ser() {
-      bus.$on("hit", data => {
-        // this.dataList.push(data);
-        let ss = data;
-        console.log(ss);
-        this.dataList = ss;
-        console.log(this.dataList);
-      });
-    }
+    // 处理pdf文件路径
+    pdfUrlPush(){
+      let pdfNum = Math.floor(Math.random() * 9);
+      // console.log(pdfNum);
+      this.pdfUrl = '/pdfFile/pdf-' + pdfNum + '.pdf';
+      console.log(this.pdfUrl);
+    },
+    pdfUpFile(){
+      
+    },
+    pdfDownFile(){}
   },
   created() {
     this.getLibrary();
     this.getDocuments();
     this.getRecommendations();
-    this.loadFile("/pdfFile/pdf-5.pdf");
-    this.ser();
-    // console.log(123);
+    this.pdfUrlPush();
+    this.loadFile(this.pdfUrl);
   },
   mounted() {},
   filters: {
