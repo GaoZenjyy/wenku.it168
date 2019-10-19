@@ -43,7 +43,8 @@
                 <a href="javascript:;" class="search-connent-left-a"></a>
               </div>
               <div class="search-connent-right">
-                <el-input class="input-with-select"></el-input>
+                <el-input class="input-with-select" v-model="file_name"></el-input>
+
                 <div class="search-connent-right-top">
                   <button class="inputbutton"></button>
                 </div>
