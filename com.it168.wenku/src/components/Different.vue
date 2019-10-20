@@ -76,13 +76,13 @@
             <div class="content-top-right-bottom-b">
               <ul>
                 <li>
-                  <a href="#">IT168文库新版上线，充值立打八八折！</a>
+                  <a href="javascript:;">IT168文库新版上线，充值立打八八折！</a>
                 </li>
                 <li>
-                  <a href="#">关注文库微信公众号，凭用户名领取50金币！</a>
+                  <a href="javascript:;">关注文库微信公众号，凭用户名领取50金币！</a>
                 </li>
                 <li>
-                  <a href="#">IT168文库APP推出，手机也可看文档！</a>
+                  <a href="javascript:;">IT168文库APP推出，手机也可看文档！</a>
                 </li>
               </ul>
             </div>
