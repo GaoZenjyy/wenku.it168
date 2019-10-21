@@ -70,10 +70,6 @@
               所需金币：
               <i>{{library.file_browse}}</i>
             </span>
-            <span>
-              文档标签：
-              <i></i>
-            </span>
           </div>
           <div class="pdf-detailsBox-right">
             <a href="javascript:;">
@@ -522,7 +518,7 @@ export default {
             background-position: -230px -559px;
           }
           a {
-            width: 500px;
+            width: 311px;
             margin: 15px 0;
             display: inline-block;
             font-size: 16px;
