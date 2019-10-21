@@ -155,7 +155,7 @@ export default {
       width: 100,
       pdfDoc: null,
       pages: 0,
-      // 文件路径
+      // 文件路径 
       pdfUrl:''
     };
   },
